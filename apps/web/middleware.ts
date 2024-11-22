@@ -1,20 +1,18 @@
-import { updateSession } from "@repo/supabase/middleware";
-import { createI18nMiddleware } from "next-international/middleware";
 import { type NextRequest, NextResponse } from "next/server";
-
-const I18nMiddleware = createI18nMiddleware({
-  locales: ["en", "fr"],
-  defaultLocale: "en",
-  urlMappingStrategy: "rewrite",
-});
+import { updateSession } from "@repo/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
-  const { response, user } = await updateSession(
+  let supabaseResponse = NextResponse.next({
     request,
-    I18nMiddleware(request),
-  );
+  });
+  const { response, user } = await updateSession(request, supabaseResponse);
 
-  if (!request.nextUrl.pathname.endsWith("/login") && !request.nextUrl.pathname.endsWith("/register")  && !request.nextUrl.pathname.endsWith("/verify-email") && !user) {
+  if (
+    !request.nextUrl.pathname.endsWith("/login") &&
+    !request.nextUrl.pathname.endsWith("/register") &&
+    !request.nextUrl.pathname.endsWith("/verify-email") &&
+    !user
+  ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -23,6 +21,13 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|api|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

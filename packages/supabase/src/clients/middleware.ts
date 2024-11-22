@@ -1,14 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
-import type { User } from "@supabase/supabase-js";
 
 export const updateSession = async (
   request: NextRequest,
   response: NextResponse,
-): Promise<{
-  response: NextResponse;
-  user: User | null;
-}> => {
+) => {
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

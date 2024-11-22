@@ -1,4 +1,4 @@
-// import { logger } from "@repo/logger";
+import { logger } from "@repo/logger";
 import { createClient } from "@repo/supabase/server";
 
 export async function getUser() {
@@ -9,7 +9,7 @@ export async function getUser() {
 
     return result;
   } catch (error) {
-    // logger.error(error);
+    logger.error(error);
 
     throw error;
   }
@@ -23,7 +23,7 @@ export async function getPosts() {
 
     return result;
   } catch (error) {
-    // logger.error(error);
+    logger.error(error);
     throw error;
   }
 }
