@@ -1,4 +1,4 @@
-export default function Home(): React.ReactElement {
+export default async function Home(): Promise<React.ReactElement> {
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
       <h1 className="text-4xl font-bold mb-8">Welcome to Squirrel</h1>

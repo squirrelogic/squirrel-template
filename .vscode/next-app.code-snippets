@@ -1,0 +1,43 @@
+{
+  "Next.js App Layout": {
+    "prefix": "nlayout",
+    "body": [
+      "import type { Metadata } from \"next\";",
+      "",
+      "export const metadata: Metadata = {",
+      "  title: \"${1:Your App}\",",
+      "  description: \"${2:App description}\",",
+      "};",
+      "",
+      "interface RootLayoutProps {",
+      "  children: React.ReactNode;",
+      "}",
+      "",
+      "export default async function RootLayout({",
+      "  children,",
+      "}: RootLayoutProps): Promise<React.ReactElement> {",
+      "  return (",
+      "    <html lang=\"en\">",
+      "      <body>",
+      "        ${3:${children}}",
+      "      </body>",
+      "    </html>",
+      "  );",
+      "}"
+    ],
+    "description": "Creates a Next.js App Router layout component"
+  },
+  "Next.js App Page": {
+    "prefix": "npage",
+    "body": [
+      "export default async function ${1:Page}(): Promise<React.ReactElement> {",
+      "  return (",
+      "    <div>",
+      "      ${2:Page content}",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "Creates a Next.js App Router page component"
+  }
+}

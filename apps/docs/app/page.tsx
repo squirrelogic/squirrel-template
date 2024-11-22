@@ -19,7 +19,7 @@ const ThemeImage = (props: Props) => {
   );
 };
 
-export default function Home(): React.ReactElement {
+export default async function Home(): Promise<React.ReactElement> {
   return (
     <div className={styles.page}>
       <main className={styles.main}>

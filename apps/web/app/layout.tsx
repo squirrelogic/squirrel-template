@@ -20,9 +20,9 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: RootLayoutProps): React.ReactElement {
+}: RootLayoutProps): Promise<React.ReactElement> {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
