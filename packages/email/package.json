@@ -7,7 +7,7 @@
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit",
     "dev": "email dev -p 3003",
-    "build": "email build",
+    "build-email": "email build",
     "start": "email start"
   },
   "keywords": [],
@@ -16,17 +16,21 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
-    "@types/eslint": "^8.56.5",
-    "@types/node": "^22.9.1",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "typescript": "5.5.4"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   },
   "dependencies": {
     "@react-email/components": "0.0.11",
-    "@react-email/tailwind": "^1.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@react-email/render": "0.0.9",
+    "@react-email/tailwind": "0.0.12",
+    "@repo/logger": "workspace:^",
+    "classnames": "^2.5.1",
+    "framer-motion": "^11.0.8",
+    "prism-react-renderer": "^2.3.1",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-email": "1.10.0"
   },
   "peerDependencies": {

@@ -7,11 +7,13 @@ export const inter = Inter({
   variable: '--font-inter',
 });
 
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: RootLayoutProps): React.ReactElement {
   return (
     <html lang="en">
       <body className="bg-black text-slate-12 font-sans">
