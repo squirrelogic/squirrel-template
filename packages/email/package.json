@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "lint": "eslint . --max-warnings 0",
-    "check-types": "tsc --noEmit",
-    "dev": "email dev -p 3003",
+    "lint-email": "eslint . --max-warnings 0",
+    "check-types-email": "tsc --noEmit",
+    "dev-email": "email dev -p 3003",
     "build-email": "email build",
-    "start": "email start"
+    "start-email": "email start"
   },
   "keywords": [],
   "author": "",

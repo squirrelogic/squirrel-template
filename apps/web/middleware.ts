@@ -1,19 +1,40 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@repo/supabase/middleware";
+import i18nMiddleware from "./i18n/middleware";
 
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
+
+  console.log("in middleware");
+  // Apply i18nMiddleware for locale detection and redirection
+  const i18nResponse = i18nMiddleware(request);
+  if (i18nResponse) {
+    console.log("handling i18n");
+    return i18nResponse; // Redirect or modify request as needed
+  }
+
   const { response, user } = await updateSession(request, supabaseResponse);
 
-  if (
-    !request.nextUrl.pathname.endsWith("/login") &&
-    !request.nextUrl.pathname.endsWith("/register") &&
-    !request.nextUrl.pathname.endsWith("/verify-email") &&
-    !user
-  ) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  const { pathname } = request.nextUrl;
+
+  // Handle redirection from "/" to "/en/"
+  if (pathname === "/") {
+    console.log("redirecting to /en/");
+    return NextResponse.redirect(new URL("/en/", request.url));
+  }
+
+  // Redirect unauthenticated users to localized login pages
+  const unauthenticatedPaths = ["/login", "/register", "/verify-email"];
+  const isUnauthenticatedPath = unauthenticatedPaths.some((path) =>
+    pathname.endsWith(path),
+  );
+
+  if (!isUnauthenticatedPath && !user) {
+    console.log("redirecting to /en/login");
+    const locale = request.nextUrl.pathname.split("/")[1] || "en"; // Detect locale from URL or fallback to "en"
+    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 
   return response;
