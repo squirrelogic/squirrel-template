@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,12 +8,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { Menu, MoveRight, X } from "lucide-react";
+} from "@repo/ui/navigation-menu";
+import { Icons } from "@repo/ui/icons";
 import { useState } from "react";
 import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
 
-export const Header1 = () => {
+export const Navbar = () => {
   const navigationItems = [
     {
       title: "Home",
@@ -107,7 +108,7 @@ export const Header1 = () => {
                                 className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded"
                               >
                                 <span>{subItem.title}</span>
-                                <MoveRight className="w-4 h-4 text-muted-foreground" />
+                                <Icons.MoveRight className="w-4 h-4 text-muted-foreground" />
                               </NavigationMenuLink>
                             ))}
                           </div>
@@ -122,6 +123,7 @@ export const Header1 = () => {
         </div>
         <div className="flex lg:justify-center">
           <p className="font-semibold">TWBlocks</p>
+          <ThemeToggle />
         </div>
         <div className="flex justify-end w-full gap-4">
           <Button variant="ghost" className="hidden md:inline">
@@ -133,7 +135,11 @@ export const Header1 = () => {
         </div>
         <div className="flex w-12 shrink lg:hidden items-end justify-end">
           <Button variant="ghost" onClick={() => setOpen(!isOpen)}>
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isOpen ? (
+              <Icons.X className="w-5 h-5" />
+            ) : (
+              <Icons.Menu className="w-5 h-5" />
+            )}
           </Button>
           {isOpen && (
             <div className="absolute top-20 border-t flex flex-col w-full right-0 bg-background shadow-lg py-4 container gap-8">
@@ -146,7 +152,7 @@ export const Header1 = () => {
                         className="flex justify-between items-center"
                       >
                         <span className="text-lg">{item.title}</span>
-                        <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
+                        <Icons.MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
                       </Link>
                     ) : (
                       <p className="text-lg">{item.title}</p>
@@ -161,7 +167,7 @@ export const Header1 = () => {
                           <span className="text-muted-foreground">
                             {subItem.title}
                           </span>
-                          <MoveRight className="w-4 h-4 stroke-1" />
+                          <Icons.MoveRight className="w-4 h-4 stroke-1" />
                         </Link>
                       ))}
                   </div>

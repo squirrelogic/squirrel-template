@@ -1,11 +1,11 @@
 {
-  "name": "add-shadcn-component",
+  "name": "shadcn-component",
   "description": "Adds a ShadCN component to the UI package using pnpm dlx",
   "args": {
-    "componentName": {
+    "name": {
       "type": "string",
       "description": "The name of the ShadCN component to add",
-      "required": true
+      "required": false
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "name": "say",
+  "description": "says a thing",
+  "args": {
+    "word": {
+      "type": "string",
+      "description": "the word to say",
+      "required": true
+    }
+  }
+}

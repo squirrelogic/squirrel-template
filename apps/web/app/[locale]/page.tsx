@@ -1,6 +1,7 @@
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
+import { Navbar } from "@/components/navbar";
 
 interface HomeLayoutProps {
   params: {
@@ -18,6 +19,7 @@ export default async function Home({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
+      <Navbar />
       <h1 className="text-4xl font-bold mb-8">Welcome to Squirrel</h1>
       <div className="space-y-4">
         <h1>{messages.greeting}</h1>

@@ -16,6 +16,11 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "clean": {
+      "cache": false,
+      "persistent": false,
+      "outputs": ["dist/**", "node_modules/**", ".turbo/**", ".next/**"]
     }
   }
 }

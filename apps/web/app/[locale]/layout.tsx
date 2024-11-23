@@ -3,12 +3,15 @@ import { cn } from "@repo/ui/cn";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Suspense } from "react";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+
+const fontSans = GeistSans.variable;
+const fontMono = GeistMono.variable;
 
 export const metadata: Metadata = {
   title: "Starter | Create Next App",
@@ -47,25 +50,23 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head />
       <body
         className={cn(
-          GeistSans.variable,
-          GeistMono.variable,
+          fontSans,
+          fontMono,
           "min-h-screen bg-background font-sans antialiased",
         )}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            <div className="relative flex min-h-screen flex-col">
-              <div className="flex-1">{children}</div>
-            </div>
-          </NextIntlClientProvider>
+        <ThemeProvider suppressHydrationWarning>
+          <Suspense fallback={"<div></div>Loading...</div>"}>
+            <NextIntlClientProvider messages={messages} locale={locale}>
+              <div className="relative flex min-h-screen flex-col">
+                <div className="flex-1">{children}</div>
+              </div>
+            </NextIntlClientProvider>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>
