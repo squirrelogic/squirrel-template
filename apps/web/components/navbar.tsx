@@ -1,182 +1,96 @@
 "use client";
 
-import { Button } from "@repo/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@repo/ui/navigation-menu";
-import { Icons } from "@repo/ui/icons";
-import { useState } from "react";
+import * as React from "react";
 import Link from "next/link";
-import { ThemeToggle } from "./theme-toggle";
+import { useTheme } from "next-themes";
+import { Icons } from "@repo/ui/icons";
+import Image from "next/image";
 
-export const Navbar = () => {
-  const navigationItems = [
-    {
-      title: "Home",
-      href: "/",
-      description: "",
-    },
-    {
-      title: "Product",
-      description: "Managing a small business today is already tough.",
-      items: [
-        {
-          title: "Reports",
-          href: "/reports",
-        },
-        {
-          title: "Statistics",
-          href: "/statistics",
-        },
-        {
-          title: "Dashboards",
-          href: "/dashboards",
-        },
-        {
-          title: "Recordings",
-          href: "/recordings",
-        },
-      ],
-    },
-    {
-      title: "Company",
-      description: "Managing a small business today is already tough.",
-      items: [
-        {
-          title: "About us",
-          href: "/about",
-        },
-        {
-          title: "Fundraising",
-          href: "/fundraising",
-        },
-        {
-          title: "Investors",
-          href: "/investors",
-        },
-        {
-          title: "Contact us",
-          href: "/contact",
-        },
-      ],
-    },
-  ];
+import { cn } from "@repo/ui/cn";
+import { Button } from "@repo/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@repo/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@repo/ui/dropdown-menu";
 
-  const [isOpen, setOpen] = useState(false);
+const navItems = [
+  { title: "Home", href: "/" },
+  { title: "About", href: "/about" },
+  { title: "Contact", href: "/contact" },
+];
+
+export function Navbar() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const { setTheme, theme } = useTheme();
+
   return (
-    <header className="w-full z-40 fixed top-0 left-0 bg-background">
-      <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center">
-        <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
-          <NavigationMenu className="flex justify-start items-start">
-            <NavigationMenuList className="flex justify-start gap-4 flex-row">
-              {navigationItems.map((item) => (
-                <NavigationMenuItem key={item.title}>
-                  {item.href ? (
-                    <>
-                      <NavigationMenuLink>
-                        <Button variant="ghost">{item.title}</Button>
-                      </NavigationMenuLink>
-                    </>
-                  ) : (
-                    <>
-                      <NavigationMenuTrigger className="font-medium text-sm">
-                        {item.title}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent className="!w-[450px] p-4">
-                        <div className="flex flex-col lg:grid grid-cols-2 gap-4">
-                          <div className="flex flex-col h-full justify-between">
-                            <div className="flex flex-col">
-                              <p className="text-base">{item.title}</p>
-                              <p className="text-muted-foreground text-sm">
-                                {item.description}
-                              </p>
-                            </div>
-                            <Button size="sm" className="mt-10">
-                              Book a call today
-                            </Button>
-                          </div>
-                          <div className="flex flex-col text-sm h-full justify-end">
-                            {item.items?.map((subItem) => (
-                              <NavigationMenuLink
-                                href={subItem.href}
-                                key={subItem.title}
-                                className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded"
-                              >
-                                <span>{subItem.title}</span>
-                                <Icons.MoveRight className="w-4 h-4 text-muted-foreground" />
-                              </NavigationMenuLink>
-                            ))}
-                          </div>
-                        </div>
-                      </NavigationMenuContent>
-                    </>
-                  )}
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+    <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center">
+        <div className="flex items-center space-x-4">
+          <div className="bg-black/50 rounded-full p-2">
+            <Image src="/logo.png" alt="logo" width={40} height={40} />
+          </div>
+          <Link href="/" className="text-2xl font-bold">
+            <span className="bg-gradient-to-r from-[#33F9FA] via-[#8F6DFE] to-[#FE87FF] text-transparent bg-clip-text">
+              Squirrel
+            </span>
+          </Link>
         </div>
-        <div className="flex lg:justify-center">
-          <p className="font-semibold">TWBlocks</p>
-          <ThemeToggle />
-        </div>
-        <div className="flex justify-end w-full gap-4">
-          <Button variant="ghost" className="hidden md:inline">
-            Book a demo
-          </Button>
-          <div className="border-r hidden md:inline"></div>
-          <Button variant="outline">Sign in</Button>
-          <Button>Get started</Button>
-        </div>
-        <div className="flex w-12 shrink lg:hidden items-end justify-end">
-          <Button variant="ghost" onClick={() => setOpen(!isOpen)}>
-            {isOpen ? (
-              <Icons.X className="w-5 h-5" />
-            ) : (
-              <Icons.Menu className="w-5 h-5" />
-            )}
-          </Button>
-          {isOpen && (
-            <div className="absolute top-20 border-t flex flex-col w-full right-0 bg-background shadow-lg py-4 container gap-8">
-              {navigationItems.map((item) => (
-                <div key={item.title}>
-                  <div className="flex flex-col gap-2">
-                    {item.href ? (
-                      <Link
-                        href={item.href}
-                        className="flex justify-between items-center"
-                      >
-                        <span className="text-lg">{item.title}</span>
-                        <Icons.MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
-                      </Link>
-                    ) : (
-                      <p className="text-lg">{item.title}</p>
-                    )}
-                    {item.items &&
-                      item.items.map((subItem) => (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          className="flex justify-between items-center"
-                        >
-                          <span className="text-muted-foreground">
-                            {subItem.title}
-                          </span>
-                          <Icons.MoveRight className="w-4 h-4 stroke-1" />
-                        </Link>
-                      ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          <div className="hidden md:flex space-x-4">
+            {navItems.map((item) => (
+              <Button key={item.title} variant="ghost" asChild>
+                <Link href={item.href}>{item.title}</Link>
+              </Button>
+            ))}
+          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Icons.Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Icons.Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" className="md:hidden" size="icon">
+                <Icons.Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  <Button
+                    key={item.title}
+                    variant="ghost"
+                    asChild
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href={item.href}>{item.title}</Link>
+                  </Button>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-    </header>
+    </nav>
   );
-};
+}

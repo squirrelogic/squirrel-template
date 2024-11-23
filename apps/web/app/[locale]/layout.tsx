@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Suspense } from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Navbar } from "@/components/navbar";
 
 const fontSans = GeistSans.variable;
 const fontMono = GeistMono.variable;
@@ -59,11 +60,14 @@ export default async function RootLayout({
         )}
         suppressHydrationWarning
       >
-        <ThemeProvider suppressHydrationWarning>
+        <ThemeProvider>
           <Suspense fallback={"<div></div>Loading...</div>"}>
             <NextIntlClientProvider messages={messages} locale={locale}>
               <div className="relative flex min-h-screen flex-col">
-                <div className="flex-1">{children}</div>
+                <div className="flex-1 flex flex-col">
+                  <Navbar />
+                  {children}
+                </div>
               </div>
             </NextIntlClientProvider>
           </Suspense>

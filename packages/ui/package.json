@@ -12,7 +12,9 @@
     "./card": "./src/components/ui/card.tsx",
     "./input": "./src/components/ui/input.tsx",
     "./navigation-menu": "./src/components/ui/navigation-menu.tsx",
-    "./dropdown-menu": "./src/components/ui/dropdown-menu.tsx"
+    "./dropdown-menu": "./src/components/ui/dropdown-menu.tsx",
+    "./sheet": "./src/components/ui/sheet.tsx",
+    "./form": "./src/components/ui/form.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -33,7 +35,10 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
+    "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-navigation-menu": "^1.2.1",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
@@ -41,7 +46,9 @@
     "lucide-react": "^0.460.0",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "react-hook-form": "^7.53.2",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   }
 }
