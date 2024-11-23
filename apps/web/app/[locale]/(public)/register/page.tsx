@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-// import { registerAction } from "@/actions/auth/register-action";
 import Image from "next/image";
 import { Registration } from "@/components/registration";
 export const metadata: Metadata = {

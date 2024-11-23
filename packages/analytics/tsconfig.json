@@ -5,9 +5,11 @@
       "paths": {
         "@/*": ["./src/*"],
         "@repo/ui/*": ["../ui/src/*"],
-        "@repo/logger": ["../logger/src"]
+        "@repo/logger": ["../logger/src"],
+        "@repo/kv/*": ["../kv/src/*"],
+        "@repo/supabase/*": ["../supabase/src/*"]
       }
     },
     "include": [".", "src"],
     "exclude": ["node_modules", "dist"]
-  }
+}

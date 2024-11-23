@@ -4,10 +4,11 @@ import { Link } from "@/i18n/routing";
 import { Button } from "@repo/ui/button";
 
 interface HomeLayoutProps {
-  params: {
+  params: Promise<{
     locale: (typeof routing.locales)[number];
-  };
+  }>;
 }
+
 export default async function Home({
   params: paramsPromise,
 }: HomeLayoutProps): Promise<React.ReactElement> {
@@ -21,20 +22,17 @@ export default async function Home({
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
       <h1 className="text-4xl font-bold mb-8">Welcome to Squirrel</h1>
       <div className="space-y-4">
-        <h1>{messages.greeting}</h1>
-        <h2>{messages.welcome}</h2>
-
-        <h1>{messages.title}</h1>
-        <Link href="/about">{messages.about}</Link>
+        <h1>{String(messages.greeting)}</h1>
+        <h2>{String(messages.welcome)}</h2>
 
         <Link href="/login">
           <Button className="block w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
-            {messages.login}
+            {String(messages.login)}
           </Button>
         </Link>
         <Link href="/register">
           <Button className="block w-full px-4 py-2 text-blue-500 border border-blue-500 rounded hover:bg-blue-50">
-            {messages.register}
+            {String(messages.register)}
           </Button>
         </Link>
       </div>

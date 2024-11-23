@@ -1,29 +1,54 @@
 import { logger } from "@repo/logger";
 import { createClient } from "@repo/supabase/server";
+import type { PostsOperationResult, UserOperationResult } from "../types/operation";
 
-export async function getUser() {
+export async function getUser(): Promise<UserOperationResult> {
   const supabase = await createClient();
 
   try {
-    const result = await supabase.auth.getUser();
+    const { data: { user }, error } = await supabase.auth.getUser();
 
-    return result;
+    if (error) {
+      return { data: null, error };
+    }
+
+    if (!user) {
+      return { 
+        data: null, 
+        error: new Error("User not found") 
+      };
+    }
+
+    return { 
+      data: {
+        id: user.id,
+        email: user.email ?? "",
+        full_name: user.user_metadata?.full_name ?? null,
+      }, 
+      error: null 
+    };
   } catch (error) {
     logger.error(error);
-
-    throw error;
+    return { data: null, error: error as Error };
   }
 }
 
-export async function getPosts() {
+export async function getPosts(): Promise<PostsOperationResult> {
   const supabase = await createClient();
 
   try {
-    const result = await supabase.from("posts").select("*");
+    const { data, error } = await supabase
+      .from("posts")
+      .select()
+      .order("created_at", { ascending: false });
 
-    return result;
+    if (error) {
+      return { data: null, error };
+    }
+
+    return { data, error: null };
   } catch (error) {
     logger.error(error);
-    throw error;
+    return { data: null, error: error as Error };
   }
 }

@@ -1,10 +1,16 @@
 import { createServerClient } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
+import type { UserOperationResult } from "../types/operation";
+
+export type SessionResult = {
+  response: NextResponse;
+  user: UserOperationResult["data"];
+};
 
 export const updateSession = async (
   request: NextRequest,
   response: NextResponse,
-) => {
+): Promise<SessionResult> => {
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -26,10 +32,35 @@ export const updateSession = async (
     },
   );
 
-  // This is to ensure the session is updated
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  try {
+    const { data: { user }, error } = await supabase.auth.getUser();
 
-  return { response, user };
+    if (error) {
+      return { 
+        response, 
+        user: null 
+      };
+    }
+
+    if (!user) {
+      return { 
+        response, 
+        user: null 
+      };
+    }
+
+    return { 
+      response, 
+      user: {
+        id: user.id,
+        email: user.email ?? "",
+        full_name: user.user_metadata?.full_name ?? null,
+      }
+    };
+  } catch (error) {
+    return { 
+      response, 
+      user: null 
+    };
+  }
 };

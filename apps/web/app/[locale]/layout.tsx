@@ -28,9 +28,9 @@ export const viewport = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     locale: (typeof routing.locales)[number];
-  };
+  }>;
 }
 
 export default async function RootLayout({

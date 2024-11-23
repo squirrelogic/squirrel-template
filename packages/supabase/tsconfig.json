@@ -4,9 +4,10 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["./src/*"],
-        "@repo/logger": ["../logger/src"]
+        "@repo/logger": ["../logger/src"],
+        "@repo/kv/*": ["../kv/src/*"]
       }
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]
-  }
+}

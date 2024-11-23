@@ -7,6 +7,17 @@ export async function middleware(request: NextRequest) {
     request,
   });
 
+  const { pathname } = request.nextUrl;
+  
+  // Skip middleware for specific paths
+  if (
+    pathname.startsWith("/api") || 
+    pathname.startsWith("/monitoring") || 
+    pathname === "/sentry-example-page"
+  ) {
+    return NextResponse.next();
+  }
+
   // Apply i18nMiddleware for locale detection and redirection
   const i18nResponse = i18nMiddleware(request);
   if (i18nResponse) {
@@ -14,8 +25,6 @@ export async function middleware(request: NextRequest) {
   }
 
   const { response, user } = await updateSession(request, supabaseResponse);
-
-  const { pathname } = request.nextUrl;
 
   // Handle redirection from "/" to "/en/"
   if (pathname === "/") {

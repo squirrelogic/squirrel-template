@@ -1,6 +1,7 @@
 import { logger } from "@repo/logger";
 import { createClient } from "@repo/supabase/server";
-import type { Database, Tables, TablesUpdate } from "../types";
+import type { Tables, TablesUpdate } from "../types";
+import type { RegisterResult, UserOperationResult } from "../types/operation";
 
 export type RegisterUserInput = {
   email: string;
@@ -12,37 +13,73 @@ export async function registerUser({
   email,
   password,
   name,
-}: RegisterUserInput) {
-  const supabase = await createClient();
-  console.log(email, password, name);
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        name,
-      },
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
-    },
-  });
-
-  if (error) {
-    throw error;
-  }
-
-  return { data, error: null };
-}
-
-export async function updateUser(userId: string, data: TablesUpdate<"users">) {
+}: RegisterUserInput): Promise<RegisterResult> {
   const supabase = await createClient();
 
   try {
-    const result = await supabase.from("users").update(data).eq("id", userId);
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+        },
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+      },
+    });
 
-    return result;
+    if (error) {
+      return { data: null, error };
+    }
+
+    if (!data.user) {
+      return { 
+        data: null, 
+        error: new Error("Failed to create user") 
+      };
+    }
+
+    return { 
+      data: {
+        id: data.user.id,
+        email: data.user.email ?? "",
+      }, 
+      error: null 
+    };
   } catch (error) {
     logger.error(error);
+    return { data: null, error: error as Error };
+  }
+}
 
-    throw error;
+export async function updateUser(
+  userId: string, 
+  data: TablesUpdate<"users">
+): Promise<UserOperationResult> {
+  const supabase = await createClient();
+
+  try {
+    const { data: userData, error } = await supabase
+      .from("users")
+      .update(data)
+      .eq("id", userId)
+      .select()
+      .single();
+
+    if (error) {
+      return { data: null, error };
+    }
+
+    return { 
+      data: {
+        id: userData.id,
+        email: userData.email,
+        full_name: userData.full_name,
+      }, 
+      error: null 
+    };
+  } catch (error) {
+    logger.error(error);
+    return { data: null, error: error as Error };
   }
 }

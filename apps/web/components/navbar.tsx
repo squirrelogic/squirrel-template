@@ -6,7 +6,6 @@ import { useTheme } from "next-themes";
 import { Icons } from "@repo/ui/icons";
 import Image from "next/image";
 
-import { cn } from "@repo/ui/cn";
 import { Button } from "@repo/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@repo/ui/sheet";
 import {
@@ -24,7 +23,7 @@ const navItems = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { setTheme, theme } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

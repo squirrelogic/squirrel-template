@@ -1,22 +1,13 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Icons } from "@repo/ui/icons";
+import { useFormWithAction } from "../hooks/use-form-with-action";
+import { registerSchema } from "@/actions/auth/schema";
+import { registerAction } from "@/actions/auth/register-action";
 
 import { Button } from "@repo/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@repo/ui/form";
+import { Form } from "@repo/ui/form";
 import { Input } from "@repo/ui/input";
 import { cn } from "@repo/ui/cn";
 import {
@@ -27,18 +18,8 @@ import {
   CardTitle,
 } from "@repo/ui/card";
 import Link from "next/link";
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters.",
-  }),
-});
+import { FormInputField } from "./ui/form-field";
+import { PasswordInput } from "./ui/password-input";
 
 export const RegistrationCard = ({
   className,
@@ -73,7 +54,7 @@ export const RegistrationCard = ({
               </h1>
             </div>
           </div>
-          <CardTitle className=" text-center text-2xl py-4 my-4">
+          <CardTitle className="text-center text-2xl py-4 my-4">
             Create an account
           </CardTitle>
         </CardHeader>
@@ -101,102 +82,63 @@ const SignInLink = ({ className }: { className?: string }) => {
 };
 
 export function Registration() {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
+  const { form, onSubmit } = useFormWithAction(
+    registerSchema,
+    registerAction as any,
+    {
+      defaultValues: {
+        name: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+      },
     },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Here you would typically send the form data to your backend
-    console.log(values);
-  }
+  );
 
   return (
     <RegistrationCard
       className="hidden sm:block"
       content={
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
+          <form onSubmit={onSubmit} className="space-y-8">
+            <FormInputField
               control={form.control}
               name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="John Doe" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
+              label="Name"
+              description="This is your public display name."
+            >
+              {(field) => <Input placeholder="John Doe" {...field} />}
+            </FormInputField>
+
+            <FormInputField
               control={form.control}
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="john@example.com"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    We'll never share your email with anyone else.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
+              label="Email"
+              description="We'll never share your email with anyone else."
+            >
+              {(field) => (
+                <Input type="email" placeholder="john@example.com" {...field} />
               )}
-            />
-            <FormField
+            </FormInputField>
+
+            <FormInputField
               control={form.control}
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="••••••••"
-                        {...field}
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <Icons.EyeOff className="h-4 w-4" />
-                        ) : (
-                          <Icons.Eye className="h-4 w-4" />
-                        )}
-                        <span className="sr-only">
-                          {showPassword ? "Hide password" : "Show password"}
-                        </span>
-                      </Button>
-                    </div>
-                  </FormControl>
-                  <FormDescription>
-                    Your password must be at least 8 characters long.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              label="Password"
+              description="Your password must be at least 12 characters long."
+            >
+              {(field) => <PasswordInput placeholder="••••••••" {...field} />}
+            </FormInputField>
+
+            <FormInputField
+              control={form.control}
+              name="confirm_password"
+              label="Confirm Password"
+              description="Please confirm your password."
+            >
+              {(field) => <PasswordInput placeholder="••••••••" {...field} />}
+            </FormInputField>
+
             <Button type="submit" className="w-full">
               Register
             </Button>
