@@ -2,11 +2,15 @@ import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
 
+interface HomeLayoutProps {
+  params: {
+    locale: (typeof routing.locales)[number];
+  };
+}
 export default async function Home({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<React.ReactElement> {
+  params: paramsPromise,
+}: HomeLayoutProps): Promise<React.ReactElement> {
+  const params = await paramsPromise;
   const { locale } = params;
 
   // Fetch translations server-side

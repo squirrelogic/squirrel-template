@@ -7,11 +7,9 @@ export async function middleware(request: NextRequest) {
     request,
   });
 
-  console.log("in middleware");
   // Apply i18nMiddleware for locale detection and redirection
   const i18nResponse = i18nMiddleware(request);
   if (i18nResponse) {
-    console.log("handling i18n");
     return i18nResponse; // Redirect or modify request as needed
   }
 
@@ -21,7 +19,6 @@ export async function middleware(request: NextRequest) {
 
   // Handle redirection from "/" to "/en/"
   if (pathname === "/") {
-    console.log("redirecting to /en/");
     return NextResponse.redirect(new URL("/en/", request.url));
   }
 
@@ -32,7 +29,6 @@ export async function middleware(request: NextRequest) {
   );
 
   if (!isUnauthenticatedPath && !user) {
-    console.log("redirecting to /en/login");
     const locale = request.nextUrl.pathname.split("/")[1] || "en"; // Detect locale from URL or fallback to "en"
     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }

@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./globals.css": "./src/globals.css",
+    "./cn": "./src/lib/utils.ts",
     "./button": "./src/components/ui/button.tsx",
-    "./card": "./src/components/ui/card.tsx",
-    "./code": "./src/components/ui/code.tsx"
+    "./tailwind.config": "./tailwind.config.ts",
+    "./postcss": "./postcss.config.js"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
