@@ -14,6 +14,9 @@ import {
   TableRow,
 } from "@repo/ui/table";
 import { Label } from "@repo/ui/label";
+import { Button } from "@repo/ui/button";
+import { useToast } from "@repo/ui/use-toast";
+import { useState } from "react";
 
 // Sample notification history data
 const notificationHistory = [
@@ -39,6 +42,29 @@ const notificationHistory = [
 
 export default function NotificationsPage() {
   const t = useTranslations("account");
+  const { toast } = useToast();
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      // TODO: Implement API call to save notification preferences
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      toast({
+        title: t("notifications.preferences_saved"),
+        description: new Date().toLocaleString(),
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save notification preferences",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const NotificationToggle = ({
     title,
@@ -61,7 +87,17 @@ export default function NotificationsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t("notifications.title")}</h1>
+        <div>
+          <h1 className="text-2xl font-semibold">{t("notifications.title")}</h1>
+        </div>
+        <Button variant="outline" onClick={handleSave} disabled={isSaving}>
+          {isSaving ? (
+            <Icons.Loader2 className="mr-2 size-4 animate-spin" />
+          ) : (
+            <Icons.BadgeCheck className="mr-2 size-4" />
+          )}
+          {isSaving ? t("notifications.saving") : t("notifications.save")}
+        </Button>
       </div>
 
       <Tabs defaultValue="email" className="space-y-4">

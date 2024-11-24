@@ -52,6 +52,11 @@
     "description": "Enter your full name",
     "placeholder": "John Doe"
   },
+  "cookies": {
+    "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+    "accept": "Accept All",
+    "reject": "Reject All"
+  },
   "account": {
     "title": "Account",
     "profile": {
@@ -91,9 +96,12 @@
       "enable_two_factor": "Enable Two-Factor Authentication"
     },
     "notifications": {
-      "title": "Notifications",
-      "description": "Configure how you receive notifications",
+      "title": "Notification Preferences",
+      "description": "Manage how you receive notifications",
       "manage": "Manage Notifications",
+      "save": "Save Preferences",
+      "saving": "Saving...",
+      "preferences_saved": "Notification preferences saved",
       "preferences": {
         "email": {
           "title": "Email Notifications",
@@ -123,6 +131,45 @@
           "date": "Date",
           "status": "Status"
         }
+      }
+    },
+    "gdpr": {
+      "title": "Data Privacy Settings",
+      "description": "Manage your data privacy preferences in accordance with GDPR",
+      "manage": "Manage Privacy Settings",
+      "data_collection": {
+        "title": "Data Collection",
+        "description": "Control how we collect and process your data",
+        "essential": "Essential Data Collection",
+        "essential_description": "Required data for core service functionality (cannot be disabled)",
+        "analytics": "Analytics & Improvements",
+        "analytics_description": "Data used to improve our services and user experience",
+        "personalization": "Personalization",
+        "personalization_description": "Data used to personalize your experience"
+      },
+      "data_retention": {
+        "title": "Data Retention",
+        "description": "Control how long we keep your notification data",
+        "retention_period": "Retention Period",
+        "retention_description": "Choose how long to keep your notification history",
+        "delete_data": "Delete Data",
+        "delete_description": "Permanently delete all your notification history",
+        "downloading": "Downloading data...",
+        "deleting": "Deleting data..."
+      },
+      "export": {
+        "title": "Export Data",
+        "description": "Download all your notification data",
+        "button": "Export Notifications Data",
+        "format_json": "Download as JSON",
+        "format_csv": "Download as CSV"
+      },
+      "consent": {
+        "title": "Consent Management",
+        "description": "Manage your consent preferences",
+        "save": "Save Preferences",
+        "saved": "Preferences saved successfully",
+        "last_updated": "Last updated"
       }
     }
   }

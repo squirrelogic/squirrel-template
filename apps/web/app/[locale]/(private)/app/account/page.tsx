@@ -117,6 +117,27 @@ export default function AccountPage() {
             </Button>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Icons.Shield className="size-5" />
+              {t("account.gdpr.title")}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex h-[120px] flex-col justify-between">
+            <p className="text-sm text-muted-foreground">
+              {t("account.gdpr.description")}
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => router.push(`/${locale}/app/account/privacy`)}
+            >
+              <Icons.Shield className="mr-2 size-4" />
+              {t("account.gdpr.manage")}
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

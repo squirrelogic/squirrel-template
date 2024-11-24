@@ -12,6 +12,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Loading } from "@/components/loading";
 import { logger } from "@repo/logger";
 import { Toaster } from "@repo/ui/toaster";
+import { CookieConsent } from "@/components/gdpr/CookieConsent";
 
 const fontSans = GeistSans.variable;
 const fontMono = GeistMono.variable;
@@ -66,12 +67,13 @@ export default async function RootLayout({
         )}
         suppressHydrationWarning
       >
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Suspense fallback={<Loading />}>
             <NextIntlClientProvider messages={messages} locale={locale}>
               <div className="relative flex min-h-screen flex-col">
                 {children}
               </div>
+              <CookieConsent />
               <Toaster />
             </NextIntlClientProvider>
           </Suspense>
