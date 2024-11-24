@@ -124,12 +124,30 @@
       },
       "history": {
         "title": "Historique des notifications",
-        "empty": "Pas encore de notifications",
+        "empty": "Aucune notification pour le moment",
+        "description": "Consultez et gérez votre historique de notifications",
+        "search": "Rechercher des notifications...",
+        "filter": {
+          "all": "Toutes",
+          "unread": "Non lues",
+          "read": "Lues",
+          "placeholder": "Filtrer par statut"
+        },
+        "actions": {
+          "mark_all_read": "Tout marquer comme lu",
+          "mark_read": "Marquer comme lu",
+          "delete": "Supprimer"
+        },
         "table": {
           "type": "Type",
           "message": "Message",
           "date": "Date",
-          "status": "Statut"
+          "status": "Statut",
+          "actions": "Actions"
+        },
+        "status": {
+          "read": "Lu",
+          "unread": "Non lu"
         }
       }
     },
@@ -183,6 +201,7 @@
     "settings": "Paramètres",
     "projects": "Projets",
     "teams": "Équipes",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "privacy": "Confidentialité"
   }
 }

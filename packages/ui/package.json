@@ -29,7 +29,9 @@
     "./sidebar": "./src/components/ui/sidebar.tsx",
     "./breadcrumb": "./src/components/ui/breadcrumb.tsx",
     "./separator": "./src/components/ui/separator.tsx",
-    "./collapsible": "./src/components/ui/collapsible.tsx"
+    "./collapsible": "./src/components/ui/collapsible.tsx",
+    "./select": "./src/components/ui/select.tsx",
+    "./badge": "./src/components/ui/badge.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -57,6 +59,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-navigation-menu": "^1.2.1",
+    "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.1",

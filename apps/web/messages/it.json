@@ -125,11 +125,29 @@
       "history": {
         "title": "Cronologia notifiche",
         "empty": "Nessuna notifica",
+        "description": "Visualizza e gestisci la cronologia delle notifiche",
+        "search": "Cerca notifiche...",
+        "filter": {
+          "all": "Tutte",
+          "unread": "Non lette",
+          "read": "Lette",
+          "placeholder": "Filtra per stato"
+        },
+        "actions": {
+          "mark_all_read": "Segna tutte come lette",
+          "mark_read": "Segna come letta",
+          "delete": "Elimina"
+        },
         "table": {
           "type": "Tipo",
           "message": "Messaggio",
           "date": "Data",
-          "status": "Stato"
+          "status": "Stato",
+          "actions": "Azioni"
+        },
+        "status": {
+          "read": "Letta",
+          "unread": "Non letta"
         }
       }
     },
@@ -183,6 +201,7 @@
     "settings": "Impostazioni",
     "projects": "Progetti",
     "teams": "Team",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "privacy": "Privacy"
   }
 }

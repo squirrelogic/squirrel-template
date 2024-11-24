@@ -67,7 +67,8 @@
     "settings": "Einstellungen",
     "projects": "Projekte",
     "teams": "Teams",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "privacy": "Datenschutz"
   },
   "account": {
     "title": "Konto",
@@ -137,11 +138,29 @@
       "history": {
         "title": "Benachrichtigungsverlauf",
         "empty": "Noch keine Benachrichtigungen",
+        "description": "Sehen und verwalten Sie Ihren Benachrichtigungsverlauf",
+        "search": "Benachrichtigungen durchsuchen...",
+        "filter": {
+          "all": "Alle",
+          "unread": "Ungelesen",
+          "read": "Gelesen",
+          "placeholder": "Nach Status filtern"
+        },
+        "actions": {
+          "mark_all_read": "Alle als gelesen markieren",
+          "mark_read": "Als gelesen markieren",
+          "delete": "Löschen"
+        },
         "table": {
           "type": "Typ",
           "message": "Nachricht",
           "date": "Datum",
-          "status": "Status"
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "status": {
+          "read": "Gelesen",
+          "unread": "Ungelesen"
         }
       }
     },

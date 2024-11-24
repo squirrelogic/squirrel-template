@@ -125,11 +125,29 @@
       "history": {
         "title": "Notification History",
         "empty": "No notifications yet",
+        "description": "View and manage your notification history",
+        "search": "Search notifications...",
+        "filter": {
+          "all": "All",
+          "unread": "Unread",
+          "read": "Read",
+          "placeholder": "Filter by status"
+        },
+        "actions": {
+          "mark_all_read": "Mark all as read",
+          "mark_read": "Mark as read",
+          "delete": "Delete"
+        },
         "table": {
           "type": "Type",
           "message": "Message",
           "date": "Date",
-          "status": "Status"
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "status": {
+          "read": "Read",
+          "unread": "Unread"
         }
       }
     },
@@ -183,6 +201,7 @@
     "settings": "Settings",
     "projects": "Projects",
     "teams": "Teams",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "privacy": "Privacy"
   }
 }
