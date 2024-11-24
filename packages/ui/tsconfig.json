@@ -6,6 +6,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src",  "../../apps/web/components/app-sidebar.tsx", "../../apps/web/components/nav-main.tsx", "../../apps/web/components/nav-projects.tsx", "../../apps/web/components/nav-user.tsx", "../../apps/web/components/team-switcher.tsx"],
   "exclude": ["node_modules", "dist"]
 }

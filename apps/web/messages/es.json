@@ -1,28 +1,40 @@
 {
+  "navbar": {
+    "login": "Iniciar sesión",
+    "sign_up": "Registrarse",
+    "sign_out": "Cerrar sesión",
+    "toggle_theme": "Cambiar tema",
+    "toggle_menu": "Alternar menú",
+    "navigation_menu": "Menú de navegación"
+  },
   "greeting": "¡Hola!",
   "welcome": "Bienvenido a nuestra aplicación.",
   "login": {
     "title": "Iniciar sesión",
     "description": "Inicia sesión en tu cuenta",
     "submitting": "Iniciando sesión...",
+    "button": "Iniciar sesión",
     "signup": {
       "text": "¿No tienes una cuenta?",
       "link": "Regístrate"
-    }
+    },
+    "email_not_confirmed": "¿No recibiste tu correo de confirmación?",
+    "resend_confirmation": "Reenviar correo de confirmación",
+    "resending_confirmation": "Enviando..."
   },
   "register": {
     "title": "Crear una cuenta",
-    "description": "Regístrate para obtener una nueva cuenta",
+    "description": "Regístrate para una nueva cuenta",
     "submitting": "Creando cuenta...",
     "button": "Registrarse",
     "signin": {
       "text": "¿Ya tienes una cuenta?",
-      "link": "Iniciar sesión"
+      "link": "Inicia sesión"
     }
   },
   "email": {
     "label": "Correo electrónico",
-    "description": "Ingresa tu correo electrónico",
+    "description": "Ingresa tu dirección de correo electrónico",
     "placeholder": "tu@ejemplo.com"
   },
   "password": {
@@ -37,7 +49,24 @@
   },
   "name": {
     "label": "Nombre",
-    "description": "Este es tu nombre público",
+    "description": "Ingresa tu nombre completo",
     "placeholder": "Juan Pérez"
+  },
+  "account": {
+    "profile": {
+      "title": "Perfil",
+      "description": "Administra tu información y preferencias de perfil",
+      "edit": "Editar Perfil"
+    },
+    "security": {
+      "title": "Seguridad",
+      "description": "Actualiza tu contraseña y configuración de seguridad",
+      "change_password": "Cambiar Contraseña"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "description": "Configura cómo recibes las notificaciones",
+      "manage": "Administrar Notificaciones"
+    }
   }
 }

@@ -1,14 +1,26 @@
 {
+  "navbar": {
+    "login": "Anmelden",
+    "sign_up": "Registrieren",
+    "sign_out": "Abmelden",
+    "toggle_theme": "Design ändern",
+    "toggle_menu": "Menü umschalten",
+    "navigation_menu": "Navigationsmenü"
+  },
   "greeting": "Hallo!",
   "welcome": "Willkommen in unserer Anwendung.",
   "login": {
     "title": "Anmelden",
     "description": "Melden Sie sich bei Ihrem Konto an",
     "submitting": "Anmeldung läuft...",
+    "button": "Anmelden",
     "signup": {
-      "text": "Noch kein Konto?",
+      "text": "Sie haben noch kein Konto?",
       "link": "Registrieren"
-    }
+    },
+    "email_not_confirmed": "Bestätigungs-E-Mail nicht erhalten?",
+    "resend_confirmation": "Bestätigungs-E-Mail erneut senden",
+    "resending_confirmation": "Wird gesendet..."
   },
   "register": {
     "title": "Konto erstellen",
@@ -16,7 +28,7 @@
     "submitting": "Konto wird erstellt...",
     "button": "Registrieren",
     "signin": {
-      "text": "Haben Sie bereits ein Konto?",
+      "text": "Sie haben bereits ein Konto?",
       "link": "Anmelden"
     }
   },
@@ -37,7 +49,24 @@
   },
   "name": {
     "label": "Name",
-    "description": "Dies ist Ihr öffentlicher Name",
+    "description": "Geben Sie Ihren vollständigen Namen ein",
     "placeholder": "Max Mustermann"
+  },
+  "account": {
+    "profile": {
+      "title": "Profil",
+      "description": "Verwalten Sie Ihre Profilinformationen und Einstellungen",
+      "edit": "Profil bearbeiten"
+    },
+    "security": {
+      "title": "Sicherheit",
+      "description": "Aktualisieren Sie Ihr Passwort und Sicherheitseinstellungen",
+      "change_password": "Passwort ändern"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "description": "Konfigurieren Sie, wie Sie Benachrichtigungen erhalten",
+      "manage": "Benachrichtigungen verwalten"
+    }
   }
 }

@@ -1,4 +1,12 @@
 {
+  "navbar": {
+    "login": "Login",
+    "sign_up": "Sign Up",
+    "sign_out": "Sign Out",
+    "toggle_theme": "Toggle theme",
+    "toggle_menu": "Toggle menu",
+    "navigation_menu": "Navigation Menu"
+  },
   "greeting": "Hello!",
   "welcome": "Welcome to our application.",
   "login": {
@@ -41,7 +49,81 @@
   },
   "name": {
     "label": "Name",
-    "description": "This is your public display name",
+    "description": "Enter your full name",
     "placeholder": "John Doe"
+  },
+  "account": {
+    "title": "Account",
+    "profile": {
+      "title": "Profile",
+      "description": "Manage your profile information and preferences",
+      "edit": "Edit Profile",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "personal_info": "Personal Information",
+      "upload_avatar": "Upload Avatar",
+      "uploading": "Uploading...",
+      "preferences": "Preferences",
+      "preferences_description": "Customize your account preferences and settings",
+      "success": "Success",
+      "success_save": "Your profile has been updated successfully",
+      "error": "Error",
+      "error_save": "Failed to update profile. Please try again.",
+      "error_upload": "Failed to upload avatar. Please try again."
+    },
+    "security": {
+      "title": "Security",
+      "description": "Update your password and security settings",
+      "manage": "Manage Security",
+      "change_password": "Change Password",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_password": "Confirm New Password",
+      "update_password": "Update Password",
+      "updating": "Updating...",
+      "success": "Success",
+      "error": "Error",
+      "password_updated": "Your password has been updated successfully",
+      "passwords_not_match": "New passwords do not match",
+      "update_failed": "Failed to update password. Please try again.",
+      "two_factor": "Two-Factor Authentication",
+      "two_factor_description": "Add an extra layer of security to your account by enabling two-factor authentication",
+      "enable_two_factor": "Enable Two-Factor Authentication"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Configure how you receive notifications",
+      "manage": "Manage Notifications",
+      "preferences": {
+        "email": {
+          "title": "Email Notifications",
+          "marketing": "Marketing Emails",
+          "marketing_description": "Receive emails about new features, promotions, and updates",
+          "security": "Security Alerts",
+          "security_description": "Get notified about important security events and account activity",
+          "updates": "Product Updates",
+          "updates_description": "Stay informed about new features and improvements"
+        },
+        "push": {
+          "title": "Push Notifications",
+          "comments": "Comments & Mentions",
+          "comments_description": "Get notified when someone mentions you or comments on your content",
+          "activity": "Account Activity",
+          "activity_description": "Receive alerts about important account activity and changes",
+          "news": "News & Updates",
+          "news_description": "Stay up to date with the latest news and product updates"
+        }
+      },
+      "history": {
+        "title": "Notification History",
+        "empty": "No notifications yet",
+        "table": {
+          "type": "Type",
+          "message": "Message",
+          "date": "Date",
+          "status": "Status"
+        }
+      }
+    }
   }
 }

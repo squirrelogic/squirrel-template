@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { actionClient } from "@/actions/safe-action";
 import { registerUser } from "@repo/supabase/mutations";
 import { registerSchema } from "./schema";
+import { headers } from "next/headers";
 import { z } from "zod";
 import { zfd } from "zod-form-data";
 
@@ -27,7 +28,9 @@ export const registerAction = actionClient
     if (!data) {
       throw new Error("Registration failed");
     }
+    const headersList = headers();
+    const pathname = (await headersList).get("x-pathname") || "";
+    const locale = pathname.split("/")[1] || "en";
 
-    redirect("/verify-email");
-    return { success: true };
+    redirect(`/${locale}/verify-email`);
   });

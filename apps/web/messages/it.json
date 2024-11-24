@@ -1,14 +1,26 @@
 {
+  "navbar": {
+    "login": "Accedi",
+    "sign_up": "Registrati",
+    "sign_out": "Esci",
+    "toggle_theme": "Cambia tema",
+    "toggle_menu": "Attiva/disattiva menu",
+    "navigation_menu": "Menu di navigazione"
+  },
   "greeting": "Ciao!",
   "welcome": "Benvenuto nella nostra applicazione.",
   "login": {
     "title": "Accedi",
     "description": "Accedi al tuo account",
     "submitting": "Accesso in corso...",
+    "button": "Accedi",
     "signup": {
       "text": "Non hai un account?",
       "link": "Registrati"
-    }
+    },
+    "email_not_confirmed": "Non hai ricevuto l'email di conferma?",
+    "resend_confirmation": "Invia nuovamente l'email di conferma",
+    "resending_confirmation": "Invio in corso..."
   },
   "register": {
     "title": "Crea un account",
@@ -23,7 +35,7 @@
   "email": {
     "label": "Email",
     "description": "Inserisci il tuo indirizzo email",
-    "placeholder": "tu@esempio.it"
+    "placeholder": "tu@esempio.com"
   },
   "password": {
     "label": "Password",
@@ -37,7 +49,24 @@
   },
   "name": {
     "label": "Nome",
-    "description": "Questo è il tuo nome pubblico",
+    "description": "Inserisci il tuo nome completo",
     "placeholder": "Mario Rossi"
+  },
+  "account": {
+    "profile": {
+      "title": "Profilo",
+      "description": "Gestisci le tue informazioni e preferenze del profilo",
+      "edit": "Modifica Profilo"
+    },
+    "security": {
+      "title": "Sicurezza",
+      "description": "Aggiorna la tua password e le impostazioni di sicurezza",
+      "change_password": "Cambia Password"
+    },
+    "notifications": {
+      "title": "Notifiche",
+      "description": "Configura come ricevere le notifiche",
+      "manage": "Gestisci Notifiche"
+    }
   }
 }

@@ -9,7 +9,9 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Suspense } from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { Navbar } from "@/components/navbar";
+import { Loading } from "@/components/loading";
+import { logger } from "@repo/logger";
+import { Toaster } from "@repo/ui/toaster";
 
 const fontSans = GeistSans.variable;
 const fontMono = GeistMono.variable;
@@ -45,8 +47,12 @@ export default async function RootLayout({
   }
 
   const messages = await getMessages({ locale }).catch((error) => {
-    console.error("Error loading messages:", error);
-    return {};
+    logger.error("Failed to load messages", {
+      locale,
+      error: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    notFound();
   });
 
   return (
@@ -61,14 +67,12 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <Suspense fallback={"<div></div>Loading...</div>"}>
+          <Suspense fallback={<Loading />}>
             <NextIntlClientProvider messages={messages} locale={locale}>
               <div className="relative flex min-h-screen flex-col">
-                <div className="flex-1 flex flex-col">
-                  <Navbar />
-                  {children}
-                </div>
+                {children}
               </div>
+              <Toaster />
             </NextIntlClientProvider>
           </Suspense>
         </ThemeProvider>

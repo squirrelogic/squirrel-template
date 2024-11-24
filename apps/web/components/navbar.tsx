@@ -6,11 +6,23 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { createClient } from "@repo/supabase/client";
 import { Button } from "@repo/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@repo/ui/sheet";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@repo/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@repo/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@repo/ui/dropdown-menu";
 import { Icons } from "@repo/ui/icons";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import cn from "classnames";
 
 const navItems = [
   {
@@ -34,7 +46,9 @@ export function Navbar() {
     });
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
 
@@ -47,7 +61,10 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className={cn(
+      "w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+      !user && "sticky top-0 z-50"
+    )}>
       <div className="container flex h-16 items-center">
         <div className="flex items-center space-x-4">
           <div className="bg-black/50 rounded-full p-2">
@@ -69,15 +86,15 @@ export function Navbar() {
             {!user ? (
               <>
                 <Button variant="outline" asChild>
-                  <Link href="/login">Login</Link>
+                  <Link href="/login">{t("navbar.login")}</Link>
                 </Button>
                 <Button asChild>
-                  <Link href="/register">Sign Up</Link>
+                  <Link href="/register">{t("navbar.sign_up")}</Link>
                 </Button>
               </>
             ) : (
               <Button variant="outline" onClick={handleSignOut}>
-                Sign Out
+                {t("navbar.sign_out")}
               </Button>
             )}
           </div>
@@ -86,7 +103,7 @@ export function Navbar() {
               <Button variant="ghost" size="icon">
                 <Icons.Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Icons.Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
+                <span className="sr-only">{t("navbar.toggle_theme")}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -105,12 +122,12 @@ export function Navbar() {
             <SheetTrigger asChild>
               <Button variant="ghost" className="md:hidden" size="icon">
                 <Icons.Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
+                <span className="sr-only">{t("navbar.toggle_menu")}</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetTitle className="sr-only">{t("navbar.navigation_menu")}</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
@@ -130,13 +147,10 @@ export function Navbar() {
                       asChild
                       onClick={() => setIsOpen(false)}
                     >
-                      <Link href="/login">Login</Link>
+                      <Link href="/login">{t("navbar.login")}</Link>
                     </Button>
-                    <Button
-                      asChild
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <Link href="/register">Sign Up</Link>
+                    <Button asChild onClick={() => setIsOpen(false)}>
+                      <Link href="/register">{t("navbar.sign_up")}</Link>
                     </Button>
                   </>
                 ) : (
@@ -147,7 +161,7 @@ export function Navbar() {
                       setIsOpen(false);
                     }}
                   >
-                    Sign Out
+                    {t("navbar.sign_out")}
                   </Button>
                 )}
               </div>

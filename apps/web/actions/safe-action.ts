@@ -12,7 +12,10 @@ import { headers } from "next/headers";
 import { z } from "zod";
 
 const handleServerError = (e: Error) => {
-  console.error("Action error:", e.message);
+  logger.error("Action error", {
+    error: e.message,
+    stack: e.stack,
+  });
 
   if (e instanceof Error) {
     return e.message;

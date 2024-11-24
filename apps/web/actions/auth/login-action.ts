@@ -1,30 +1,27 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { actionClient } from "@/actions/safe-action";
 import { loginUser } from "@repo/supabase/mutations";
 import { loginSchema } from "./schema";
-import { z } from "zod";
 import { zfd } from "zod-form-data";
-
-interface LoginState {
-  success: boolean;
-  message?: string;
-}
 
 export const loginAction = actionClient
   .schema(zfd.formData(loginSchema))
   .action(async ({ parsedInput: { email, password } }) => {
-    const { data, error } = await loginUser({ email, password });
+    const { error } = await loginUser({ email, password });
 
     if (error) {
-      throw new Error(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
     }
 
-    if (!data) {
-      throw new Error("Login failed");
-    }
+    const headersList = headers();
+    const pathname = (await headersList).get("x-pathname") || "";
+    const locale = pathname.split("/")[1] || "en";
 
-    redirect("/dashboard");
-    return { success: true };
+    redirect(`/${locale}/app/dashboard`);
   });

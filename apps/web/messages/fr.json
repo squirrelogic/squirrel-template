@@ -1,19 +1,31 @@
 {
+  "navbar": {
+    "login": "Se connecter",
+    "sign_up": "S'inscrire",
+    "sign_out": "Se déconnecter",
+    "toggle_theme": "Changer le thème",
+    "toggle_menu": "Basculer le menu",
+    "navigation_menu": "Menu de navigation"
+  },
   "greeting": "Bonjour !",
   "welcome": "Bienvenue dans notre application.",
   "login": {
     "title": "Connexion",
     "description": "Connectez-vous à votre compte",
     "submitting": "Connexion en cours...",
+    "button": "Se connecter",
     "signup": {
       "text": "Vous n'avez pas de compte ?",
       "link": "S'inscrire"
-    }
+    },
+    "email_not_confirmed": "Vous n'avez pas reçu votre e-mail de confirmation ?",
+    "resend_confirmation": "Renvoyer l'e-mail de confirmation",
+    "resending_confirmation": "Envoi en cours..."
   },
   "register": {
     "title": "Créer un compte",
     "description": "Inscrivez-vous pour un nouveau compte",
-    "submitting": "Création du compte en cours...",
+    "submitting": "Création du compte...",
     "button": "S'inscrire",
     "signin": {
       "text": "Vous avez déjà un compte ?",
@@ -21,9 +33,9 @@
     }
   },
   "email": {
-    "label": "Email",
-    "description": "Entrez votre adresse email",
-    "placeholder": "vous@exemple.fr"
+    "label": "E-mail",
+    "description": "Entrez votre adresse e-mail",
+    "placeholder": "vous@exemple.com"
   },
   "password": {
     "label": "Mot de passe",
@@ -37,7 +49,24 @@
   },
   "name": {
     "label": "Nom",
-    "description": "C'est votre nom public",
+    "description": "Entrez votre nom complet",
     "placeholder": "Jean Dupont"
+  },
+  "account": {
+    "profile": {
+      "title": "Profil",
+      "description": "Gérez vos informations et préférences de profil",
+      "edit": "Modifier le profil"
+    },
+    "security": {
+      "title": "Sécurité",
+      "description": "Mettez à jour votre mot de passe et vos paramètres de sécurité",
+      "change_password": "Changer le mot de passe"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Configurez la façon dont vous recevez les notifications",
+      "manage": "Gérer les notifications"
+    }
   }
 }

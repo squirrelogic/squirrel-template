@@ -4,6 +4,7 @@ import { z } from "zod";
 import { useAction } from "next-safe-action/hooks";
 import type { HookSafeActionFn } from "next-safe-action/hooks";
 import { useState } from "react";
+import { logger } from "@repo/logger";
 
 /**
  * Type definition for action validation errors.
@@ -93,7 +94,7 @@ export function useFormWithAction<
     },
     onError: (error) => {
       if (error?.error) {
-        console.log("Server Error:", error);
+        logger.error("Server Error:", error);
         if (typeof error.error.serverError === "string") {
           setServerError(error.error.serverError);
         }
@@ -109,6 +110,11 @@ export function useFormWithAction<
       await execute(data);
     } catch (error) {
       if (error instanceof Error) {
+        logger.error("Form submission error", {
+          error: error.message,
+          formId: form.formId,
+          actionName: action.name,
+        });
         form.setError("root", {
           type: "server",
           message: error.message,
