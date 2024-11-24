@@ -35,7 +35,7 @@
   "email": {
     "label": "Email",
     "description": "Inserisci il tuo indirizzo email",
-    "placeholder": "tu@esempio.com"
+    "placeholder": "tu@esempio.it"
   },
   "password": {
     "label": "Password",
@@ -52,21 +52,125 @@
     "description": "Inserisci il tuo nome completo",
     "placeholder": "Mario Rossi"
   },
+  "cookies": {
+    "message": "Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il nostro traffico. Cliccando su \"Accetta tutto\", acconsenti all'uso dei cookie.",
+    "accept": "Accetta tutto",
+    "reject": "Rifiuta tutto"
+  },
   "account": {
+    "title": "Account",
     "profile": {
       "title": "Profilo",
       "description": "Gestisci le tue informazioni e preferenze del profilo",
-      "edit": "Modifica Profilo"
+      "edit": "Modifica profilo",
+      "save": "Salva modifiche",
+      "saving": "Salvataggio...",
+      "personal_info": "Informazioni personali",
+      "upload_avatar": "Carica avatar",
+      "uploading": "Caricamento...",
+      "preferences": "Preferenze",
+      "preferences_description": "Personalizza le tue preferenze dell'account",
+      "success": "Successo",
+      "success_save": "Il tuo profilo è stato aggiornato con successo",
+      "error": "Errore",
+      "error_save": "Impossibile aggiornare il profilo. Per favore riprova.",
+      "error_upload": "Impossibile caricare l'avatar. Per favore riprova."
     },
     "security": {
       "title": "Sicurezza",
       "description": "Aggiorna la tua password e le impostazioni di sicurezza",
-      "change_password": "Cambia Password"
+      "manage": "Gestisci sicurezza",
+      "change_password": "Cambia password",
+      "current_password": "Password attuale",
+      "new_password": "Nuova password",
+      "confirm_password": "Conferma nuova password",
+      "update_password": "Aggiorna password",
+      "updating": "Aggiornamento...",
+      "success": "Successo",
+      "error": "Errore",
+      "password_updated": "La tua password è stata aggiornata con successo",
+      "passwords_not_match": "Le nuove password non corrispondono",
+      "update_failed": "Impossibile aggiornare la password. Per favore riprova.",
+      "two_factor": "Autenticazione a due fattori",
+      "two_factor_description": "Aggiungi un ulteriore livello di sicurezza al tuo account",
+      "enable_two_factor": "Attiva l'autenticazione a due fattori"
     },
     "notifications": {
-      "title": "Notifiche",
-      "description": "Configura come ricevere le notifiche",
-      "manage": "Gestisci Notifiche"
+      "title": "Preferenze di notifica",
+      "description": "Gestisci le tue preferenze di notifica",
+      "manage": "Gestisci notifiche",
+      "save": "Salva preferenze",
+      "saving": "Salvataggio...",
+      "preferences_saved": "Preferenze di notifica salvate",
+      "preferences": {
+        "email": {
+          "title": "Notifiche email",
+          "marketing": "Email di marketing",
+          "marketing_description": "Ricevi email su nuove funzionalità, promozioni e aggiornamenti",
+          "security": "Avvisi di sicurezza",
+          "security_description": "Ricevi notifiche su eventi di sicurezza importanti e attività dell'account",
+          "updates": "Aggiornamenti prodotto",
+          "updates_description": "Rimani informato sulle nuove funzionalità e miglioramenti"
+        },
+        "push": {
+          "title": "Notifiche push",
+          "comments": "Commenti & Menzioni",
+          "comments_description": "Ricevi notifiche quando qualcuno ti menziona o commenta i tuoi contenuti",
+          "activity": "Attività account",
+          "activity_description": "Ricevi avvisi su attività importanti dell'account e modifiche",
+          "news": "Novità & Aggiornamenti",
+          "news_description": "Rimani aggiornato con le ultime novità e aggiornamenti del prodotto"
+        }
+      },
+      "history": {
+        "title": "Cronologia notifiche",
+        "empty": "Nessuna notifica",
+        "table": {
+          "type": "Tipo",
+          "message": "Messaggio",
+          "date": "Data",
+          "status": "Stato"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "Impostazioni privacy",
+      "description": "Gestisci le tue preferenze sulla privacy in conformità con il GDPR",
+      "manage": "Gestisci privacy",
+      "data_collection": {
+        "title": "Raccolta dati",
+        "description": "Controlla come raccogliamo ed elaboriamo i tuoi dati",
+        "essential": "Raccolta dati essenziale",
+        "essential_description": "Dati necessari per le funzionalità di base (non può essere disattivato)",
+        "analytics": "Analisi e miglioramenti",
+        "analytics_description": "Dati utilizzati per migliorare i nostri servizi e l'esperienza utente",
+        "personalization": "Personalizzazione",
+        "personalization_description": "Dati utilizzati per personalizzare la tua esperienza"
+      },
+      "data_retention": {
+        "title": "Conservazione dati",
+        "description": "Controlla per quanto tempo conserviamo i tuoi dati di notifica",
+        "retention_period": "Periodo di conservazione",
+        "retention_description": "Scegli per quanto tempo conservare la cronologia delle notifiche",
+        "delete_data": "Elimina dati",
+        "delete_description": "Elimina definitivamente tutta la cronologia delle notifiche",
+        "downloading": "Download dei dati in corso...",
+        "deleting": "Eliminazione dei dati in corso..."
+      },
+      "export": {
+        "title": "Esporta dati",
+        "description": "Scarica tutti i tuoi dati di notifica",
+        "button": "Esporta dati di notifica",
+        "format_json": "Scarica come JSON",
+        "format_csv": "Scarica come CSV"
+      },
+      "consent": {
+        "title": "Gestione del consenso",
+        "description": "Gestisci le tue preferenze di consenso",
+        "save": "Salva preferenze",
+        "saved": "Preferenze salvate con successo",
+        "last_updated": "Ultimo aggiornamento"
+      }
     }
   }
 }

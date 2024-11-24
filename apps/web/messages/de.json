@@ -28,7 +28,7 @@
     "submitting": "Konto wird erstellt...",
     "button": "Registrieren",
     "signin": {
-      "text": "Sie haben bereits ein Konto?",
+      "text": "Haben Sie bereits ein Konto?",
       "link": "Anmelden"
     }
   },
@@ -52,21 +52,125 @@
     "description": "Geben Sie Ihren vollständigen Namen ein",
     "placeholder": "Max Mustermann"
   },
+  "cookies": {
+    "message": "Wir verwenden Cookies, um Ihr Browsing-Erlebnis zu verbessern und unseren Datenverkehr zu analysieren. Durch Klicken auf \"Alle akzeptieren\" stimmen Sie der Verwendung von Cookies zu.",
+    "accept": "Alle akzeptieren",
+    "reject": "Alle ablehnen"
+  },
   "account": {
+    "title": "Konto",
     "profile": {
       "title": "Profil",
       "description": "Verwalten Sie Ihre Profilinformationen und Einstellungen",
-      "edit": "Profil bearbeiten"
+      "edit": "Profil bearbeiten",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "personal_info": "Persönliche Informationen",
+      "upload_avatar": "Profilbild hochladen",
+      "uploading": "Wird hochgeladen...",
+      "preferences": "Einstellungen",
+      "preferences_description": "Passen Sie Ihre Kontoeinstellungen an",
+      "success": "Erfolgreich",
+      "success_save": "Ihr Profil wurde erfolgreich aktualisiert",
+      "error": "Fehler",
+      "error_save": "Profil konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
+      "error_upload": "Profilbild konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut."
     },
     "security": {
       "title": "Sicherheit",
       "description": "Aktualisieren Sie Ihr Passwort und Sicherheitseinstellungen",
-      "change_password": "Passwort ändern"
+      "manage": "Sicherheit verwalten",
+      "change_password": "Passwort ändern",
+      "current_password": "Aktuelles Passwort",
+      "new_password": "Neues Passwort",
+      "confirm_password": "Neues Passwort bestätigen",
+      "update_password": "Passwort aktualisieren",
+      "updating": "Wird aktualisiert...",
+      "success": "Erfolgreich",
+      "error": "Fehler",
+      "password_updated": "Ihr Passwort wurde erfolgreich aktualisiert",
+      "passwords_not_match": "Neue Passwörter stimmen nicht überein",
+      "update_failed": "Passwort konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
+      "two_factor": "Zwei-Faktor-Authentifizierung",
+      "two_factor_description": "Fügen Sie Ihrem Konto eine zusätzliche Sicherheitsebene hinzu",
+      "enable_two_factor": "Zwei-Faktor-Authentifizierung aktivieren"
     },
     "notifications": {
-      "title": "Benachrichtigungen",
-      "description": "Konfigurieren Sie, wie Sie Benachrichtigungen erhalten",
-      "manage": "Benachrichtigungen verwalten"
+      "title": "Benachrichtigungseinstellungen",
+      "description": "Verwalten Sie Ihre Benachrichtigungseinstellungen",
+      "manage": "Benachrichtigungen verwalten",
+      "save": "Einstellungen speichern",
+      "saving": "Wird gespeichert...",
+      "preferences_saved": "Benachrichtigungseinstellungen gespeichert",
+      "preferences": {
+        "email": {
+          "title": "E-Mail-Benachrichtigungen",
+          "marketing": "Marketing-E-Mails",
+          "marketing_description": "Erhalten Sie E-Mails über neue Funktionen, Aktionen und Updates",
+          "security": "Sicherheitsbenachrichtigungen",
+          "security_description": "Werden Sie über wichtige Sicherheitsereignisse und Kontoaktivitäten informiert",
+          "updates": "Produkt-Updates",
+          "updates_description": "Bleiben Sie über neue Funktionen und Verbesserungen informiert"
+        },
+        "push": {
+          "title": "Push-Benachrichtigungen",
+          "comments": "Kommentare & Erwähnungen",
+          "comments_description": "Erhalten Sie Benachrichtigungen, wenn Sie erwähnt werden oder jemand Ihre Inhalte kommentiert",
+          "activity": "Kontoaktivität",
+          "activity_description": "Erhalten Sie Benachrichtigungen über wichtige Kontoaktivitäten und Änderungen",
+          "news": "Neuigkeiten & Updates",
+          "news_description": "Bleiben Sie über die neuesten Nachrichten und Produkt-Updates informiert"
+        }
+      },
+      "history": {
+        "title": "Benachrichtigungsverlauf",
+        "empty": "Noch keine Benachrichtigungen",
+        "table": {
+          "type": "Typ",
+          "message": "Nachricht",
+          "date": "Datum",
+          "status": "Status"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "Datenschutzeinstellungen",
+      "description": "Verwalten Sie Ihre Datenschutzeinstellungen gemäß DSGVO",
+      "manage": "Datenschutz verwalten",
+      "data_collection": {
+        "title": "Datenerfassung",
+        "description": "Kontrollieren Sie, wie wir Ihre Daten erfassen und verarbeiten",
+        "essential": "Essentielle Datenerfassung",
+        "essential_description": "Erforderliche Daten für die Kernfunktionalität (kann nicht deaktiviert werden)",
+        "analytics": "Analyse & Verbesserungen",
+        "analytics_description": "Daten zur Verbesserung unserer Dienste und Benutzererfahrung",
+        "personalization": "Personalisierung",
+        "personalization_description": "Daten zur Personalisierung Ihrer Erfahrung"
+      },
+      "data_retention": {
+        "title": "Datenspeicherung",
+        "description": "Kontrollieren Sie, wie lange wir Ihre Benachrichtigungsdaten aufbewahren",
+        "retention_period": "Aufbewahrungszeitraum",
+        "retention_description": "Wählen Sie, wie lange Ihr Benachrichtigungsverlauf gespeichert werden soll",
+        "delete_data": "Daten löschen",
+        "delete_description": "Löschen Sie Ihren gesamten Benachrichtigungsverlauf permanent",
+        "downloading": "Daten werden heruntergeladen...",
+        "deleting": "Daten werden gelöscht..."
+      },
+      "export": {
+        "title": "Daten exportieren",
+        "description": "Laden Sie alle Ihre Benachrichtigungsdaten herunter",
+        "button": "Benachrichtigungsdaten exportieren",
+        "format_json": "Als JSON herunterladen",
+        "format_csv": "Als CSV herunterladen"
+      },
+      "consent": {
+        "title": "Einwilligungsverwaltung",
+        "description": "Verwalten Sie Ihre Einwilligungseinstellungen",
+        "save": "Einstellungen speichern",
+        "saved": "Einstellungen erfolgreich gespeichert",
+        "last_updated": "Zuletzt aktualisiert"
+      }
     }
   }
 }

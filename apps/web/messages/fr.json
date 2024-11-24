@@ -1,8 +1,8 @@
 {
   "navbar": {
-    "login": "Se connecter",
+    "login": "Connexion",
     "sign_up": "S'inscrire",
-    "sign_out": "Se déconnecter",
+    "sign_out": "Déconnexion",
     "toggle_theme": "Changer le thème",
     "toggle_menu": "Basculer le menu",
     "navigation_menu": "Menu de navigation"
@@ -18,8 +18,8 @@
       "text": "Vous n'avez pas de compte ?",
       "link": "S'inscrire"
     },
-    "email_not_confirmed": "Vous n'avez pas reçu votre e-mail de confirmation ?",
-    "resend_confirmation": "Renvoyer l'e-mail de confirmation",
+    "email_not_confirmed": "Vous n'avez pas reçu l'email de confirmation ?",
+    "resend_confirmation": "Renvoyer l'email de confirmation",
     "resending_confirmation": "Envoi en cours..."
   },
   "register": {
@@ -33,9 +33,9 @@
     }
   },
   "email": {
-    "label": "E-mail",
-    "description": "Entrez votre adresse e-mail",
-    "placeholder": "vous@exemple.com"
+    "label": "Email",
+    "description": "Entrez votre adresse email",
+    "placeholder": "vous@exemple.fr"
   },
   "password": {
     "label": "Mot de passe",
@@ -52,21 +52,125 @@
     "description": "Entrez votre nom complet",
     "placeholder": "Jean Dupont"
   },
+  "cookies": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience de navigation et analyser notre trafic. En cliquant sur \"Tout accepter\", vous consentez à l'utilisation des cookies.",
+    "accept": "Tout accepter",
+    "reject": "Tout refuser"
+  },
   "account": {
+    "title": "Compte",
     "profile": {
       "title": "Profil",
       "description": "Gérez vos informations et préférences de profil",
-      "edit": "Modifier le profil"
+      "edit": "Modifier le profil",
+      "save": "Enregistrer les modifications",
+      "saving": "Enregistrement...",
+      "personal_info": "Informations personnelles",
+      "upload_avatar": "Télécharger un avatar",
+      "uploading": "Téléchargement...",
+      "preferences": "Préférences",
+      "preferences_description": "Personnalisez vos préférences de compte",
+      "success": "Succès",
+      "success_save": "Votre profil a été mis à jour avec succès",
+      "error": "Erreur",
+      "error_save": "Échec de la mise à jour du profil. Veuillez réessayer.",
+      "error_upload": "Échec du téléchargement de l'avatar. Veuillez réessayer."
     },
     "security": {
       "title": "Sécurité",
       "description": "Mettez à jour votre mot de passe et vos paramètres de sécurité",
-      "change_password": "Changer le mot de passe"
+      "manage": "Gérer la sécurité",
+      "change_password": "Changer le mot de passe",
+      "current_password": "Mot de passe actuel",
+      "new_password": "Nouveau mot de passe",
+      "confirm_password": "Confirmer le nouveau mot de passe",
+      "update_password": "Mettre à jour le mot de passe",
+      "updating": "Mise à jour...",
+      "success": "Succès",
+      "error": "Erreur",
+      "password_updated": "Votre mot de passe a été mis à jour avec succès",
+      "passwords_not_match": "Les nouveaux mots de passe ne correspondent pas",
+      "update_failed": "Échec de la mise à jour du mot de passe. Veuillez réessayer.",
+      "two_factor": "Authentification à deux facteurs",
+      "two_factor_description": "Ajoutez une couche de sécurité supplémentaire à votre compte",
+      "enable_two_factor": "Activer l'authentification à deux facteurs"
     },
     "notifications": {
-      "title": "Notifications",
-      "description": "Configurez la façon dont vous recevez les notifications",
-      "manage": "Gérer les notifications"
+      "title": "Préférences de notification",
+      "description": "Gérez vos préférences de notification",
+      "manage": "Gérer les notifications",
+      "save": "Enregistrer les préférences",
+      "saving": "Enregistrement...",
+      "preferences_saved": "Préférences de notification enregistrées",
+      "preferences": {
+        "email": {
+          "title": "Notifications par email",
+          "marketing": "Emails marketing",
+          "marketing_description": "Recevez des emails sur les nouvelles fonctionnalités, promotions et mises à jour",
+          "security": "Alertes de sécurité",
+          "security_description": "Soyez informé des événements de sécurité importants et des activités du compte",
+          "updates": "Mises à jour produit",
+          "updates_description": "Restez informé des nouvelles fonctionnalités et améliorations"
+        },
+        "push": {
+          "title": "Notifications push",
+          "comments": "Commentaires & Mentions",
+          "comments_description": "Soyez notifié lorsque quelqu'un vous mentionne ou commente votre contenu",
+          "activity": "Activité du compte",
+          "activity_description": "Recevez des alertes sur les activités importantes du compte",
+          "news": "Actualités & Mises à jour",
+          "news_description": "Restez à jour avec les dernières actualités et mises à jour produit"
+        }
+      },
+      "history": {
+        "title": "Historique des notifications",
+        "empty": "Pas encore de notifications",
+        "table": {
+          "type": "Type",
+          "message": "Message",
+          "date": "Date",
+          "status": "Statut"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "Paramètres de confidentialité",
+      "description": "Gérez vos préférences de confidentialité conformément au RGPD",
+      "manage": "Gérer la confidentialité",
+      "data_collection": {
+        "title": "Collecte de données",
+        "description": "Contrôlez la façon dont nous collectons et traitons vos données",
+        "essential": "Collecte de données essentielles",
+        "essential_description": "Données requises pour les fonctionnalités de base (ne peut pas être désactivé)",
+        "analytics": "Analyses et améliorations",
+        "analytics_description": "Données utilisées pour améliorer nos services et l'expérience utilisateur",
+        "personalization": "Personnalisation",
+        "personalization_description": "Données utilisées pour personnaliser votre expérience"
+      },
+      "data_retention": {
+        "title": "Conservation des données",
+        "description": "Contrôlez la durée de conservation de vos données de notification",
+        "retention_period": "Période de conservation",
+        "retention_description": "Choisissez la durée de conservation de votre historique de notifications",
+        "delete_data": "Supprimer les données",
+        "delete_description": "Supprimez définitivement tout votre historique de notifications",
+        "downloading": "Téléchargement des données...",
+        "deleting": "Suppression des données..."
+      },
+      "export": {
+        "title": "Exporter les données",
+        "description": "Téléchargez toutes vos données de notification",
+        "button": "Exporter les données de notification",
+        "format_json": "Télécharger au format JSON",
+        "format_csv": "Télécharger au format CSV"
+      },
+      "consent": {
+        "title": "Gestion du consentement",
+        "description": "Gérez vos préférences de consentement",
+        "save": "Enregistrer les préférences",
+        "saved": "Préférences enregistrées avec succès",
+        "last_updated": "Dernière mise à jour"
+      }
     }
   }
 }
