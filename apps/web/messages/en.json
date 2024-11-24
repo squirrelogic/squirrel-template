@@ -1,6 +1,47 @@
 {
   "greeting": "Hello!",
   "welcome": "Welcome to our application.",
-  "login": "Login",
-  "register": "Register"
+  "login": {
+    "title": "Login",
+    "description": "Sign in to your account",
+    "submitting": "Signing in...",
+    "button": "Login",
+    "signup": {
+      "text": "Don't have an account?",
+      "link": "Sign up"
+    },
+    "email_not_confirmed": "Didn't get your confirmation email?",
+    "resend_confirmation": "Resend confirmation email",
+    "resending_confirmation": "Sending..."
+  },
+  "register": {
+    "title": "Create an account",
+    "description": "Sign up for a new account",
+    "submitting": "Creating account...",
+    "button": "Register",
+    "signin": {
+      "text": "Already have an account?",
+      "link": "Sign in"
+    }
+  },
+  "email": {
+    "label": "Email",
+    "description": "Enter your email address",
+    "placeholder": "you@example.com"
+  },
+  "password": {
+    "label": "Password",
+    "description": "Enter your password",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Confirm Password",
+    "description": "Please confirm your password",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Name",
+    "description": "This is your public display name",
+    "placeholder": "John Doe"
+  }
 }

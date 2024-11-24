@@ -2,13 +2,15 @@
 
 import { ReactNode } from "react";
 import Image from "next/image";
-import { useFormWithAction } from "../hooks/use-form-with-action";
-import { registerSchema } from "@/actions/auth/schema";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { registerAction } from "@/actions/auth/register-action";
-
+import { useFormWithAction } from "@/hooks/use-form-with-action";
 import { Button } from "@repo/ui/button";
 import { Form } from "@repo/ui/form";
 import { Input } from "@repo/ui/input";
+import { PasswordInput } from "./ui/password-input";
+import { registerSchema } from "@/actions/auth/schema";
 import { cn } from "@repo/ui/cn";
 import {
   Card,
@@ -17,9 +19,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@repo/ui/card";
-import Link from "next/link";
-import { FormInputField } from "./ui/form-field";
-import { PasswordInput } from "./ui/password-input";
+import { Alert, AlertDescription } from "@repo/ui/alert";
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@repo/ui/form";
 
 export const RegistrationCard = ({
   className,
@@ -30,6 +38,7 @@ export const RegistrationCard = ({
   content: ReactNode;
   footer: ReactNode;
 }) => {
+  const t = useTranslations();
   return (
     <div
       className={cn(
@@ -55,7 +64,7 @@ export const RegistrationCard = ({
             </div>
           </div>
           <CardTitle className="text-center text-2xl py-4 my-4">
-            Create an account
+            {t("register.title")}
           </CardTitle>
         </CardHeader>
         <CardContent>{content}</CardContent>
@@ -66,6 +75,7 @@ export const RegistrationCard = ({
 };
 
 const SignInLink = ({ className }: { className?: string }) => {
+  const t = useTranslations();
   return (
     <div
       className={cn(
@@ -73,15 +83,16 @@ const SignInLink = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      Already have an account?{" "}
+      {t("register.signin.text")}{" "}
       <Link href="/login" className="font-medium">
-        Sign in
+        {t("register.signin.link")}
       </Link>
     </div>
   );
 };
 
 export function Registration() {
+  const t = useTranslations();
   const { form, onSubmit } = useFormWithAction(
     registerSchema,
     registerAction as any,
@@ -95,52 +106,104 @@ export function Registration() {
     },
   );
 
+  const { formState, register } = form;
+  const { isSubmitting, errors } = formState;
+
   return (
     <RegistrationCard
       className="hidden sm:block"
       content={
         <Form {...form}>
           <form onSubmit={onSubmit} className="space-y-8">
-            <FormInputField
+            {errors.root?.serverError && (
+              <Alert variant="destructive">
+                <AlertDescription>
+                  {errors.root.serverError.message}
+                </AlertDescription>
+              </Alert>
+            )}
+
+            <FormField
               control={form.control}
               name="name"
-              label="Name"
-              description="This is your public display name."
-            >
-              {(field) => <Input placeholder="John Doe" {...field} />}
-            </FormInputField>
+              render={() => (
+                <FormItem>
+                  <FormLabel>{t("name.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("name.placeholder")}
+                      {...register("name")}
+                    />
+                  </FormControl>
+                  <FormDescription>{t("name.description")}</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-            <FormInputField
+            <FormField
               control={form.control}
               name="email"
-              label="Email"
-              description="We'll never share your email with anyone else."
-            >
-              {(field) => (
-                <Input type="email" placeholder="john@example.com" {...field} />
+              render={() => (
+                <FormItem>
+                  <FormLabel>{t("email.label")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder={t("email.placeholder")}
+                      {...register("email")}
+                    />
+                  </FormControl>
+                  <FormDescription>{t("email.description")}</FormDescription>
+                  <FormMessage />
+                </FormItem>
               )}
-            </FormInputField>
+            />
 
-            <FormInputField
+            <FormField
               control={form.control}
               name="password"
-              label="Password"
-              description="Your password must be at least 12 characters long."
-            >
-              {(field) => <PasswordInput placeholder="••••••••" {...field} />}
-            </FormInputField>
+              render={() => (
+                <FormItem>
+                  <FormLabel>{t("password.label")}</FormLabel>
+                  <FormControl>
+                    <PasswordInput
+                      placeholder={t("password.placeholder")}
+                      {...register("password")}
+                    />
+                  </FormControl>
+                  <FormDescription>{t("password.description")}</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-            <FormInputField
+            <FormField
               control={form.control}
               name="confirm_password"
-              label="Confirm Password"
-              description="Please confirm your password."
-            >
-              {(field) => <PasswordInput placeholder="••••••••" {...field} />}
-            </FormInputField>
+              render={() => (
+                <FormItem>
+                  <FormLabel>{t("confirm_password.label")}</FormLabel>
+                  <FormControl>
+                    <PasswordInput
+                      placeholder={t("confirm_password.placeholder")}
+                      {...register("confirm_password")}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    {t("confirm_password.description")}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-            <Button type="submit" className="w-full">
-              Register
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? t("register.submitting") : t("register.button")}
             </Button>
           </form>
         </Form>

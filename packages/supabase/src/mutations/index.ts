@@ -1,7 +1,7 @@
 import { logger } from "@repo/logger";
 import { createClient } from "@repo/supabase/server";
 import type { Tables, TablesUpdate } from "../types";
-import type { RegisterResult, UserOperationResult } from "../types/operation";
+import type { RegisterResult, UserOperationResult, OperationResult } from "../types/operation";
 
 export type RegisterUserInput = {
   email: string;
@@ -52,6 +52,47 @@ export async function registerUser({
   }
 }
 
+export type LoginUserInput = {
+  email: string;
+  password: string;
+};
+
+export async function loginUser({
+  email,
+  password,
+}: LoginUserInput): Promise<RegisterResult> {
+  const supabase = await createClient();
+
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      return { data: null, error };
+    }
+
+    if (!data.user) {
+      return { 
+        data: null, 
+        error: new Error("Failed to login") 
+      };
+    }
+
+    return { 
+      data: {
+        id: data.user.id,
+        email: data.user.email ?? "",
+      }, 
+      error: null 
+    };
+  } catch (error) {
+    logger.error(error);
+    return { data: null, error: error as Error };
+  }
+}
+
 export async function updateUser(
   userId: string, 
   data: TablesUpdate<"users">
@@ -78,6 +119,32 @@ export async function updateUser(
       }, 
       error: null 
     };
+  } catch (error) {
+    logger.error(error);
+    return { data: null, error: error as Error };
+  }
+}
+
+export type ResendConfirmationInput = {
+  email: string;
+};
+
+export async function resendConfirmation({
+  email,
+}: ResendConfirmationInput): Promise<OperationResult<{ success: boolean }>> {
+  const supabase = await createClient();
+
+  try {
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email,
+    });
+
+    if (error) {
+      return { data: null, error };
+    }
+
+    return { data: { success: true }, error: null };
   } catch (error) {
     logger.error(error);
     return { data: null, error: error as Error };

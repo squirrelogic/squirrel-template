@@ -1,13 +1,13 @@
 import { Metadata } from "next";
-// import { registerAction } from "@/actions/auth/register-action";
+import { Login } from "@/components/login";
 import Image from "next/image";
-// import { Registration } from "@/components/registration";
+
 export const metadata: Metadata = {
-  title: "Register | SquirrelLogic Inventory",
-  description: "Create a new account to manage your inventory",
+  title: "Login | SquirrelLogic Inventory",
+  description: "Sign in to your account",
 };
 
-export default async function RegisterPage() {
+export default function LoginPage() {
   return (
     <div className="flex flex-1 min-h-full flex-row justify-center">
       <div className="flex-1 hidden flex-col justify-center lg:flex ">
@@ -34,8 +34,7 @@ export default async function RegisterPage() {
         </div>
       </div>
       <div className="flex-1 flex flex-col justify-center">
-        {/* <RegisterForm register={registerAction} /> */}
-        {/* <Registration /> */}
+        <Login />
       </div>
     </div>
   );

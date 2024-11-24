@@ -1,6 +1,43 @@
 {
   "greeting": "Ciao!",
   "welcome": "Benvenuto nella nostra applicazione.",
-  "login": "Accedi",
-  "register": "Registrati"
+  "login": {
+    "title": "Accedi",
+    "description": "Accedi al tuo account",
+    "submitting": "Accesso in corso...",
+    "signup": {
+      "text": "Non hai un account?",
+      "link": "Registrati"
+    }
+  },
+  "register": {
+    "title": "Crea un account",
+    "description": "Registrati per un nuovo account",
+    "submitting": "Creazione account in corso...",
+    "button": "Registrati",
+    "signin": {
+      "text": "Hai già un account?",
+      "link": "Accedi"
+    }
+  },
+  "email": {
+    "label": "Email",
+    "description": "Inserisci il tuo indirizzo email",
+    "placeholder": "tu@esempio.it"
+  },
+  "password": {
+    "label": "Password",
+    "description": "Inserisci la tua password",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Conferma Password",
+    "description": "Per favore conferma la tua password",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Nome",
+    "description": "Questo è il tuo nome pubblico",
+    "placeholder": "Mario Rossi"
+  }
 }

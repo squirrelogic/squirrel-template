@@ -1,6 +1,43 @@
 {
   "greeting": "Hallo!",
   "welcome": "Willkommen in unserer Anwendung.",
-  "login": "Anmelden",
-  "register": "Registrieren"
+  "login": {
+    "title": "Anmelden",
+    "description": "Melden Sie sich bei Ihrem Konto an",
+    "submitting": "Anmeldung läuft...",
+    "signup": {
+      "text": "Noch kein Konto?",
+      "link": "Registrieren"
+    }
+  },
+  "register": {
+    "title": "Konto erstellen",
+    "description": "Registrieren Sie sich für ein neues Konto",
+    "submitting": "Konto wird erstellt...",
+    "button": "Registrieren",
+    "signin": {
+      "text": "Haben Sie bereits ein Konto?",
+      "link": "Anmelden"
+    }
+  },
+  "email": {
+    "label": "E-Mail",
+    "description": "Geben Sie Ihre E-Mail-Adresse ein",
+    "placeholder": "sie@beispiel.de"
+  },
+  "password": {
+    "label": "Passwort",
+    "description": "Geben Sie Ihr Passwort ein",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Passwort bestätigen",
+    "description": "Bitte bestätigen Sie Ihr Passwort",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Name",
+    "description": "Dies ist Ihr öffentlicher Name",
+    "placeholder": "Max Mustermann"
+  }
 }

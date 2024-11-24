@@ -1,6 +1,43 @@
 {
   "greeting": "¡Hola!",
   "welcome": "Bienvenido a nuestra aplicación.",
-  "login": "Iniciar sesión",
-  "register": "Registrarse"
+  "login": {
+    "title": "Iniciar sesión",
+    "description": "Inicia sesión en tu cuenta",
+    "submitting": "Iniciando sesión...",
+    "signup": {
+      "text": "¿No tienes una cuenta?",
+      "link": "Regístrate"
+    }
+  },
+  "register": {
+    "title": "Crear una cuenta",
+    "description": "Regístrate para obtener una nueva cuenta",
+    "submitting": "Creando cuenta...",
+    "button": "Registrarse",
+    "signin": {
+      "text": "¿Ya tienes una cuenta?",
+      "link": "Iniciar sesión"
+    }
+  },
+  "email": {
+    "label": "Correo electrónico",
+    "description": "Ingresa tu correo electrónico",
+    "placeholder": "tu@ejemplo.com"
+  },
+  "password": {
+    "label": "Contraseña",
+    "description": "Ingresa tu contraseña",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Confirmar Contraseña",
+    "description": "Por favor confirma tu contraseña",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Nombre",
+    "description": "Este es tu nombre público",
+    "placeholder": "Juan Pérez"
+  }
 }

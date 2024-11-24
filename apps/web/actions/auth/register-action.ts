@@ -17,44 +17,17 @@ export type RegistrationState = {
 
 export const registerAction = actionClient
   .schema(zfd.formData(registerSchema))
-  .stateAction<{
-    prevState?: RegistrationState;
-    newState: RegistrationState;
-  }>(async ({ parsedInput: { email, password, name } }, { prevResult }) => {
-    try {
-      const { data, error } = await registerUser({ email, password, name });
+  .action(async ({ parsedInput: { email, password, name } }) => {
+    const { data, error } = await registerUser({ email, password, name });
 
-      if (error) {
-        return {
-          prevState: prevResult?.data?.prevState,
-          newState: {
-            success: false,
-            message: error.message,
-          },
-        };
-      }
+    if (error) {
+      throw new Error(error.message);
+    }
 
-      if (!data) {
-        return {
-          prevState: prevResult?.data?.prevState,
-          newState: {
-            success: false,
-            message: "Registration failed",
-          },
-        };
-      }
-    } catch (error) {
-      return {
-        prevState: prevResult?.data?.prevState,
-        newState: {
-          success: false,
-          message:
-            error instanceof Error
-              ? error.message
-              : "An unknown error occurred",
-        },
-      };
+    if (!data) {
+      throw new Error("Registration failed");
     }
 
     redirect("/verify-email");
+    return { success: true };
   });

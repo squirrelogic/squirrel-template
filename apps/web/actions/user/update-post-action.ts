@@ -10,42 +10,23 @@ import { zfd } from "zod-form-data";
 
 export type UpdateData = z.infer<typeof updateUserSchema>;
 
-type UpdateState = {
-  success: boolean;
-  message?: string;
-};
-
 export const updateUserAction = authActionClient
   .schema(zfd.formData(updateUserSchema))
   .metadata({
     name: "update-user",
   })
-  .stateAction<UpdateState>(
-    async ({ parsedInput: input, ctx: { user } }, { prevResult }) => {
-      try {
-        const { data, error } = await updateUser(user.id, input);
+  .action(async ({ parsedInput: input, ctx: { user } }) => {
+    const { data, error } = await updateUser(user.id, input);
 
-        if (error) {
-          return {
-            success: false,
-            message: error.message,
-          };
-        }
+    if (error) {
+      throw new Error(error.message);
+    }
 
-        if (!data) {
-          return {
-            success: false,
-            message: "Update failed",
-          };
-        }
+    if (!data) {
+      throw new Error("Update failed");
+    }
 
-        revalidatePath("/dashboard", "layout");
-        redirect("/dashboard");
-      } catch (error) {
-        return {
-          success: false,
-          message: error instanceof Error ? error.message : "Update failed",
-        };
-      }
-    },
-  );
+    revalidatePath("/dashboard", "layout");
+    redirect("/dashboard");
+    return { success: true };
+  });

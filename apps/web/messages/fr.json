@@ -1,6 +1,43 @@
 {
-  "greeting": "Bonjour!",
+  "greeting": "Bonjour !",
   "welcome": "Bienvenue dans notre application.",
-  "login": "Connexion",
-  "register": "Inscription"
+  "login": {
+    "title": "Connexion",
+    "description": "Connectez-vous à votre compte",
+    "submitting": "Connexion en cours...",
+    "signup": {
+      "text": "Vous n'avez pas de compte ?",
+      "link": "S'inscrire"
+    }
+  },
+  "register": {
+    "title": "Créer un compte",
+    "description": "Inscrivez-vous pour un nouveau compte",
+    "submitting": "Création du compte en cours...",
+    "button": "S'inscrire",
+    "signin": {
+      "text": "Vous avez déjà un compte ?",
+      "link": "Se connecter"
+    }
+  },
+  "email": {
+    "label": "Email",
+    "description": "Entrez votre adresse email",
+    "placeholder": "vous@exemple.fr"
+  },
+  "password": {
+    "label": "Mot de passe",
+    "description": "Entrez votre mot de passe",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Confirmer le mot de passe",
+    "description": "Veuillez confirmer votre mot de passe",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Nom",
+    "description": "C'est votre nom public",
+    "placeholder": "Jean Dupont"
+  }
 }

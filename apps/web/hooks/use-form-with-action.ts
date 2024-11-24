@@ -1,9 +1,9 @@
-import { useForm, UseFormProps } from "react-hook-form";
+import { useForm, UseFormProps, DefaultValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useStateAction } from "next-safe-action/stateful-hooks";
-import type { HookSafeStateActionFn } from "next-safe-action/hooks";
-import type { SafeActionResult } from "next-safe-action";
+import { useAction } from "next-safe-action/hooks";
+import type { HookSafeActionFn } from "next-safe-action/hooks";
+import { useState } from "react";
 
 /**
  * Type definition for action validation errors.
@@ -22,11 +22,11 @@ export type ActionValidationErrors = {
 /**
  * Type definition for action result.
  */
-export type ActionResult<TState> = {
+export type ActionResult<TData> = {
   /**
    * Action data.
    */
-  data?: TState;
+  data?: TData;
   /**
    * Server error message.
    */
@@ -48,11 +48,11 @@ export function useFormWithAction<
   /**
    * Zod schema type.
    */
-  TSchema extends z.ZodType<any, any>,
+  TSchema extends z.ZodType<any, any, any>,
   /**
-   * State type.
+   * Data type.
    */
-  TState extends { message?: string },
+  TData = unknown,
 >(
   /**
    * Zod schema.
@@ -61,43 +61,44 @@ export function useFormWithAction<
   /**
    * Action function.
    */
-  action: HookSafeStateActionFn<
-    string,
-    TSchema,
+  action: HookSafeActionFn<
+    z.ZodType<z.infer<TSchema>>,
+    z.ZodType<z.infer<TSchema>>,
     z.infer<TSchema>,
-    [],
-    TState,
-    []
+    never[],
+    TData,
+    never[]
   >,
   /**
    * Form options.
    */
   options?: Omit<UseFormProps<z.infer<TSchema>>, "resolver">,
-  /**
-   * Initial state.
-   */
-  initialState?: SafeActionResult<
-    string,
-    TSchema,
-    z.infer<TSchema>,
-    [],
-    TState,
-    []
-  >,
 ) {
   /**
    * Form instance.
    */
   const form = useForm<z.infer<TSchema>>({
     resolver: zodResolver(schema),
+    defaultValues: {} as DefaultValues<z.infer<TSchema>>,
     ...options,
   });
+  const [serverError, setServerError] = useState<string>("");
 
   /**
    * Action state.
    */
-  const { execute, result, status, input } = useStateAction(action, {
-    initResult: initialState,
+  const { execute, result, status } = useAction(action, {
+    onSuccess: () => {
+      form.reset();
+    },
+    onError: (error) => {
+      if (error?.error) {
+        console.log("Server Error:", error);
+        if (typeof error.error.serverError === "string") {
+          setServerError(error.error.serverError);
+        }
+      }
+    },
   });
 
   /**
@@ -105,61 +106,24 @@ export function useFormWithAction<
    */
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      /**
-       * Execute the action.
-       */
-      console.log("entering onSubmit", data);
       await execute(data);
-
-      /**
-       * Handle validation errors from zod.
-       */
-      if (result.validationErrors) {
-        Object.entries(result.validationErrors || {}).forEach(
-          ([key, value]) => {
-            if (key === "_errors") {
-              if (Array.isArray(value)) {
-                form.setError("root", {
-                  type: "manual",
-                  message: value[0],
-                });
-              }
-            } else if (
-              typeof value === "object" &&
-              value &&
-              "_errors" in value
-            ) {
-              form.setError(key as any, {
-                type: "manual",
-                message: (value as { _errors?: string[] })._errors?.[0],
-              });
-            }
-          },
-        );
-      }
-
-      /**
-       * Handle state errors (e.g., from stateAction).
-       */
-      if (result.data && "message" in result.data) {
+    } catch (error) {
+      if (error instanceof Error) {
         form.setError("root", {
-          type: "manual",
-          message: (result.data as { message: string }).message,
+          type: "server",
+          message: error.message,
         });
       }
-
-      return result;
-    } catch (error) {
-      console.error("Form submission error:", error);
-      throw error;
     }
   });
 
   return {
     form,
     onSubmit,
+    serverError,
+    clearServerError: () => setServerError(""),
     result,
     status,
-    input,
+    isLoading: status === "executing",
   };
 }

@@ -14,7 +14,8 @@
     "./navigation-menu": "./src/components/ui/navigation-menu.tsx",
     "./dropdown-menu": "./src/components/ui/dropdown-menu.tsx",
     "./sheet": "./src/components/ui/sheet.tsx",
-    "./form": "./src/components/ui/form.tsx"
+    "./form": "./src/components/ui/form.tsx",
+    "./alert": "./src/components/ui/alert.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
