@@ -57,6 +57,18 @@
     "accept": "Alle akzeptieren",
     "reject": "Alle ablehnen"
   },
+  "breadcrumbs": {
+    "app": "App",
+    "account": "Konto",
+    "profile": "Profil",
+    "security": "Sicherheit",
+    "notifications": "Benachrichtigungen",
+    "billing": "Abrechnung",
+    "settings": "Einstellungen",
+    "projects": "Projekte",
+    "teams": "Teams",
+    "dashboard": "Dashboard"
+  },
   "account": {
     "title": "Konto",
     "profile": {

@@ -172,5 +172,17 @@
         "last_updated": "Last updated"
       }
     }
+  },
+  "breadcrumbs": {
+    "app": "App",
+    "account": "Account",
+    "profile": "Profile",
+    "security": "Security",
+    "notifications": "Notifications",
+    "billing": "Billing",
+    "settings": "Settings",
+    "projects": "Projects",
+    "teams": "Teams",
+    "dashboard": "Dashboard"
   }
 }

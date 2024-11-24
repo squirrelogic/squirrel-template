@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useParams, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,12 +19,14 @@ export function BreadcrumbHeader() {
   const params = useParams();
   const locale = params.locale as string;
   const pathname = usePathname();
+  const t = useTranslations("breadcrumbs");
+
   const pathSegments = pathname
     .split("/")
     .filter(Boolean)
     .slice(2) // Remove locale and app segments
     .map((segment) => ({
-      name: segment.charAt(0).toUpperCase() + segment.slice(1),
+      name: t(segment),
       path: segment,
     }));
 
@@ -36,7 +39,7 @@ export function BreadcrumbHeader() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href={`/${locale}/app`}>App</BreadcrumbLink>
+                <BreadcrumbLink href={`/${locale}/app`}>{t("app")}</BreadcrumbLink>
               </BreadcrumbItem>
               {pathSegments.length > 0 && <BreadcrumbSeparator />}
               {pathSegments.map((segment, index) => (
