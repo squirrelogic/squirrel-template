@@ -38,7 +38,7 @@ const notificationHistory = [
 ];
 
 export default function NotificationsPage() {
-  const t = useTranslations();
+  const t = useTranslations("account");
 
   const NotificationToggle = ({
     title,
