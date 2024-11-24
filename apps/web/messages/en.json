@@ -189,6 +189,34 @@
         "saved": "Preferences saved successfully",
         "last_updated": "Last updated"
       }
+    },
+    "billing": {
+      "title": "Billing",
+      "description": "Manage your billing information and subscription",
+      "current_plan": {
+        "title": "Current Plan",
+        "description": "View and manage your current subscription plan",
+        "billing_period": "Billed monthly",
+        "change_plan": "Change Plan"
+      },
+      "payment_method": {
+        "title": "Payment Method",
+        "description": "Manage your payment methods",
+        "expires": "Expires",
+        "update": "Update Payment Method"
+      },
+      "history": {
+        "title": "Billing History",
+        "description": "View your billing and payment history",
+        "table": {
+          "date": "Date",
+          "description": "Description",
+          "amount": "Amount",
+          "status": "Status",
+          "actions": "Actions",
+          "download": "Download"
+        }
+      }
     }
   },
   "breadcrumbs": {

@@ -189,6 +189,34 @@
         "saved": "Preferenze salvate con successo",
         "last_updated": "Ultimo aggiornamento"
       }
+    },
+    "billing": {
+      "title": "Fatturazione",
+      "description": "Gestisci le tue informazioni di fatturazione e abbonamento",
+      "current_plan": {
+        "title": "Piano attuale",
+        "description": "Visualizza e gestisci il tuo piano di abbonamento attuale",
+        "billing_period": "Fatturato mensilmente",
+        "change_plan": "Cambia piano"
+      },
+      "payment_method": {
+        "title": "Metodo di pagamento",
+        "description": "Gestisci i tuoi metodi di pagamento",
+        "expires": "Scade",
+        "update": "Aggiorna metodo di pagamento"
+      },
+      "history": {
+        "title": "Cronologia fatturazione",
+        "description": "Visualizza la cronologia delle fatture e dei pagamenti",
+        "table": {
+          "date": "Data",
+          "description": "Descrizione",
+          "amount": "Importo",
+          "status": "Stato",
+          "actions": "Azioni",
+          "download": "Scarica"
+        }
+      }
     }
   },
   "breadcrumbs": {

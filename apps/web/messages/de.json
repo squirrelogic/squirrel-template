@@ -164,6 +164,34 @@
         }
       }
     },
+    "billing": {
+      "title": "Abrechnung",
+      "description": "Verwalten Sie Ihre Abrechnungsinformationen und Abonnements",
+      "current_plan": {
+        "title": "Aktueller Plan",
+        "description": "Sehen und verwalten Sie Ihren aktuellen Abonnementplan",
+        "billing_period": "Monatlich abgerechnet",
+        "change_plan": "Plan ändern"
+      },
+      "payment_method": {
+        "title": "Zahlungsmethode",
+        "description": "Verwalten Sie Ihre Zahlungsmethoden",
+        "expires": "Läuft ab",
+        "update": "Zahlungsmethode aktualisieren"
+      },
+      "history": {
+        "title": "Abrechnungsverlauf",
+        "description": "Sehen Sie Ihren Abrechnungs- und Zahlungsverlauf",
+        "table": {
+          "date": "Datum",
+          "description": "Beschreibung",
+          "amount": "Betrag",
+          "status": "Status",
+          "actions": "Aktionen",
+          "download": "Herunterladen"
+        }
+      }
+    },
     "gdpr": {
       "title": "Datenschutzeinstellungen",
       "description": "Verwalten Sie Ihre Datenschutzeinstellungen gemäß DSGVO",

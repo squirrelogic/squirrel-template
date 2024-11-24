@@ -132,7 +132,7 @@ export function NavUser() {
                 <Icons.BadgeCheck className="mr-2 size-4" />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/billing")}>
+              <DropdownMenuItem onClick={() => navigate("/account/billing")}>
                 <Icons.CreditCard className="mr-2 size-4" />
                 Billing
               </DropdownMenuItem>

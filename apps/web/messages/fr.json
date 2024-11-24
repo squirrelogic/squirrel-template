@@ -151,6 +151,34 @@
         }
       }
     },
+    "billing": {
+      "title": "Facturation",
+      "description": "Gérez vos informations de facturation et votre abonnement",
+      "current_plan": {
+        "title": "Plan actuel",
+        "description": "Consultez et gérez votre plan d'abonnement actuel",
+        "billing_period": "Facturé mensuellement",
+        "change_plan": "Changer de plan"
+      },
+      "payment_method": {
+        "title": "Moyen de paiement",
+        "description": "Gérez vos moyens de paiement",
+        "expires": "Expire",
+        "update": "Mettre à jour le moyen de paiement"
+      },
+      "history": {
+        "title": "Historique de facturation",
+        "description": "Consultez votre historique de facturation et de paiement",
+        "table": {
+          "date": "Date",
+          "description": "Description",
+          "amount": "Montant",
+          "status": "Statut",
+          "actions": "Actions",
+          "download": "Télécharger"
+        }
+      }
+    },
     "gdpr": {
       "title": "Paramètres de confidentialité",
       "description": "Gérez vos préférences de confidentialité conformément au RGPD",
