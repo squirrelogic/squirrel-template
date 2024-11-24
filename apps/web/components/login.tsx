@@ -45,16 +45,17 @@ export const LoginCard = ({
         <CardHeader>
           <div className="flex-1 flex-col justify-center lg:hidden border-b">
             <div className="justify-items-center">
-              <Image
-                src="/logo.svg"
-                alt="logo"
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ width: "15vh", height: "auto" }}
-              />
+              <div className="bg-black/50 rounded-full p-2">
+                <Image
+                  src="/logo.png"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
               <h1 className="text-2xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 bg-gradient-to-r from-[#33F9FA] via-[#8F6DFE] to-[#FE87FF] text-transparent bg-clip-text">
-                SquirreLogic
+                Squirrel
               </h1>
             </div>
           </div>
@@ -91,6 +92,12 @@ export function Login() {
   const { form, onSubmit, status, serverError } = useFormWithAction(
     loginSchema,
     loginAction as any,
+    {
+      defaultValues: {
+        email: "",
+        password: "",
+      },
+    },
   );
 
   const { formState } = form;
@@ -98,16 +105,19 @@ export function Login() {
   const isEmailNotConfirmed = serverError?.includes("Email not confirmed");
   const email = form.getValues("email");
 
-  const { execute: resendConfirmation, status: resendStatus } = useAction(resendConfirmationAction, {
-    onSuccess: () => {
-      // Show success message
+  const { execute: resendConfirmation, status: resendStatus } = useAction(
+    resendConfirmationAction,
+    {
+      onSuccess: () => {
+        // Show success message
+      },
     },
-  });
+  );
 
   const handleResendConfirmation = async () => {
     if (email) {
       const formData = new FormData();
-      formData.append('email', email);
+      formData.append("email", email);
       await resendConfirmation(formData);
     }
   };
@@ -134,8 +144,8 @@ export function Login() {
                       disabled={resendStatus === "executing"}
                       type="button"
                     >
-                      {resendStatus === "executing" 
-                        ? t("login.resending_confirmation") 
+                      {resendStatus === "executing"
+                        ? t("login.resending_confirmation")
                         : t("login.resend_confirmation")}
                     </Button>
                   </div>

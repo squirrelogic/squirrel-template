@@ -50,16 +50,17 @@ export const RegistrationCard = ({
         <CardHeader>
           <div className="flex-1 flex-col justify-center lg:hidden border-b">
             <div className="justify-items-center">
-              <Image
-                src="/logo.svg"
-                alt="logo"
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ width: "15vh", height: "auto" }}
-              />
+              <div className="bg-black/50 rounded-full p-2">
+                <Image
+                  src="/logo.png"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
               <h1 className="text-2xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 bg-gradient-to-r from-[#33F9FA] via-[#8F6DFE] to-[#FE87FF] text-transparent bg-clip-text">
-                SquirreLogic
+                Squirrel
               </h1>
             </div>
           </div>

@@ -1,29 +1,50 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { Icons } from "@repo/ui/icons";
 import Image from "next/image";
-
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { createClient } from "@repo/supabase/client";
 import { Button } from "@repo/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@repo/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@repo/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@repo/ui/sheet";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@repo/ui/dropdown-menu";
+import { Icons } from "@repo/ui/icons";
+import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 
 const navItems = [
-  { title: "Home", href: "/" },
-  { title: "About", href: "/about" },
-  { title: "Contact", href: "/contact" },
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+  },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [user, setUser] = React.useState<any>(null);
   const { setTheme } = useTheme();
+  const router = useRouter();
+  const t = useTranslations();
+  const supabase = React.useMemo(() => createClient(), []);
+
+  React.useEffect(() => {
+    // Check initial auth state
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabase]);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+  };
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -45,6 +66,20 @@ export function Navbar() {
                 <Link href={item.href}>{item.title}</Link>
               </Button>
             ))}
+            {!user ? (
+              <>
+                <Button variant="outline" asChild>
+                  <Link href="/login">Login</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/register">Sign Up</Link>
+                </Button>
+              </>
+            ) : (
+              <Button variant="outline" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+            )}
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -74,6 +109,9 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              </SheetHeader>
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
                   <Button
@@ -85,6 +123,33 @@ export function Navbar() {
                     <Link href={item.href}>{item.title}</Link>
                   </Button>
                 ))}
+                {!user ? (
+                  <>
+                    <Button
+                      variant="outline"
+                      asChild
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Link href="/login">Login</Link>
+                    </Button>
+                    <Button
+                      asChild
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Link href="/register">Sign Up</Link>
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      handleSignOut();
+                      setIsOpen(false);
+                    }}
+                  >
+                    Sign Out
+                  </Button>
+                )}
               </div>
             </SheetContent>
           </Sheet>
