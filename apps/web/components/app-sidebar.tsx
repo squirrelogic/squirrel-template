@@ -12,7 +12,6 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
 } from "@repo/ui/sidebar";
@@ -20,11 +19,6 @@ import Link from "next/link";
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
       name: "Acme Inc",
@@ -50,58 +44,32 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Prompts",
           url: "#",
+          icon: Icons.Sparkles,
+          isActive: true,
         },
         {
-          title: "Starred",
+          title: "Playground",
           url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Icons.Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          icon: Icons.Bot,
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Dashboards",
       url: "#",
-      icon: Icons.BookOpen,
+      icon: Icons.PieChart,
       items: [
         {
-          title: "Introduction",
+          title: "Analytics",
           url: "#",
+          icon: Icons.Frame,
         },
         {
-          title: "Get Started",
+          title: "Reports",
           url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          icon: Icons.BookOpen,
         },
       ],
     },
@@ -111,39 +79,33 @@ const data = {
       icon: Icons.Settings2,
       items: [
         {
-          title: "General",
+          title: "Account",
           url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
+          icon: Icons.User,
         },
         {
           title: "Billing",
           url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          icon: Icons.CreditCard,
         },
       ],
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Project A",
+      url: "#",
+      icon: Icons.Command,
+    },
+    {
+      name: "Project B",
       url: "#",
       icon: Icons.Frame,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: Icons.PieChart,
-    },
-    {
       name: "Travel",
       url: "#",
-      icon: Icons.Map,
+      icon: Icons.MapIcon,
     },
   ],
 };
@@ -154,7 +116,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="list-none py-4 bg-[hsl(240_5.9%_10%)] rounded-md pl-4 group-data-[collapsible=icon]:py-0 group-data-[collapsible=icon]:pl-1 transition">
-            {/* <SidebarMenuButton asChild className=""> */}
             <Link href="/en" className="flex items-center gap-3">
               <Image
                 src="/logo.png"
@@ -167,7 +128,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 Squirrel
               </span>
             </Link>
-            {/* </SidebarMenuButton> */}
           </SidebarMenuItem>
         </SidebarMenu>
         <TeamSwitcher teams={data.teams} />
@@ -177,7 +137,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
