@@ -30,7 +30,9 @@ export default function SecurityPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t("account.security.title")}</h1>
+        <h1 className="text-2xl font-semibold">
+          {t("account.security.title")}
+        </h1>
       </div>
 
       <Card>
@@ -41,7 +43,7 @@ export default function SecurityPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ChangePasswordForm userEmail={user.email || ""} />
+          <ChangePasswordForm />
         </CardContent>
       </Card>
 

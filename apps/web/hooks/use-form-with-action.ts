@@ -73,7 +73,11 @@ export function useFormWithAction<
   /**
    * Form options.
    */
-  options?: Omit<UseFormProps<z.infer<TSchema>>, "resolver">,
+  options?: Omit<UseFormProps<z.infer<TSchema>>, "resolver"> & {
+    onSuccess?: () => void;
+    // eslint-disable-next-line no-unused-vars
+    onSubmit?: ({ data }: { data: z.infer<TSchema> }) => void;
+  },
 ) {
   /**
    * Form instance.
@@ -91,6 +95,7 @@ export function useFormWithAction<
   const { execute, result, status } = useAction(action, {
     onSuccess: () => {
       form.reset();
+      options?.onSuccess?.();
     },
     onError: (error) => {
       if (error?.error) {
@@ -107,6 +112,7 @@ export function useFormWithAction<
    */
   const onSubmit = form.handleSubmit(async (data) => {
     try {
+      options?.onSubmit?.(data);
       await execute(data);
     } catch (error) {
       if (error instanceof Error) {
