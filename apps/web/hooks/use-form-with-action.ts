@@ -77,6 +77,8 @@ export function useFormWithAction<
     onSuccess?: () => void;
     // eslint-disable-next-line no-unused-vars
     onSubmit?: ({ data }: { data: z.infer<TSchema> }) => void;
+    // eslint-disable-next-line no-unused-vars
+    onError?: (error: any) => void;
   },
 ) {
   /**
@@ -94,7 +96,7 @@ export function useFormWithAction<
    */
   const { execute, result, status } = useAction(action, {
     onSuccess: () => {
-      form.reset();
+      // Let the component handle form reset if needed
       options?.onSuccess?.();
     },
     onError: (error) => {
@@ -103,6 +105,7 @@ export function useFormWithAction<
         if (typeof error.error.serverError === "string") {
           setServerError(error.error.serverError);
         }
+        options?.onError?.(error.error);
       }
     },
   });

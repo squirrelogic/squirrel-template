@@ -15,7 +15,7 @@ import { Alert, AlertDescription } from "@repo/ui/alert";
 import { useFormWithAction } from "@/hooks/use-form-with-action";
 import { changePasswordAction } from "@/actions/user/change-password-action";
 import { changePasswordSchema } from "@/actions/user/schema";
-import { PasswordInput } from "./ui/password-input";
+import { PasswordInput } from "./password-input";
 import { useToast } from "@repo/ui/hooks/use-toast";
 import { useState } from "react";
 
@@ -35,6 +35,7 @@ export function ChangePasswordForm() {
           title: t("account.security.success"),
         });
         setSubmitting(false);
+        form.reset();
       },
       defaultValues: {
         newPassword: "",

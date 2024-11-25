@@ -6,7 +6,7 @@ import { Icons } from "@repo/ui/icons";
 import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/card";
 import { Skeleton } from "@repo/ui/skeleton";
 import { Button } from "@repo/ui/button";
-import { ChangePasswordForm } from "@/components/change-password-form";
+import { ChangePasswordForm } from "@/components/ui/change-password-form";
 
 export default function SecurityPage() {
   const t = useTranslations();

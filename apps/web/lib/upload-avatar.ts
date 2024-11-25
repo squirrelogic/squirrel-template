@@ -44,13 +44,28 @@ export async function uploadAvatar(file: File) {
 
     // Update user metadata with new avatar URL
     console.log("Updating user metadata with new avatar URL...");
-    const { error: updateError } = await supabase.auth.updateUser({
-      data: { avatar_url: publicUrl.publicUrl },
-    });
-
-    if (updateError) {
-      console.error("Error updating user metadata:", updateError);
-      throw updateError;
+    const {
+      data: {
+        user: { id },
+      },
+    } = await supabase.auth.getUser();
+    const { error } = await supabase
+      .from("users")
+      .update({ avatar_url: publicUrl.publicUrl })
+      .eq("id", id)
+      .select()
+      .single();
+    if (!error) {
+      const { error: updateError } = await supabase.auth.updateUser({
+        data: { avatar_url: publicUrl.publicUrl },
+      });
+      if (updateError) {
+        console.error("Error updating user metadata:", updateError);
+        throw updateError;
+      }
+    } else {
+      console.error("Error updating user metadata:", error);
+      throw error;
     }
 
     console.log("User metadata updated successfully");

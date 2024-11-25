@@ -24,6 +24,7 @@ export const logger = pino({
           console.error("\x1b[31m%s\x1b[0m", msg, extras);
           break;
         default:
+          console.log("default");
           console.log(msg, extras);
       }
     },
