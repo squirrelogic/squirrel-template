@@ -22,7 +22,7 @@ import {
 import { Icons } from "@repo/ui/icons";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import cn from "classnames";
+import { cn } from "@repo/ui/cn";
 
 const navItems = [
   {
@@ -61,10 +61,12 @@ export function Navbar() {
   };
 
   return (
-    <nav className={cn(
-      "w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
-      !user && "sticky top-0 z-50"
-    )}>
+    <nav
+      className={cn(
+        "w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        !user && "sticky top-0 z-50",
+      )}
+    >
       <div className="container flex h-16 items-center">
         <div className="flex items-center space-x-4">
           <div className="bg-black/50 rounded-full p-2">
@@ -127,7 +129,9 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle className="sr-only">{t("navbar.navigation_menu")}</SheetTitle>
+                <SheetTitle className="sr-only">
+                  {t("navbar.navigation_menu")}
+                </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (

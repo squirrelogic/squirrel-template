@@ -26,9 +26,12 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@sentry/node": "^8.40.0",
+    "import-in-the-middle": "^1.11.2",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028"
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "require-in-the-middle": "^7.4.0"
   },
   "pnpm": {
     "overrides": {

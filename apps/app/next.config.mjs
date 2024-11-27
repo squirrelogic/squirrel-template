@@ -6,6 +6,21 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["@repo/supabase"],
+  serverExternalPackages: [
+    '@sentry/node',
+    'require-in-the-middle',
+    'import-in-the-middle'
+  ],
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = [...(config.externals || []), 
+        '@sentry/node',
+        'require-in-the-middle',
+        'import-in-the-middle'
+      ];
+    }
+    return config;
+  },
 };
 
 // Wrap the existing configuration with the `next-intl` plugin
@@ -38,9 +53,6 @@ tunnelRoute: "/monitoring",
 
 // Hides source maps from generated client bundles
 hideSourceMaps: true,
-
-// Automatically tree-shake Sentry logger statements to reduce bundle size
-disableLogger: true,
 
 // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
 // See the following for more information:

@@ -3,16 +3,28 @@ import { updateSession } from "@repo/supabase/middleware";
 import i18nMiddleware from "./i18n/middleware";
 import { logger } from "@repo/logger";
 
-const publicRoutes = ["/login", "/register", "/verify-email"];
+const publicRoutes = ["/","/login", "/register", "/verify-email"];
+const isPublicRoute = (pathname: string, locale: string) => publicRoutes.some(route => `/${locale}${route}` === pathname);
 
 export async function middleware(request: NextRequest) {
-  logger.debug({
-    msg: "🔒 Start of middleware",
-    path: request.nextUrl.pathname,
-    method: request.method,
-  });
+    const defaultLocale = 'en';
 
-  let supabaseResponse = NextResponse.next({
+    // Use the Accept-Language header as a fallback
+    const acceptLanguage = request.headers.get('accept-language') || '';
+    const preferredLocale = acceptLanguage.split(',')[0]?.split('-')[0]; // e.g., 'en-US' -> 'en'
+
+    const locale = preferredLocale || defaultLocale;
+    const pathIsInLocale = request.nextUrl.pathname.startsWith(`/${locale}`)
+
+    logger.debug({
+        msg: "🔒 Start of middleware",
+        path: request.nextUrl.pathname,
+        method: request.method,
+        locale: locale,
+        pathIsInLocale: pathIsInLocale,
+      });
+
+  let initialResponse = NextResponse.next({
     request,
   });
 
@@ -35,7 +47,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const { response, user } = await updateSession(request, supabaseResponse);
+  const { response, user } = await updateSession(request, initialResponse);
   logger.debug({
     msg: "👤 Auth check completed",
     path: pathname,
@@ -44,31 +56,28 @@ export async function middleware(request: NextRequest) {
   });
 
   // Handle redirection from "/" to "/en/"
-  if (pathname === "/") {
-    logger.debug({
-      msg: "🌐 Root redirect to /en/",
-      from: pathname,
-      to: "/en/",
-    });
-    return NextResponse.redirect(new URL("/en/", request.url));
-  }
+//   if (pathname === "/") {
+//     logger.debug({
+//       msg: "🌐 Root redirect to /en/",
+//       from: pathname,
+//       to: "/en/",
+//     });
+//     return NextResponse.redirect(new URL("/en/login", request.url));
+//   }
 
   // Check if the route requires authentication
-  const isPublicRoute = publicRoutes.some(
-    (route) =>
-      pathname.includes(route) || pathname === "/" || pathname === "/en",
-  );
+  const isPublic = isPublicRoute(pathname, locale);
 
   logger.debug({
     msg: "🛡️ Route protection check",
     path: pathname,
-    isPublicRoute,
+    isPublic: isPublic,
     hasUser: !!user,
   });
 
-  if (!isPublicRoute && !user) {
+  if (!isPublic && !user) {
     // Redirect to login if trying to access protected route without auth
-    const redirectUrl = new URL("/login", request.url);
+    const redirectUrl = new URL(`/${locale}/login`, request.url);
     logger.warn({
       msg: "🚫 Unauthorized access attempt",
       from: pathname,
@@ -77,9 +86,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  if (user && publicRoutes.some((route) => pathname.includes(route))) {
+  if (user && isPublic) {
     // Redirect to dashboard if trying to access login/register while authenticated
-    const redirectUrl = new URL("/app/dashboard", request.url);
+    const redirectUrl = new URL(`/${locale}/app/dashboard`, request.url);
     logger.debug({
       msg: "✅ Authenticated user redirected from public route",
       from: pathname,
