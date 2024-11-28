@@ -3,8 +3,6 @@
 import { useTranslations } from "next-intl";
 import { useUser } from "@/hooks/use-user";
 import { Button } from "@repo/ui/button";
-import { Input } from "@repo/ui/input";
-import { Label } from "@repo/ui/label";
 import { Icons } from "@repo/ui/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/card";
@@ -15,9 +13,7 @@ import { useToast } from "@repo/ui/use-toast";
 import { updateUserAction } from "@/actions/user/update-user-action";
 import { updateUserSchema } from "@/actions/user/schema";
 import { useFormWithAction } from "@/hooks/use-form-with-action";
-import { Form } from "@repo/ui/components/ui/form";
-import { FormInputField } from "@/components/ui/form-field";
-import { Alert, AlertDescription } from "@repo/ui/components/ui/alert";
+import { UpdateUserForm } from "@/components/forms/update-user-form";
 
 export default function ProfilePage() {
   const t = useTranslations();
@@ -26,47 +22,6 @@ export default function ProfilePage() {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
-  
-  const { form, onSubmit, serverError } = useFormWithAction(
-    updateUserSchema,
-    updateUserAction as any,
-    {
-      onSubmit: () => {
-        setSaving(true);
-      },
-      onSuccess: () => {
-        toast({
-          title: t("account.profile.success"),
-          description: t("account.profile.success_save"),
-        });
-        setSaving(false);
-        // Keep the form values after successful submission
-        const currentValues = form.getValues();
-        form.reset(currentValues);
-      },
-      onError: () => {
-        setSaving(false);
-        toast({
-          title: t("account.profile.error"),
-          description: t("account.profile.error_save"),
-          variant: "destructive",
-        });
-      },
-      defaultValues: {
-        full_name: user?.profile?.full_name || user?.user_metadata?.full_name || "",
-      },
-    },
-  );
-
-  // Update form when user data is loaded
-  useEffect(() => {
-    if (user?.profile?.full_name || user?.user_metadata?.full_name) {
-      form.setValue(
-        "full_name",
-        user?.profile?.full_name || user?.user_metadata?.full_name || "",
-      );
-    }
-  }, [user, form]);
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -136,7 +91,9 @@ export default function ProfilePage() {
           <div className="flex items-center gap-4">
             <Avatar className="h-24 w-24 rounded-lg">
               <AvatarImage
-                src={user?.profile?.avatar_url || user?.user_metadata?.avatar_url}
+                src={
+                  user?.profile?.avatar_url || user?.user_metadata?.avatar_url
+                }
                 alt={user.email ?? ""}
               />
               <AvatarFallback className="rounded-lg text-2xl">
@@ -169,56 +126,7 @@ export default function ProfilePage() {
               </Button>
             </div>
           </div>
-          <Form {...form}>
-            <form onSubmit={onSubmit} className="space-y-4">
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  {serverError && (
-                    <Alert variant="destructive">
-                      <AlertDescription>{serverError}</AlertDescription>
-                    </Alert>
-                  )}
-                  <FormInputField
-                    control={form.control}
-                    name="full_name"
-                    label={t("name.label")}
-                    description={t("name.description")}
-                  >
-                    {(field) => (
-                      <Input
-                        type="text"
-                        placeholder={t("name.placeholder")}
-                        {...field}
-                      />
-                    )}
-                  </FormInputField>
-                </div>
-
-                <div className="grid gap-2">
-                  <Label htmlFor="email">{t("email.label")}</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    defaultValue={user.email}
-                    disabled
-                  />
-                  <p className="text-sm text-muted-foreground">
-                    {t("email.description")}
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-end">
-                <Button type="submit" disabled={saving}>
-                  {saving ? (
-                    <Icons.Loader2 className="mr-2 size-4 animate-spin" />
-                  ) : (
-                    <Icons.BadgeCheck className="mr-2 size-4" />
-                  )}
-                  {saving ? t("account.profile.saving") : t("account.profile.save")}
-                </Button>
-              </div>
-            </form>
-          </Form>
+          <UpdateUserForm />
         </CardContent>
       </Card>
 

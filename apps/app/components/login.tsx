@@ -2,18 +2,7 @@
 
 import { ReactNode } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { loginAction } from "@/actions/auth/login-action";
-import { resendConfirmationAction } from "@/actions/auth/resend-confirmation-action";
-import { useFormWithAction } from "@/hooks/use-form-with-action";
-import { useAction } from "next-safe-action/hooks";
-import { FormInputField } from "@/components/ui/form-field";
-import { Button } from "@repo/ui/button";
-import { Form } from "@repo/ui/form";
-import { Input } from "@repo/ui/input";
-import { PasswordInput } from "./ui/password-input";
-import { loginSchema } from "@/actions/auth/schema";
 import { cn } from "@repo/ui/cn";
 import {
   Card,
@@ -22,7 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@repo/ui/card";
-import { Alert, AlertDescription } from "@repo/ui/alert";
+import { LoginForm } from "./forms/login-form";
+import { Link } from "@/i18n/routing";
 
 export const LoginCard = ({
   className,
@@ -88,106 +78,10 @@ const SignUpLink = ({ className }: { className?: string }) => {
 };
 
 export function Login() {
-  const t = useTranslations();
-  const { form, onSubmit, status, serverError } = useFormWithAction(
-    loginSchema,
-    loginAction as any,
-    {
-      defaultValues: {
-        email: "",
-        password: "",
-      },
-    },
-  );
-
-  const { formState } = form;
-  const { isSubmitting } = formState;
-  const isEmailNotConfirmed = serverError?.includes("Email not confirmed");
-  const email = form.getValues("email");
-
-  const { execute: resendConfirmation, status: resendStatus } = useAction(
-    resendConfirmationAction,
-    {
-      onSuccess: () => {
-        // Show success message
-      },
-    },
-  );
-
-  const handleResendConfirmation = async () => {
-    if (email) {
-      const formData = new FormData();
-      formData.append("email", email);
-      await resendConfirmation(formData);
-    }
-  };
-
   return (
     <LoginCard
       className="hidden sm:block"
-      content={
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="space-y-8">
-            {status === "hasErrored" && (
-              <>
-                <Alert variant="destructive">
-                  <AlertDescription>{serverError}</AlertDescription>
-                </Alert>
-                {isEmailNotConfirmed && (
-                  <div className="mt-4 text-center">
-                    <p className="text-sm text-muted-foreground mb-2">
-                      {t("login.email_not_confirmed")}
-                    </p>
-                    <Button
-                      variant="outline"
-                      onClick={handleResendConfirmation}
-                      disabled={resendStatus === "executing"}
-                      type="button"
-                    >
-                      {resendStatus === "executing"
-                        ? t("login.resending_confirmation")
-                        : t("login.resend_confirmation")}
-                    </Button>
-                  </div>
-                )}
-              </>
-            )}
-
-            <FormInputField
-              control={form.control}
-              name="email"
-              label={t("email.label")}
-              description={t("email.description")}
-            >
-              {(field) => (
-                <Input
-                  type="email"
-                  placeholder={t("email.placeholder")}
-                  {...field}
-                />
-              )}
-            </FormInputField>
-
-            <FormInputField
-              control={form.control}
-              name="password"
-              label={t("password.label")}
-              description={t("password.description")}
-            >
-              {(field) => (
-                <PasswordInput
-                  placeholder={t("password.placeholder")}
-                  {...field}
-                />
-              )}
-            </FormInputField>
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? t("login.submitting") : t("login.title")}
-            </Button>
-          </form>
-        </Form>
-      }
+      content={<LoginForm />}
       footer={<SignUpLink />}
     />
   );

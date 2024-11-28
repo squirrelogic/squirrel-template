@@ -5,8 +5,10 @@
     "dev": "supabase start",
     "login": "supabase login",
     "migrate": "supabase migration up",
+    "status": "supabase status",
     "seed": "supabase db seed generate && supabase db seed run",
     "reset": "supabase db reset",
+    "clean": "supabase stop",
     "generate": "supabase gen types --lang=typescript --local --schema public > ../../packages/supabase/src/types/db.ts"
   },
   "keywords": [],

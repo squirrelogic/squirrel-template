@@ -6,6 +6,8 @@ export const updateUserSchema = z.object({
   avatar_url: z.string().optional(),
 });
 
+export type UpdateUserSchema = z.infer<typeof updateUserSchema>;
+
 export const changePasswordSchema = z
   .object({
     newPassword: z
@@ -13,7 +15,7 @@ export const changePasswordSchema = z
       .min(8, "Password must be at least 8 characters")
       .regex(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number",
       ),
     confirmPassword: z.string().min(1, "Please confirm your password"),
   })
@@ -22,4 +24,4 @@ export const changePasswordSchema = z
     path: ["confirmPassword"],
   });
 
-export type ChangePasswordFormData = z.infer<typeof changePasswordSchema>;
+export type ChangePasswordSchema = z.infer<typeof changePasswordSchema>;

@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { useUser } from "@/hooks/use-user";
 import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@repo/ui/avatar";
 import { Button } from "@repo/ui/button";
 import { Skeleton } from "@repo/ui/skeleton";
 import { Icons } from "@repo/ui/icons";

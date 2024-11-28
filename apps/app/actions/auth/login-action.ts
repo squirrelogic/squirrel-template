@@ -5,18 +5,14 @@ import { headers } from "next/headers";
 import { actionClient } from "@/actions/safe-action";
 import { loginUser } from "@repo/supabase/mutations";
 import { loginSchema } from "./schema";
-import { zfd } from "zod-form-data";
 
 export const loginAction = actionClient
-  .schema(zfd.formData(loginSchema))
+  .schema(loginSchema)
   .action(async ({ parsedInput: { email, password } }) => {
     const { error } = await loginUser({ email, password });
 
     if (error) {
-      return {
-        success: false,
-        message: error.message,
-      };
+      throw error;
     }
 
     const headersList = headers();

@@ -5,14 +5,9 @@ import { authActionClient } from "@/actions/safe-action";
 import { updateUser } from "@repo/supabase/mutations";
 import { headers } from "next/headers";
 import { updateUserSchema } from "./schema";
-import { z } from "zod";
-import { zfd } from "zod-form-data";
-import { logger } from "@repo/logger";
-
-export type UpdateData = z.infer<typeof updateUserSchema>;
 
 export const updateUserAction = authActionClient
-  .schema(zfd.formData(updateUserSchema))
+  .schema(updateUserSchema)
   .metadata({
     name: "update-user",
   })
@@ -30,5 +25,5 @@ export const updateUserAction = authActionClient
     const pathname = (await headersList).get("x-pathname") || "";
     const locale = pathname.split("/")[1] || "en";
 
-    revalidatePath(`/${locale}/app/account/profile`, "layout");
+    revalidatePath(`/${locale}/app/account/profile`, "page");
   });

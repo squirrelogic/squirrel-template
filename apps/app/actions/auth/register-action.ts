@@ -7,7 +7,6 @@ import { registerUser } from "@repo/supabase/mutations";
 import { registerSchema } from "./schema";
 import { headers } from "next/headers";
 import { z } from "zod";
-import { zfd } from "zod-form-data";
 
 export type RegistrationData = z.infer<typeof registerSchema>;
 
@@ -17,7 +16,7 @@ export type RegistrationState = {
 };
 
 export const registerAction = actionClient
-  .schema(zfd.formData(registerSchema))
+  .schema(registerSchema)
   .action(async ({ parsedInput: { email, password, name } }) => {
     const { data, error } = await registerUser({ email, password, name });
 

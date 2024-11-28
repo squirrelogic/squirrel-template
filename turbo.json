@@ -13,9 +13,13 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "status": {
+      "dependsOn": ["^status"]
+    },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
     },
     "clean": {
       "cache": false,

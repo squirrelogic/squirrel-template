@@ -194,6 +194,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       next:
         specifier: 15.0.2
         version: 15.0.2(@opentelemetry/api@1.9.0)(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)
@@ -203,6 +206,9 @@ importers:
       react-dom:
         specifier: 19.0.0-rc-02c0e824-20241028
         version: 19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -336,7 +342,7 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.1)
       eslint-config-turbo:
-        specifier: ^2.0.0
+        specifier: ^2.3.1
         version: 2.3.1(eslint@8.57.1)
       eslint-plugin-only-warn:
         specifier: ^1.1.0

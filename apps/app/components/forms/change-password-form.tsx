@@ -12,49 +12,53 @@ import {
   FormMessage,
 } from "@repo/ui/form";
 import { Alert, AlertDescription } from "@repo/ui/alert";
-import { useFormWithAction } from "@/hooks/use-form-with-action";
 import { changePasswordAction } from "@/actions/user/change-password-action";
-import { changePasswordSchema } from "@/actions/user/schema";
-import { PasswordInput } from "./password-input";
+import {
+  changePasswordSchema,
+  type ChangePasswordSchema,
+} from "@/actions/user/schema";
+import { PasswordInput } from "../ui/password-input";
 import { useToast } from "@repo/ui/hooks/use-toast";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAction } from "next-safe-action/hooks";
 
 export function ChangePasswordForm() {
   const t = useTranslations();
   const { toast } = useToast();
-  const [submitting, setSubmitting] = useState(false);
-  const { form, onSubmit, serverError } = useFormWithAction(
-    changePasswordSchema,
-    changePasswordAction as any,
-    {
-      onSubmit: () => {
-        setSubmitting(true);
-      },
-      onSuccess: () => {
-        toast({
-          title: t("account.security.success"),
-        });
-        setSubmitting(false);
-        form.reset();
-      },
-      defaultValues: {
-        newPassword: "",
-        confirmPassword: "",
-      },
-    },
-  );
+  const [serverError, setServerError] = useState<string | null>(null);
 
-  const { formState } = form;
-  const { errors } = formState;
+  const form = useForm<ChangePasswordSchema>({
+    resolver: zodResolver(changePasswordSchema),
+    defaultValues: {
+      newPassword: "",
+      confirmPassword: "",
+    },
+  });
+
+  const { execute, isPending } = useAction(changePasswordAction, {
+    onError: (error) => {
+      setServerError(error.error.serverError || null);
+    },
+    onSuccess: () => {
+      toast({
+        title: t("account.security.success"),
+      });
+      form.reset();
+    },
+  });
+
+  const onSubmit: SubmitHandler<ChangePasswordSchema> = async (data) => {
+    await execute(data);
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-4">
-        {(errors.root?.serverError || serverError) && (
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {status === "hasErrored" && (
           <Alert variant="destructive">
-            <AlertDescription>
-              {errors.root?.serverError?.message || serverError}
-            </AlertDescription>
+            <AlertDescription>{serverError}</AlertDescription>
           </Alert>
         )}
 
@@ -95,8 +99,8 @@ export function ChangePasswordForm() {
         />
 
         <div className="flex justify-end">
-          <Button type="submit" disabled={submitting}>
-            {submitting && (
+          <Button type="submit" disabled={isPending}>
+            {isPending && (
               <Icons.Loader2 className="mr-2 size-4 animate-spin" />
             )}
             {t("account.security.update_password")}

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { createClient } from "@repo/supabase/client";
-import { logger } from "@repo/logger";
 
 type UserProfile = User & {
   avatar_url: string | null;
@@ -19,8 +18,8 @@ export function useUser(): { user: UserProfile | null; loading: boolean } {
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
-  useEffect(() => {
-    // Get initial user
+  const getUser = async () => {
+    setLoading(true);
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       const { data: userData, error } = await supabase
         .from("users")
@@ -31,6 +30,11 @@ export function useUser(): { user: UserProfile | null; loading: boolean } {
       setUser({ ...user, profile: userData });
       setLoading(false);
     });
+  };
+
+  useEffect(() => {
+    // Get initial user
+    getUser();
 
     // Listen for changes
     const {
@@ -59,6 +63,7 @@ export function useUser(): { user: UserProfile | null; loading: boolean } {
 
   return {
     user,
+    refresh: getUser,
     loading,
-  } as { user: UserProfile | null; loading: boolean };
+  } as { user: UserProfile | null; refresh: () => void; loading: boolean };
 }
