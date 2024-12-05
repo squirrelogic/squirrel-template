@@ -60,10 +60,10 @@ export function NavUser() {
     return null;
   }
 
-  const userInitials = user.email
+  const userInitials = user?.email
     ?.split("@")[0]
-    .split(".")
-    .map((n) => n[0])
+    ?.split(".")
+    .map((n: string) => n[0])
     .join("")
     .toUpperCase();
 

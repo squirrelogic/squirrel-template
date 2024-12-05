@@ -24,17 +24,16 @@ import { useUser } from "@/hooks/use-user";
 
 export function UpdateUserForm() {
   const t = useTranslations();
-  const { user, loading, refresh } = useUser();
+  const { user, refresh } = useUser();
   const { toast } = useToast();
   const [serverError, setServerError] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
       form.reset({
-        full_name:
-          user.profile?.full_name || user.user_metadata?.full_name || "",
+        full_name: user?.full_name || user.user_metadata?.full_name || "",
         email: user.email || "",
-        avatar_url: user.profile?.avatar_url || "",
+        avatar_url: user?.avatar_url || "",
       });
     }
   }, [user]);
@@ -42,10 +41,9 @@ export function UpdateUserForm() {
   const form = useForm<UpdateUserSchema>({
     resolver: zodResolver(updateUserSchema),
     defaultValues: {
-      full_name:
-        user?.profile?.full_name || user?.user_metadata?.full_name || "",
+      full_name: user?.full_name || user?.user_metadata?.full_name || "",
       email: user?.email || "",
-      avatar_url: user?.profile?.avatar_url || "",
+      avatar_url: user?.avatar_url || "",
     },
   });
 

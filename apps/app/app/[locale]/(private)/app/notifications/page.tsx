@@ -150,6 +150,7 @@ export default function NotificationsPage() {
           >
             {t("history.actions.mark_all_read")}
           </Button>
+          
         </div>
 
         {filteredNotifications.length === 0 ? (

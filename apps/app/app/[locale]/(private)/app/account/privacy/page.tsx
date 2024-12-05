@@ -10,10 +10,7 @@ export default function PrivacyPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-medium">{t("gdpr.title")}</h3>
-        <p className="text-sm text-muted-foreground">
-          {t("gdpr.description")}
-        </p>
+        <h1 className="text-2xl font-semibold">{t("gdpr.title")}</h1>
       </div>
 
       <Card>

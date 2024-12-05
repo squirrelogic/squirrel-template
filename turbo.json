@@ -13,6 +13,12 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "generate": {
+      "dependsOn": ["^generate"]
+    },
+    "migrate": {
+      "dependsOn": ["^migrate"]
+    },
     "status": {
       "dependsOn": ["^status"]
     },

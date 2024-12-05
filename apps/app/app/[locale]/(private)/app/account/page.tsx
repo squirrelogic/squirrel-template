@@ -38,13 +38,6 @@ export default function AccountPage() {
 
   if (!user) return null;
 
-  const userInitials = user.email
-    ?.split("@")[0]
-    .split(".")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">

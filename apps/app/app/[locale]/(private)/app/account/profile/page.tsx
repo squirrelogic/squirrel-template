@@ -8,11 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@repo/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/card";
 import { Skeleton } from "@repo/ui/skeleton";
 import { uploadAvatar } from "@/lib/upload-avatar";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useToast } from "@repo/ui/use-toast";
-import { updateUserAction } from "@/actions/user/update-user-action";
-import { updateUserSchema } from "@/actions/user/schema";
-import { useFormWithAction } from "@/hooks/use-form-with-action";
 import { UpdateUserForm } from "@/components/forms/update-user-form";
 
 export default function ProfilePage() {
@@ -20,7 +17,6 @@ export default function ProfilePage() {
   const { user, loading } = useUser();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
-  const [saving, setSaving] = useState(false);
   const { toast } = useToast();
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,10 +63,10 @@ export default function ProfilePage() {
 
   if (!user) return null;
 
-  const userInitials = user.email
+  const userInitials = user?.email
     ?.split("@")[0]
-    .split(".")
-    .map((n) => n[0])
+    ?.split(".")
+    .map((n: string) => n[0])
     .join("")
     .toUpperCase();
 
@@ -91,10 +87,8 @@ export default function ProfilePage() {
           <div className="flex items-center gap-4">
             <Avatar className="h-24 w-24 rounded-lg">
               <AvatarImage
-                src={
-                  user?.profile?.avatar_url || user?.user_metadata?.avatar_url
-                }
-                alt={user.email ?? ""}
+                src={user?.avatar_url || user?.user_metadata?.avatar_url}
+                alt={user?.email ?? ""}
               />
               <AvatarFallback className="rounded-lg text-2xl">
                 {userInitials}

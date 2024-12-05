@@ -45,14 +45,15 @@ export async function uploadAvatar(file: File) {
     // Update user metadata with new avatar URL
     console.log("Updating user metadata with new avatar URL...");
     const {
-      data: {
-        user: { id },
-      },
+      data: { user },
     } = await supabase.auth.getUser();
+    if (!user) {
+      throw new Error("User not found");
+    }
     const { error } = await supabase
       .from("users")
       .update({ avatar_url: publicUrl.publicUrl })
-      .eq("id", id)
+      .eq("id", user.id)
       .select()
       .single();
     if (!error) {

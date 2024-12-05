@@ -17,6 +17,8 @@ import { Label } from "@repo/ui/label";
 import { Button } from "@repo/ui/button";
 import { useToast } from "@repo/ui/use-toast";
 import { useState } from "react";
+import EmailNotificationForm from "@/components/notifications/email-notification-form";
+import PushNotificationForm from "@/components/notifications/push-notification-form";
 
 // Sample notification history data
 const notificationHistory = [
@@ -139,6 +141,7 @@ export default function NotificationsPage() {
                 )}
                 checked={false}
               />
+              <EmailNotificationForm />
             </CardContent>
           </Card>
         </TabsContent>
@@ -172,6 +175,7 @@ export default function NotificationsPage() {
                 )}
                 checked={false}
               />
+              <PushNotificationForm />
             </CardContent>
           </Card>
         </TabsContent>

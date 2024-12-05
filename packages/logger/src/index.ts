@@ -6,7 +6,7 @@ export const logger = pino({
   level: isDevelopment ? "debug" : "info",
   browser: {
     asObject: true,
-    write: (o) => {
+    write: (o: any) => {
       const { msg, ...rest } = o;
       const extras = Object.keys(rest).length ? rest : "";
 
