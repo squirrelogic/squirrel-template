@@ -208,18 +208,18 @@
       },
       "data_retention": {
         "title": "Datenspeicherung",
-        "description": "Kontrollieren Sie, wie lange wir Ihre Benachrichtigungsdaten aufbewahren",
+        "description": "Kontrollieren Sie, wie lange wir Ihre Daten aufbewahren",
         "retention_period": "Aufbewahrungszeitraum",
-        "retention_description": "Wählen Sie, wie lange Ihr Benachrichtigungsverlauf gespeichert werden soll",
+        "retention_description": "Wählen Sie, wie lange Ihre Daten gespeichert werden sollen",
         "delete_data": "Daten löschen",
-        "delete_description": "Löschen Sie Ihren gesamten Benachrichtigungsverlauf permanent",
+        "delete_description": "Löschen Sie Ihre gesamten Daten permanent",
         "downloading": "Daten werden heruntergeladen...",
         "deleting": "Daten werden gelöscht..."
       },
       "export": {
         "title": "Daten exportieren",
-        "description": "Laden Sie alle Ihre Benachrichtigungsdaten herunter",
-        "button": "Benachrichtigungsdaten exportieren",
+        "description": "Laden Sie alle Ihre Daten herunter",
+        "button": "Daten exportieren",
         "format_json": "Als JSON herunterladen",
         "format_csv": "Als CSV herunterladen"
       },
@@ -227,6 +227,7 @@
         "title": "Einwilligungsverwaltung",
         "description": "Verwalten Sie Ihre Einwilligungseinstellungen",
         "save": "Einstellungen speichern",
+        "saving": "Wird gespeichert...",
         "saved": "Einstellungen erfolgreich gespeichert",
         "last_updated": "Zuletzt aktualisiert"
       }

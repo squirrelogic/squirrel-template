@@ -115,7 +115,7 @@
         "push": {
           "title": "Notificaciones push",
           "comments": "Comentarios y menciones",
-          "comments_description": "Recibe notificaciones cuando alguien te mencione o comente tu contenido",
+          "comments_description": "Recibe notificaciones cuando alguien te menciona o comenta en tu contenido",
           "activity": "Actividad de la cuenta",
           "activity_description": "Recibe alertas sobre actividad importante de la cuenta y cambios",
           "news": "Noticias y actualizaciones",
@@ -167,18 +167,18 @@
       },
       "data_retention": {
         "title": "Retención de datos",
-        "description": "Controla cuánto tiempo conservamos tus datos de notificación",
+        "description": "Controla cuánto tiempo conservamos tus datos",
         "retention_period": "Período de retención",
-        "retention_description": "Elige cuánto tiempo mantener tu historial de notificaciones",
+        "retention_description": "Elige cuánto tiempo mantener tu historial",
         "delete_data": "Eliminar datos",
-        "delete_description": "Elimina permanentemente todo tu historial de notificaciones",
+        "delete_description": "Elimina permanentemente todo tu historial",
         "downloading": "Descargando datos...",
         "deleting": "Eliminando datos..."
       },
       "export": {
         "title": "Exportar datos",
-        "description": "Descarga todos tus datos de notificación",
-        "button": "Exportar datos de notificación",
+        "description": "Descarga todos tus datos",
+        "button": "Exportar datos",
         "format_json": "Descargar como JSON",
         "format_csv": "Descargar como CSV"
       },
@@ -186,6 +186,7 @@
         "title": "Gestión de consentimiento",
         "description": "Gestiona tus preferencias de consentimiento",
         "save": "Guardar preferencias",
+        "saving": "Guardando...",
         "saved": "Preferencias guardadas correctamente",
         "last_updated": "Última actualización"
       }
