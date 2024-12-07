@@ -2,12 +2,10 @@ import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@repo/supabase/middleware";
 import i18nMiddleware from "./i18n/middleware";
 import { logger } from "@repo/logger";
-import { getPathname } from "./i18n/routing";
-const publicRoutes = ["/", "/login", "/register", "/verify-email"];
+
+const publicRoutes = ["/"];
 const isPublicRoute = (pathname: string, locale: string) =>
-  publicRoutes.some(
-    (route) => getPathname({ href: route, locale }) === pathname,
-  );
+  publicRoutes.some((route) => `/${locale}${route}` === pathname);
 
 export async function middleware(request: NextRequest) {
   const defaultLocale = "en";
@@ -58,8 +56,18 @@ export async function middleware(request: NextRequest) {
     userId: user?.id,
   });
 
+  // Handle redirection from "/" to "/en/"
+  //   if (pathname === "/") {
+  //     logger.debug({
+  //       msg: "🌐 Root redirect to /en/",
+  //       from: pathname,
+  //       to: "/en/",
+  //     });
+  //     return NextResponse.redirect(new URL("/en/login", request.url));
+  //   }
+
   // Check if the route requires authentication
-  const isPublic = isPublicRoute(pathname, locale);
+  const isPublic = true; // isPublicRoute(pathname, locale);
 
   logger.debug({
     msg: "🛡️ Route protection check",
@@ -70,33 +78,25 @@ export async function middleware(request: NextRequest) {
 
   if (!isPublic && !user) {
     // Redirect to login if trying to access protected route without auth
-    const redirectUrl = getPathname({
-      href: "/login",
-      locale: locale,
-    });
-
+    const redirectUrl = new URL(`/${locale}`, request.url);
     logger.warn({
       msg: "🚫 Unauthorized access attempt",
       from: pathname,
-      to: redirectUrl,
+      to: redirectUrl.pathname,
     });
-    return NextResponse.redirect(new URL(redirectUrl, request.url));
+    return NextResponse.redirect(redirectUrl);
   }
 
-  if (user && isPublic) {
-    // Redirect to dashboard if trying to access login/register while authenticated
-    const redirectUrl = getPathname({
-      href: "/app/dashboard",
-      locale: locale,
-    });
-
-    logger.debug({
-      msg: "✅ Authenticated user redirected from public route",
-      from: pathname,
-      to: redirectUrl,
-    });
-    return NextResponse.redirect(new URL(redirectUrl, request.url));
-  }
+  //   if (user && isPublic) {
+  //     // Redirect to dashboard if trying to access login/register while authenticated
+  //     const redirectUrl = new URL(`/${locale}/app/dashboard`, request.url);
+  //     logger.debug({
+  //       msg: "✅ Authenticated user redirected from public route",
+  //       from: pathname,
+  //       to: redirectUrl.pathname,
+  //     });
+  //     return NextResponse.redirect(redirectUrl);
+  //   }
 
   // Apply i18nMiddleware for locale detection and redirection
   const i18nResponse = i18nMiddleware(request);

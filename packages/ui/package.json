@@ -31,7 +31,8 @@
     "./separator": "./src/components/ui/separator.tsx",
     "./collapsible": "./src/components/ui/collapsible.tsx",
     "./select": "./src/components/ui/select.tsx",
-    "./badge": "./src/components/ui/badge.tsx"
+    "./badge": "./src/components/ui/badge.tsx",
+    "./textarea": "./src/components/ui/textarea.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

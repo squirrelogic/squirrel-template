@@ -1,0 +1,235 @@
+{
+  "navbar": {
+    "login": "Anmelden",
+    "sign_up": "Registrieren",
+    "sign_out": "Abmelden",
+    "toggle_theme": "Design ändern",
+    "toggle_menu": "Menü umschalten",
+    "navigation_menu": "Navigationsmenü"
+  },
+  "greeting": "Hallo!",
+  "welcome": "Willkommen in unserer Anwendung.",
+  "login": {
+    "title": "Anmelden",
+    "description": "Melden Sie sich bei Ihrem Konto an",
+    "submitting": "Anmeldung läuft...",
+    "button": "Anmelden",
+    "signup": {
+      "text": "Sie haben noch kein Konto?",
+      "link": "Registrieren"
+    },
+    "email_not_confirmed": "Bestätigungs-E-Mail nicht erhalten?",
+    "resend_confirmation": "Bestätigungs-E-Mail erneut senden",
+    "resending_confirmation": "Wird gesendet..."
+  },
+  "register": {
+    "title": "Konto erstellen",
+    "description": "Registrieren Sie sich für ein neues Konto",
+    "submitting": "Konto wird erstellt...",
+    "button": "Registrieren",
+    "signin": {
+      "text": "Haben Sie bereits ein Konto?",
+      "link": "Anmelden"
+    }
+  },
+  "email": {
+    "label": "E-Mail",
+    "description": "Geben Sie Ihre E-Mail-Adresse ein",
+    "placeholder": "sie@beispiel.de"
+  },
+  "password": {
+    "label": "Passwort",
+    "description": "Geben Sie Ihr Passwort ein",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Passwort bestätigen",
+    "description": "Bitte bestätigen Sie Ihr Passwort",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Name",
+    "description": "Geben Sie Ihren vollständigen Namen ein",
+    "placeholder": "Max Mustermann"
+  },
+  "cookies": {
+    "message": "Wir verwenden Cookies, um Ihr Browsing-Erlebnis zu verbessern und unseren Datenverkehr zu analysieren. Durch Klicken auf \"Alle akzeptieren\" stimmen Sie der Verwendung von Cookies zu.",
+    "accept": "Alle akzeptieren",
+    "reject": "Alle ablehnen"
+  },
+  "breadcrumbs": {
+    "app": "App",
+    "account": "Konto",
+    "profile": "Profil",
+    "security": "Sicherheit",
+    "notifications": "Benachrichtigungen",
+    "billing": "Abrechnung",
+    "settings": "Einstellungen",
+    "projects": "Projekte",
+    "teams": "Teams",
+    "dashboard": "Dashboard",
+    "privacy": "Datenschutz"
+  },
+  "account": {
+    "title": "Konto",
+    "profile": {
+      "title": "Profil",
+      "description": "Verwalten Sie Ihre Profilinformationen und Einstellungen",
+      "edit": "Profil bearbeiten",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "personal_info": "Persönliche Informationen",
+      "upload_avatar": "Profilbild hochladen",
+      "uploading": "Wird hochgeladen...",
+      "preferences": "Einstellungen",
+      "preferences_description": "Passen Sie Ihre Kontoeinstellungen an",
+      "success": "Erfolgreich",
+      "success_save": "Ihr Profil wurde erfolgreich aktualisiert",
+      "error": "Fehler",
+      "error_save": "Profil konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
+      "error_upload": "Profilbild konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut."
+    },
+    "security": {
+      "title": "Sicherheit",
+      "description": "Aktualisieren Sie Ihr Passwort und Sicherheitseinstellungen",
+      "manage": "Sicherheit verwalten",
+      "change_password": "Passwort ändern",
+      "current_password": "Aktuelles Passwort",
+      "new_password": "Neues Passwort",
+      "confirm_password": "Neues Passwort bestätigen",
+      "update_password": "Passwort aktualisieren",
+      "updating": "Wird aktualisiert...",
+      "success": "Erfolgreich",
+      "error": "Fehler",
+      "password_updated": "Ihr Passwort wurde erfolgreich aktualisiert",
+      "passwords_not_match": "Neue Passwörter stimmen nicht überein",
+      "update_failed": "Passwort konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
+      "two_factor": "Zwei-Faktor-Authentifizierung",
+      "two_factor_description": "Fügen Sie Ihrem Konto eine zusätzliche Sicherheitsebene hinzu",
+      "enable_two_factor": "Zwei-Faktor-Authentifizierung aktivieren"
+    },
+    "notifications": {
+      "title": "Benachrichtigungseinstellungen",
+      "description": "Verwalten Sie Ihre Benachrichtigungseinstellungen",
+      "manage": "Benachrichtigungen verwalten",
+      "save": "Einstellungen speichern",
+      "saving": "Wird gespeichert...",
+      "preferences_saved": "Benachrichtigungseinstellungen gespeichert",
+      "preferences": {
+        "email": {
+          "title": "E-Mail-Benachrichtigungen",
+          "marketing": "Marketing-E-Mails",
+          "marketing_description": "Erhalten Sie E-Mails über neue Funktionen, Aktionen und Updates",
+          "security": "Sicherheitsbenachrichtigungen",
+          "security_description": "Werden Sie über wichtige Sicherheitsereignisse und Kontoaktivitäten informiert",
+          "updates": "Produkt-Updates",
+          "updates_description": "Bleiben Sie über neue Funktionen und Verbesserungen informiert"
+        },
+        "push": {
+          "title": "Push-Benachrichtigungen",
+          "comments": "Kommentare & Erwähnungen",
+          "comments_description": "Erhalten Sie Benachrichtigungen, wenn Sie erwähnt werden oder jemand Ihre Inhalte kommentiert",
+          "activity": "Kontoaktivität",
+          "activity_description": "Erhalten Sie Benachrichtigungen über wichtige Kontoaktivitäten und Änderungen",
+          "news": "Neuigkeiten & Updates",
+          "news_description": "Bleiben Sie über die neuesten Nachrichten und Produkt-Updates informiert"
+        }
+      },
+      "history": {
+        "title": "Benachrichtigungsverlauf",
+        "empty": "Noch keine Benachrichtigungen",
+        "description": "Sehen und verwalten Sie Ihren Benachrichtigungsverlauf",
+        "search": "Benachrichtigungen durchsuchen...",
+        "filter": {
+          "all": "Alle",
+          "unread": "Ungelesen",
+          "read": "Gelesen",
+          "placeholder": "Nach Status filtern"
+        },
+        "actions": {
+          "mark_all_read": "Alle als gelesen markieren",
+          "mark_read": "Als gelesen markieren",
+          "delete": "Löschen"
+        },
+        "table": {
+          "type": "Typ",
+          "message": "Nachricht",
+          "date": "Datum",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "status": {
+          "read": "Gelesen",
+          "unread": "Ungelesen"
+        }
+      }
+    },
+    "billing": {
+      "title": "Abrechnung",
+      "description": "Verwalten Sie Ihre Abrechnungsinformationen und Abonnements",
+      "current_plan": {
+        "title": "Aktueller Plan",
+        "description": "Sehen und verwalten Sie Ihren aktuellen Abonnementplan",
+        "billing_period": "Monatlich abgerechnet",
+        "change_plan": "Plan ändern"
+      },
+      "payment_method": {
+        "title": "Zahlungsmethode",
+        "description": "Verwalten Sie Ihre Zahlungsmethoden",
+        "expires": "Läuft ab",
+        "update": "Zahlungsmethode aktualisieren"
+      },
+      "history": {
+        "title": "Abrechnungsverlauf",
+        "description": "Sehen Sie Ihren Abrechnungs- und Zahlungsverlauf",
+        "table": {
+          "date": "Datum",
+          "description": "Beschreibung",
+          "amount": "Betrag",
+          "status": "Status",
+          "actions": "Aktionen",
+          "download": "Herunterladen"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "Datenschutzeinstellungen",
+      "description": "Verwalten Sie Ihre Datenschutzeinstellungen gemäß DSGVO",
+      "manage": "Datenschutz verwalten",
+      "data_collection": {
+        "title": "Datenerfassung",
+        "description": "Kontrollieren Sie, wie wir Ihre Daten erfassen und verarbeiten",
+        "essential": "Essentielle Datenerfassung",
+        "essential_description": "Erforderliche Daten für die Kernfunktionalität (kann nicht deaktiviert werden)",
+        "analytics": "Analyse & Verbesserungen",
+        "analytics_description": "Daten zur Verbesserung unserer Dienste und Benutzererfahrung",
+        "personalization": "Personalisierung",
+        "personalization_description": "Daten zur Personalisierung Ihrer Erfahrung"
+      },
+      "data_retention": {
+        "title": "Datenspeicherung",
+        "description": "Kontrollieren Sie, wie lange wir Ihre Benachrichtigungsdaten aufbewahren",
+        "retention_period": "Aufbewahrungszeitraum",
+        "retention_description": "Wählen Sie, wie lange Ihr Benachrichtigungsverlauf gespeichert werden soll",
+        "delete_data": "Daten löschen",
+        "delete_description": "Löschen Sie Ihren gesamten Benachrichtigungsverlauf permanent",
+        "downloading": "Daten werden heruntergeladen...",
+        "deleting": "Daten werden gelöscht..."
+      },
+      "export": {
+        "title": "Daten exportieren",
+        "description": "Laden Sie alle Ihre Benachrichtigungsdaten herunter",
+        "button": "Benachrichtigungsdaten exportieren",
+        "format_json": "Als JSON herunterladen",
+        "format_csv": "Als CSV herunterladen"
+      },
+      "consent": {
+        "title": "Einwilligungsverwaltung",
+        "description": "Verwalten Sie Ihre Einwilligungseinstellungen",
+        "save": "Einstellungen speichern",
+        "saved": "Einstellungen erfolgreich gespeichert",
+        "last_updated": "Zuletzt aktualisiert"
+      }
+    }
+  }
+}

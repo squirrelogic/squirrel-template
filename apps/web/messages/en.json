@@ -1,0 +1,237 @@
+{
+  "navbar": {
+    "login": "Login",
+    "sign_up": "Sign Up",
+    "sign_out": "Sign Out",
+    "toggle_theme": "Toggle theme",
+    "toggle_menu": "Toggle menu",
+    "navigation_menu": "Navigation Menu"
+  },
+  "greeting": "Hello!",
+  "welcome": "Welcome to our application.",
+  "login": {
+    "title": "Login",
+    "description": "Sign in to your account",
+    "submitting": "Signing in...",
+    "button": "Login",
+    "signup": {
+      "text": "Don't have an account?",
+      "link": "Sign up"
+    },
+    "email_not_confirmed": "Didn't get your confirmation email?",
+    "resend_confirmation": "Resend confirmation email",
+    "resending_confirmation": "Sending..."
+  },
+  "register": {
+    "title": "Create an account",
+    "description": "Sign up for a new account",
+    "submitting": "Creating account...",
+    "button": "Register",
+    "signin": {
+      "text": "Already have an account?",
+      "link": "Sign in"
+    }
+  },
+  "email": {
+    "label": "Email",
+    "description": "Enter your email address",
+    "placeholder": "you@example.com"
+  },
+  "password": {
+    "label": "Password",
+    "description": "Enter your password",
+    "placeholder": "••••••••"
+  },
+  "confirm_password": {
+    "label": "Confirm Password",
+    "description": "Please confirm your password",
+    "placeholder": "••••••••"
+  },
+  "name": {
+    "label": "Name",
+    "description": "Enter your full name",
+    "placeholder": "John Doe"
+  },
+  "cookies": {
+    "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+    "accept": "Accept All",
+    "reject": "Reject All"
+  },
+  "account": {
+    "title": "Account",
+    "profile": {
+      "title": "Profile",
+      "description": "Manage your profile information and preferences",
+      "edit": "Edit Profile",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "personal_info": "Personal Information",
+      "upload_avatar": "Upload Avatar",
+      "uploading": "Uploading...",
+      "preferences": "Preferences",
+      "preferences_description": "Customize your account preferences and settings",
+      "success": "Success",
+      "success_save": "Your profile has been updated successfully",
+      "error": "Error",
+      "error_save": "Failed to update profile. Please try again.",
+      "error_upload": "Failed to upload avatar. Please try again."
+    },
+    "security": {
+      "title": "Security",
+      "description": "Update your password and security settings",
+      "manage": "Manage Security",
+      "change_password": "Change Password",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "new_password_placeholder": "Enter your new password",
+      "confirm_password": "Confirm New Password",
+      "confirm_password_placeholder": "Confirm your new password",
+      "update_password": "Update Password",
+      "updating": "Updating...",
+      "success": "Success",
+      "error": "Error",
+      "password_updated": "Your password has been updated successfully",
+      "passwords_not_match": "New passwords do not match",
+      "update_failed": "Failed to update password. Please try again.",
+      "two_factor": "Two-Factor Authentication",
+      "two_factor_description": "Add an extra layer of security to your account by enabling two-factor authentication",
+      "enable_two_factor": "Enable Two-Factor Authentication"
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "description": "Manage how you receive notifications",
+      "manage": "Manage Notifications",
+      "save": "Save Preferences",
+      "saving": "Saving...",
+      "preferences_saved": "Notification preferences saved",
+      "preferences": {
+        "email": {
+          "title": "Email Notifications",
+          "marketing": "Marketing Emails",
+          "marketing_description": "Receive emails about new features, promotions, and updates",
+          "security": "Security Alerts",
+          "security_description": "Get notified about important security events and account activity",
+          "updates": "Product Updates",
+          "updates_description": "Stay informed about new features and improvements"
+        },
+        "push": {
+          "title": "Push Notifications",
+          "comments": "Comments & Mentions",
+          "comments_description": "Get notified when someone mentions you or comments on your content",
+          "activity": "Account Activity",
+          "activity_description": "Receive alerts about important account activity and changes",
+          "news": "News & Updates",
+          "news_description": "Stay up to date with the latest news and product updates"
+        }
+      },
+      "history": {
+        "title": "Notification History",
+        "empty": "No notifications yet",
+        "description": "View and manage your notification history",
+        "search": "Search notifications...",
+        "filter": {
+          "all": "All",
+          "unread": "Unread",
+          "read": "Read",
+          "placeholder": "Filter by status"
+        },
+        "actions": {
+          "mark_all_read": "Mark all as read",
+          "mark_read": "Mark as read",
+          "delete": "Delete"
+        },
+        "table": {
+          "type": "Type",
+          "message": "Message",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "status": {
+          "read": "Read",
+          "unread": "Unread"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "Data Privacy Settings",
+      "description": "Manage your data privacy preferences in accordance with GDPR",
+      "manage": "Manage Privacy Settings",
+      "data_collection": {
+        "title": "Data Collection",
+        "description": "Control how we collect and process your data",
+        "essential": "Essential Data Collection",
+        "essential_description": "Required data for core service functionality (cannot be disabled)",
+        "analytics": "Analytics & Improvements",
+        "analytics_description": "Data used to improve our services and user experience",
+        "personalization": "Personalization",
+        "personalization_description": "Data used to personalize your experience"
+      },
+      "data_retention": {
+        "title": "Data Retention",
+        "description": "Control how long we keep your notification data",
+        "retention_period": "Retention Period",
+        "retention_description": "Choose how long to keep your notification history",
+        "delete_data": "Delete Data",
+        "delete_description": "Permanently delete all your notification history",
+        "downloading": "Downloading data...",
+        "deleting": "Deleting data..."
+      },
+      "export": {
+        "title": "Export Data",
+        "description": "Download all your notification data",
+        "button": "Export Notifications Data",
+        "format_json": "Download as JSON",
+        "format_csv": "Download as CSV"
+      },
+      "consent": {
+        "title": "Consent Management",
+        "description": "Manage your consent preferences",
+        "save": "Save Preferences",
+        "saved": "Preferences saved successfully",
+        "last_updated": "Last updated"
+      }
+    },
+    "billing": {
+      "title": "Billing",
+      "description": "Manage your billing information and subscription",
+      "current_plan": {
+        "title": "Current Plan",
+        "description": "View and manage your current subscription plan",
+        "billing_period": "Billed monthly",
+        "change_plan": "Change Plan"
+      },
+      "payment_method": {
+        "title": "Payment Method",
+        "description": "Manage your payment methods",
+        "expires": "Expires",
+        "update": "Update Payment Method"
+      },
+      "history": {
+        "title": "Billing History",
+        "description": "View your billing and payment history",
+        "table": {
+          "date": "Date",
+          "description": "Description",
+          "amount": "Amount",
+          "status": "Status",
+          "actions": "Actions",
+          "download": "Download"
+        }
+      }
+    }
+  },
+  "breadcrumbs": {
+    "app": "App",
+    "account": "Account",
+    "profile": "Profile",
+    "security": "Security",
+    "notifications": "Notifications",
+    "billing": "Billing",
+    "settings": "Settings",
+    "projects": "Projects",
+    "teams": "Teams",
+    "dashboard": "Dashboard",
+    "privacy": "Privacy"
+  }
+}

@@ -18,7 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@repo/ui/sidebar";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "../i18n/routing";
 import { useUser } from "@/hooks/use-user";
 import { Skeleton } from "@repo/ui/skeleton";
 
@@ -36,8 +36,7 @@ export function NavUser() {
   };
 
   const navigate = (path: string) => {
-    const locale = pathname.split("/")[1];
-    router.push(`/${locale}/app${path}`);
+    router.push({ pathname: `/app${path}` });
   };
 
   if (loading) {
@@ -78,7 +77,7 @@ export function NavUser() {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
-                  src={user.user_metadata?.avatar_url}
+                  src={user?.avatar_url || user?.user_metadata?.avatar_url}
                   alt={user.email ?? ""}
                 />
                 <AvatarFallback className="rounded-lg">
@@ -104,7 +103,7 @@ export function NavUser() {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage
-                    src={user.user_metadata?.avatar_url}
+                    src={user?.avatar_url || user?.user_metadata?.avatar_url}
                     alt={user.email ?? ""}
                   />
                   <AvatarFallback className="rounded-lg">
