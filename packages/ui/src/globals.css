@@ -4,6 +4,67 @@
 
 @layer base {
   :root {
+    --background: 272.6 50% 95%;
+    --foreground: 272.6 2.5% 7.5%;
+    --card: 272.6 25% 95%;
+    --card-foreground: 272.6 2.5% 12.5%;
+    --popover: 272.6 50% 97.5%;
+    --popover-foreground: 272.6 97.5% 5%;
+    --primary: 272.6 88.7% 45.1%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 272.6 20% 80%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 310.6 20% 90%;
+    --muted-foreground: 272.6 2.5% 37.5%;
+    --accent: 310.6 20% 85%;
+    --accent-foreground: 272.6 2.5% 12.5%;
+    --destructive: 0 75% 40%;
+    --destructive-foreground: 272.6 2.5% 95%;
+    --border: 272.6 25% 66%;
+    --input: 272.6 25% 34%;
+    --ring: 272.6 88.7% 45.3%;
+    --radius: 0.5rem;
+    --sidebar-background: 273, 50%, 90%;
+    --sidebar-foreground: 273, 3%, 7%;
+    --sidebar-primary: 273, 89%, 41%;
+    --sidebar-primary-foreground: 0, 0%, 100%;
+    --sidebar-accent: 311, 20%, 81%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 273, 25%, 63%;
+    --sidebar-ring: 263, 98%, 45%;
+  }
+
+  .dark {
+    --background: 272.6 30% 7.5%;
+    --foreground: 272.6 2.5% 95%;
+    --card: 272.6 25% 5%;
+    --card-foreground: 272.6 2.5% 95%;
+    --popover: 272.6 30% 5%;
+    --popover-foreground: 272.6 2.5% 95%;
+    --primary: 272.6 88.7% 45.1%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 272.6 20% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 310.6 20% 20%;
+    --muted-foreground: 272.6 2.5% 62.5%;
+    --accent: 310.6 20% 20%;
+    --accent-foreground: 272.6 2.5% 92.5%;
+    --destructive: 0 75% 40%;
+    --destructive-foreground: 272.6 2.5% 95%;
+    --border: 272.6 25% 34%;
+    --input: 272.6 25% 34%;
+    --ring: 272.6 88.7% 45.3%;
+    --radius: 0.5rem;
+    --sidebar-background: 273, 30%, 10%;
+    --sidebar-foreground: 273, 3%, 100%;
+    --sidebar-primary: 273, 89%, 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 311, 20%, 17%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 273, 25%, 32%;
+    --sidebar-ring: 263, 98%, 45%;
+  }
+  /* :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -73,7 +134,7 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  } */
 }
 
 @layer base {

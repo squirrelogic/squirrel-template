@@ -92,14 +92,6 @@ export default function NotificationsPage() {
         <div>
           <h1 className="text-2xl font-semibold">{t("notifications.title")}</h1>
         </div>
-        <Button variant="outline" onClick={handleSave} disabled={isSaving}>
-          {isSaving ? (
-            <Icons.Loader2 className="mr-2 size-4 animate-spin" />
-          ) : (
-            <Icons.BadgeCheck className="mr-2 size-4" />
-          )}
-          {isSaving ? t("notifications.saving") : t("notifications.save")}
-        </Button>
       </div>
 
       <Tabs defaultValue="email" className="space-y-4">

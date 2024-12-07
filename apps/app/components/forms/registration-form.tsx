@@ -127,7 +127,6 @@ export const RegistrationForm = () => {
             </FormItem>
           )}
         />
-
         <Button type="submit" className="w-full" disabled={isPending}>
           {isPending ? t("register.submitting") : t("register.button")}
         </Button>

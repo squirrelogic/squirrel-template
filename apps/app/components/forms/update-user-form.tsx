@@ -21,6 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
 import { Input } from "@repo/ui/components/ui/input";
 import { useUser } from "@/hooks/use-user";
+import { SubmitButton } from "@/components/ui/submit-button";
 
 export function UpdateUserForm() {
   const t = useTranslations();
@@ -110,16 +111,12 @@ export function UpdateUserForm() {
         />
 
         <div className="flex justify-end">
-          <Button type="submit" disabled={isPending}>
-            {isPending ? (
-              <Icons.Loader2 className="mr-2 size-4 animate-spin" />
-            ) : (
-              <Icons.BadgeCheck className="mr-2 size-4" />
-            )}
-            {isPending
-              ? t("account.profile.saving")
-              : t("account.profile.save")}
-          </Button>
+          <SubmitButton
+            isPending={isPending}
+            loadingText={t("account.profile.saving")}
+            text={t("account.profile.save")}
+            variant="outline"
+          />
         </div>
       </form>
     </Form>

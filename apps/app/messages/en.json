@@ -188,6 +188,7 @@
         "title": "Consent Management",
         "description": "Manage your consent preferences",
         "save": "Save Preferences",
+        "saving": "Saving ...",
         "saved": "Preferences saved successfully",
         "last_updated": "Last updated"
       }

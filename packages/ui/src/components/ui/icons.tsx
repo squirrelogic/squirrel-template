@@ -1,6 +1,14 @@
 import {
+  ArrowRight,
+  Quote,
+  Cog,
+  Package,
+  Zap,
+  Layout,
+  Database,
   AudioWaveform,
   BadgeCheck,
+  Github,
   Bell,
   BookOpen,
   Bot,
@@ -50,6 +58,13 @@ import {
 export type Icon = LucideIcon;
 
 export const Icons = {
+  ArrowRight,
+  Cog,
+  Quote,
+  Package,
+  Zap,
+  Layout,
+  Database,
   AudioWaveform,
   BadgeCheck,
   Bell,
@@ -61,6 +76,8 @@ export const Icons = {
   Check,
   Trash,
   BookOpen,
+  Github,
+
   Bot,
   ChevronRight,
   ChevronsUpDown,

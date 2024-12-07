@@ -23,6 +23,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
+import { SubmitButton } from "../ui/submit-button";
 
 export function ChangePasswordForm() {
   const t = useTranslations();
@@ -99,12 +100,12 @@ export function ChangePasswordForm() {
         />
 
         <div className="flex justify-end">
-          <Button type="submit" disabled={isPending}>
-            {isPending && (
-              <Icons.Loader2 className="mr-2 size-4 animate-spin" />
-            )}
-            {t("account.security.update_password")}
-          </Button>
+          <SubmitButton
+            isPending={isPending}
+            loadingText={t("account.security.updating")}
+            text={t("account.security.update_password")}
+            variant="outline"
+          />
         </div>
       </form>
     </Form>

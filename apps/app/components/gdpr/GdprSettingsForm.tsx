@@ -27,6 +27,7 @@ import {
 } from "@repo/ui/form";
 import { Alert, AlertDescription } from "@repo/ui/components/ui/alert";
 import { useUser } from "@/hooks/use-user";
+import { SubmitButton } from "../ui/submit-button";
 
 export default function GdprSettingsForm() {
   const { user } = useUser();
@@ -34,7 +35,6 @@ export default function GdprSettingsForm() {
   const t = useTranslations("account.gdpr");
   const { toast } = useToast();
   const [serverError, setServerError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
   const form = useForm<GdprSettingsSchema>({
     resolver: zodResolver(gdprSettingsSchema),
@@ -53,21 +53,24 @@ export default function GdprSettingsForm() {
     },
   });
 
-  const { execute: saveSettings } = useAction(updateGdprSettingsAction, {
-    onSuccess: () => {
-      toast({
-        title: t("consent.saved"),
-        description: new Date().toLocaleString(),
-      });
+  const { execute: saveSettings, isPending } = useAction(
+    updateGdprSettingsAction,
+    {
+      onSuccess: () => {
+        toast({
+          title: t("consent.saved"),
+          description: new Date().toLocaleString(),
+        });
+      },
+      onError: () => {
+        toast({
+          title: "Error",
+          description: "Failed to save preferences",
+          variant: "destructive",
+        });
+      },
     },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to save preferences",
-        variant: "destructive",
-      });
-    },
-  });
+  );
 
   useEffect(() => {
     if (userId) {
@@ -76,13 +79,10 @@ export default function GdprSettingsForm() {
   }, [userId]);
 
   const onSubmit: SubmitHandler<GdprSettingsSchema> = async (data) => {
-    setIsSaving(true);
     try {
       await saveSettings(data);
     } catch (error) {
       console.error("Error saving GDPR settings:", error);
-    } finally {
-      setIsSaving(false);
     }
   };
 
@@ -165,10 +165,12 @@ export default function GdprSettingsForm() {
         {/* Analytics Toggle */}
 
         <div className="flex justify-end">
-          <Button type="submit" disabled={isSaving}>
-            {isSaving && <Icons.Loader2 className="mr-2 size-4 animate-spin" />}
-            {t("consent.save")}
-          </Button>
+          <SubmitButton
+            isPending={isPending}
+            loadingText={t("consent.saving")}
+            text={t("consent.save")}
+            variant="outline"
+          />
         </div>
       </form>
     </Form>
