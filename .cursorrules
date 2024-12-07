@@ -7,6 +7,16 @@ You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, 
 - Prefer iteration and modularization over code duplication.
 - Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
 - Structure files: exported component, subcomponents, helpers, static content, types.
+- All html forms should be created as separate components and placed in the components/forms directory.
+- All html form components should use react-hook-form.
+- All html forms will submit to a next-safe-action using the useAction hook.
+- All html forms will use shadcn Form components instead of normal html components.
+- All html forms should toast on success or failure.
+- All html forms should use the SubmitButton for the submit button.
+- All forms will submit to a server action located in the actions folder.
+- All server actions will have a schema defined for their input using Zod.
+- All server actions will be created using next-safe-action.
+- All server actions will use the fluent style starting with a safe action client that are defined in actions/safe-action.ts [authActionClient for private actions, actionClientWithMeta for public actions].
 
 **Naming Conventions**
 
@@ -77,12 +87,13 @@ You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, 
 
 - This is a turbo monorepo.
 - Shared libraries exist in the packages folder.
-- Forms should post to server actions in the apps/app/actions folder.
+- Forms should post to server actions in the actions folder.
 - Keep related schemas in the folder's schema.ts file udner actions.
 - All server actions are next-safe-actions.
 - All forms should use react-hook-form
 - All pages should exist under the [locale] folder.
 - Make sure to use next-intl for internationalization.
 - Translations belong in the messages/[locale].json files
+- When adding translations, start with the english version in en.json. Then add the same translation keys in the other languages but with their respective translation.
 
 **Follow Next.js docs for Data Fetching, Rendering, and Routing.**
