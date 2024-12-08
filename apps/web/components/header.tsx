@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ThemeSwitcher } from "./theme-switcher";
 import Image from "next/image";
-import { animate, motion } from "motion/react";
+import { animate } from "motion/react";
 
 export default function Header() {
   const scrollToSection = (sectionId: string) => (e: React.MouseEvent) => {

@@ -2,11 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import { actionClient } from "@/actions/safe-action";
+import { actionClientWithMeta } from "@/actions/safe-action";
 import { loginUser } from "@repo/supabase/mutations";
 import { loginSchema } from "./schema";
 
-export const loginAction = actionClient
+export const loginAction = actionClientWithMeta
+  .metadata({
+    name: "login",
+  })
   .schema(loginSchema)
   .action(async ({ parsedInput: { email, password } }) => {
     const { error } = await loginUser({ email, password });

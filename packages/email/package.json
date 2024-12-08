@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "export": "email export",
     "clean": "rm -rf .turbo node_modules",
     "lint-email": "eslint . --max-warnings 0",
     "check-types-email": "tsc --noEmit",
-    "dev-email": "email dev -p 3003",
+    "dev-email": "email dev",
     "build-email": "email build",
     "start-email": "email start"
   },
@@ -16,25 +17,23 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "react-email": "3.0.3",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@react-email/components": "0.0.11",
-    "@react-email/render": "0.0.9",
-    "@react-email/tailwind": "0.0.12",
+    "@react-email/components": "0.0.30",
+    "@react-email/render": "1.0.3",
+    "@react-email/tailwind": "1.0.3",
     "@repo/logger": "workspace:^",
     "classnames": "^2.5.1",
     "motion": "12.0.0-alpha.2",
-    "prism-react-renderer": "^2.3.1",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "react-email": "1.10.0"
+    "prism-react-renderer": "^2.4.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   }
 }

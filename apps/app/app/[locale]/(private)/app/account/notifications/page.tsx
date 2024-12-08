@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/card";
 import { Icons } from "@repo/ui/icons";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ui/tabs";
@@ -42,31 +40,27 @@ const notificationHistory = [
   },
 ];
 
-export default function NotificationsPage() {
-  const t = useTranslations("account");
+export default async function NotificationsPage() {
+  const t = await getTranslations("account");
   const { toast } = useToast();
-  const [isSaving, setIsSaving] = useState(false);
 
-  const handleSave = async () => {
-    setIsSaving(true);
-    try {
-      // TODO: Implement API call to save notification preferences
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+  //   const handleSave = async () => {
+  //     try {
+  //       // TODO: Implement API call to save notification preferences
+  //       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      toast({
-        title: t("notifications.preferences_saved"),
-        description: new Date().toLocaleString(),
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to save notification preferences",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSaving(false);
-    }
-  };
+  //       toast({
+  //         title: t("notifications.preferences_saved"),
+  //         description: new Date().toLocaleString(),
+  //       });
+  //     } catch (error) {
+  //       toast({
+  //         title: "Error",
+  //         description: "Failed to save notification preferences",
+  //         variant: "destructive",
+  //       });
+  //     }
+  //   };
 
   const NotificationToggle = ({
     title,

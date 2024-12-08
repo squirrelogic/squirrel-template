@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/nextjs";
 import { setupAnalytics } from "@repo/analytics/server";
 import { ratelimit } from "@repo/kv/ratelimit";
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 import { getUser } from "@repo/supabase/queries";
 // import { createClient } from "@repo/supabase/server";
 import {
@@ -12,6 +12,10 @@ import { headers } from "next/headers";
 import { z } from "zod";
 
 const handleServerError = (e: Error) => {
+  const logger = getLogger().child({
+    module: "safe-action",
+  });
+
   logger.error("Action error", {
     error: e.message,
     stack: e.stack,
@@ -45,6 +49,10 @@ export const actionClientWithMeta = createSafeActionClient({
 
 export const authActionClient = actionClientWithMeta
   .use(async ({ next, clientInput, metadata }) => {
+    const logger = getLogger().child({
+      module: "actionClientWithMeta",
+    });
+
     const result = await next({ ctx: {} });
 
     if (process.env.NODE_ENV === "development") {

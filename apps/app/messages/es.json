@@ -232,5 +232,18 @@
     "teams": "Equipos",
     "dashboard": "Panel",
     "privacy": "Privacidad"
+  },
+  "organization": {
+    "invite": {
+      "email_label": "Correo electrónico",
+      "email_placeholder": "Ingrese correo electrónico",
+      "submit": "Enviar invitación",
+      "sending": "Enviando invitación...",
+      "success": "Invitación enviada",
+      "success_description": "Se ha enviado un correo de invitación al usuario.",
+      "error": "No se pudo enviar la invitación",
+      "title": "Invitar Usuario",
+      "description": "Invita a un nuevo usuario a tu organización"
+    }
   }
 }

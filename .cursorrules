@@ -17,6 +17,8 @@ You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, 
 - All server actions will have a schema defined for their input using Zod.
 - All server actions will be created using next-safe-action.
 - All server actions will use the fluent style starting with a safe action client that are defined in actions/safe-action.ts [authActionClient for private actions, actionClientWithMeta for public actions].
+- You will use dot notation to call [safe action client].schema([schema]).action([async action function])
+- The action functions take in an object with the parsedInput property holding the input data.
 
 **Naming Conventions**
 

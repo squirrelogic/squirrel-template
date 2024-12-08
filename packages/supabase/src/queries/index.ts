@@ -1,31 +1,42 @@
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 import { createClient } from "@repo/supabase/server";
-import type { PostsOperationResult, UserOperationResult } from "../types/operation";
+import type {
+  PostsOperationResult,
+  UserOperationResult,
+} from "../types/operation";
+export * from "./organization";
 
 export async function getUser(): Promise<UserOperationResult> {
+  const logger = getLogger().child({
+    module: "get-user",
+  });
+
   const supabase = await createClient();
 
   try {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
 
     if (error) {
       return { data: null, error };
     }
 
     if (!user) {
-      return { 
-        data: null, 
-        error: new Error("User not found") 
+      return {
+        data: null,
+        error: new Error("User not found"),
       };
     }
 
-    return { 
+    return {
       data: {
         id: user.id,
         email: user.email ?? "",
         full_name: user.user_metadata?.full_name ?? null,
-      }, 
-      error: null 
+      },
+      error: null,
     };
   } catch (error) {
     logger.error(error);
@@ -34,6 +45,10 @@ export async function getUser(): Promise<UserOperationResult> {
 }
 
 export async function getPosts(): Promise<PostsOperationResult> {
+  const logger = getLogger().child({
+    module: "get-posts",
+  });
+
   const supabase = await createClient();
 
   try {
@@ -52,3 +67,9 @@ export async function getPosts(): Promise<PostsOperationResult> {
     return { data: null, error: error as Error };
   }
 }
+
+export {
+  getInvitation,
+  getOrganization,
+  getUserOrganizations,
+} from "./organization";

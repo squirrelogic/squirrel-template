@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@repo/supabase/middleware";
 import i18nMiddleware from "./i18n/middleware";
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 import { getPathname } from "./i18n/routing";
 const publicRoutes = ["/", "/login", "/register", "/verify-email"];
 const isPublicRoute = (pathname: string, locale: string) =>
@@ -10,6 +10,10 @@ const isPublicRoute = (pathname: string, locale: string) =>
   );
 
 export async function middleware(request: NextRequest) {
+  const logger = getLogger().child({
+    module: "middleware",
+  });
+
   const defaultLocale = "en";
 
   // Use the Accept-Language header as a fallback

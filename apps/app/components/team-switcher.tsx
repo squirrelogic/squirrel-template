@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@repo/ui/sidebar";
+import { Link } from "@/i18n/routing";
 
 export function TeamSwitcher({
   teams,
@@ -24,11 +25,16 @@ export function TeamSwitcher({
     name: string;
     logo: React.ElementType;
     plan: string;
+    id: string;
   }[];
 }) {
   const { isMobile } = useSidebar();
   const [activeTeam, setActiveTeam] = React.useState(teams[0]);
-
+  React.useEffect(() => {
+    if (teams.length === 1) {
+      setActiveTeam(teams[0]);
+    }
+  }, [teams]);
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -65,10 +71,12 @@ export function TeamSwitcher({
                 onClick={() => setActiveTeam(team)}
                 className="gap-2 p-2"
               >
-                <div className="flex size-6 items-center justify-center rounded-sm border">
-                  <team.logo className="size-4 shrink-0" />
-                </div>
-                {team.name}
+                <Link href={`/app/organization/${activeTeam?.id}/invite`}>
+                  <div className="flex size-6 items-center justify-center rounded-sm border">
+                    <team.logo className="size-4 shrink-0" />
+                  </div>
+                  {team.name}
+                </Link>
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}

@@ -1,14 +1,17 @@
 "use server";
 
 import { z } from "zod";
-import { actionClient } from "@/actions/safe-action";
+import { actionClientWithMeta } from "@/actions/safe-action";
 import { resendConfirmation } from "@repo/supabase/mutations";
 
 const schema = z.object({
   email: z.string().email(),
 });
 
-export const resendConfirmationAction = actionClient
+export const resendConfirmationAction = actionClientWithMeta
+  .metadata({
+    name: "resend-confirmation",
+  })
   .schema(schema)
   .action(async ({ parsedInput: { email } }) => {
     const { data, error } = await resendConfirmation({ email });

@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Switch } from "@repo/ui/switch";
-import { Button } from "@repo/ui/button";
-import { Icons } from "@repo/ui/icons";
 import { useToast } from "@repo/ui/use-toast";
 import { useAction } from "next-safe-action/hooks";
 import {
@@ -22,7 +20,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@repo/ui/form";
 import { Alert, AlertDescription } from "@repo/ui/components/ui/alert";

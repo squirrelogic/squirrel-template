@@ -231,5 +231,11 @@
     "teams": "Équipes",
     "dashboard": "Tableau de bord",
     "privacy": "Confidentialité"
+  },
+  "organization": {
+    "invite": {
+      "title": "Inviter un Utilisateur",
+      "description": "Invitez un nouvel utilisateur à votre organisation"
+    }
   }
 }

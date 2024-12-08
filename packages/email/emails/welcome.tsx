@@ -26,10 +26,10 @@ export default function WelcomeEmail() {
           <Container className="border-transparent my-[40px] mx-auto max-w-[600px]">
             <Logo baseUrl={baseUrl} />
             <Heading className="font-normal text-center p-0 my-[30px] mx-0">
-              Welcome to v1
+              Welcome to Squirrel
             </Heading>
             <Section className="mb-4">
-              Hi, I'm Pontus, one of the founders.
+              Hi, I'm Scott, one of the founders of SquirrelSoft.
             </Section>
             <Section className="mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam

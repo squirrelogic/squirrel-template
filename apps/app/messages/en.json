@@ -71,6 +71,7 @@
       "preferences": "Preferences",
       "preferences_description": "Customize your account preferences and settings",
       "success": "Success",
+      "success_upload": "Your avatar has been updated successfully",
       "success_save": "Your profile has been updated successfully",
       "error": "Error",
       "error_save": "Failed to update profile. Please try again.",
@@ -233,6 +234,21 @@
     "projects": "Projects",
     "teams": "Teams",
     "dashboard": "Dashboard",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "organization": "Organization",
+    "invite": "Invite"
+  },
+  "organization": {
+    "invite": {
+      "email_label": "Email Address",
+      "email_placeholder": "Enter email address",
+      "submit": "Send Invitation",
+      "sending": "Sending invitation...",
+      "success": "Invitation Sent",
+      "success_description": "An invitation email has been sent to the user.",
+      "error": "Failed to send invitation",
+      "title": "Invite User",
+      "description": "Invite a new user to your organization"
+    }
   }
 }

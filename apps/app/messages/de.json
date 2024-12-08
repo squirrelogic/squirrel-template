@@ -232,5 +232,18 @@
         "last_updated": "Zuletzt aktualisiert"
       }
     }
+  },
+  "organization": {
+    "invite": {
+      "email_label": "E-Mail-Adresse",
+      "email_placeholder": "E-Mail-Adresse eingeben",
+      "submit": "Einladung senden",
+      "sending": "Einladung wird gesendet...",
+      "success": "Einladung gesendet",
+      "success_description": "Eine Einladungs-E-Mail wurde an den Benutzer gesendet.",
+      "error": "Einladung konnte nicht gesendet werden",
+      "title": "Benutzer einladen",
+      "description": "Laden Sie einen neuen Benutzer in Ihre Organisation ein"
+    }
   }
 }

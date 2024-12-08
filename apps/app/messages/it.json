@@ -231,5 +231,11 @@
     "teams": "Team",
     "dashboard": "Dashboard",
     "privacy": "Privacy"
+  },
+  "organization": {
+    "invite": {
+      "title": "Invita Utente",
+      "description": "Invita un nuovo utente alla tua organizzazione"
+    }
   }
 }

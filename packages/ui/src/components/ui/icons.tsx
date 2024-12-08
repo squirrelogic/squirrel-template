@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  Building,
   Quote,
   Cog,
   Package,
@@ -65,6 +66,7 @@ export const Icons = {
   Zap,
   Layout,
   Database,
+  Building,
   AudioWaveform,
   BadgeCheck,
   Bell,

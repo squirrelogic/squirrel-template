@@ -6,6 +6,7 @@ import { fontSans } from "@/lib/fonts";
 import { cn } from "@repo/ui/lib/utils";
 import { BreadcrumbHeader } from "@/components/breadcrumb-header";
 import { Loading } from "@/components/loading";
+import { getUser } from "@repo/supabase/queries";
 
 export const metadata: Metadata = {
   title: "Your App Name",
@@ -16,7 +17,8 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const user = await getUser();
   return (
     <div
       className={cn(
@@ -26,14 +28,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <div className="flex min-h-screen">
         <SidebarProvider>
-          <AppSidebar />
+          <AppSidebar userId={user?.data?.id ?? ""} />
           <SidebarInset className="flex-1">
             <BreadcrumbHeader />
             <div className="flex flex-1 flex-col gap-4 p-4">
               <div className="flex flex-1 rounded-xl bg-muted/50 p-4 flex-col">
-                <Suspense fallback={<Loading />}>
-                  {children}
-                </Suspense>
+                <Suspense fallback={<Loading />}>{children}</Suspense>
               </div>
             </div>
           </SidebarInset>

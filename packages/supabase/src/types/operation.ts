@@ -18,3 +18,12 @@ export type RegisterResult = OperationResult<{
   id: string;
   email: string;
 }>;
+
+export type InvitationOperationResult = OperationResult<Tables<"invitations">>;
+
+export type OrganizationOperationResult = OperationResult<
+  Tables<"organizations">
+>;
+export type OrganizationsOperationResult = OperationResult<
+  Tables<"organizations">[]
+>;

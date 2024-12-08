@@ -11,13 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pino": "^9.5.0",
-    "pino-pretty": "^10.3.1",
-    "thread-stream": "^3.1.0"
+    "pino": "^8.0.0",
+    "pino-pretty": "^10.0.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
-    "typescript": "5.5.4"
+    "typescript": "^5.7.2"
   }
 }

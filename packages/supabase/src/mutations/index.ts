@@ -1,7 +1,13 @@
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 import { createClient } from "@repo/supabase/server";
 import type { Tables, TablesUpdate } from "../types";
-import type { RegisterResult, UserOperationResult, OperationResult } from "../types/operation";
+import type {
+  RegisterResult,
+  UserOperationResult,
+  OperationResult,
+} from "../types/operation";
+export * from "./organization";
+export * from "./auth";
 
 export type RegisterUserInput = {
   email: string;
@@ -14,6 +20,10 @@ export async function registerUser({
   password,
   name,
 }: RegisterUserInput): Promise<RegisterResult> {
+  const logger = getLogger().child({
+    module: "register-user",
+  });
+
   const supabase = await createClient();
 
   try {
@@ -33,18 +43,18 @@ export async function registerUser({
     }
 
     if (!data.user) {
-      return { 
-        data: null, 
-        error: new Error("Failed to create user") 
+      return {
+        data: null,
+        error: new Error("Failed to create user"),
       };
     }
 
-    return { 
+    return {
       data: {
         id: data.user.id,
         email: data.user.email ?? "",
-      }, 
-      error: null 
+      },
+      error: null,
     };
   } catch (error) {
     logger.error(error);
@@ -61,6 +71,10 @@ export async function loginUser({
   email,
   password,
 }: LoginUserInput): Promise<RegisterResult> {
+  const logger = getLogger().child({
+    module: "login-user",
+  });
+
   const supabase = await createClient();
 
   try {
@@ -74,18 +88,18 @@ export async function loginUser({
     }
 
     if (!data.user) {
-      return { 
-        data: null, 
-        error: new Error("Failed to login") 
+      return {
+        data: null,
+        error: new Error("Failed to login"),
       };
     }
 
-    return { 
+    return {
       data: {
         id: data.user.id,
         email: data.user.email ?? "",
-      }, 
-      error: null 
+      },
+      error: null,
     };
   } catch (error) {
     logger.error(error);
@@ -94,9 +108,13 @@ export async function loginUser({
 }
 
 export async function updateUser(
-  userId: string, 
-  data: TablesUpdate<"users">
+  userId: string,
+  data: TablesUpdate<"users">,
 ): Promise<UserOperationResult> {
+  const logger = getLogger().child({
+    module: "update-user",
+  });
+
   const supabase = await createClient();
 
   try {
@@ -111,13 +129,13 @@ export async function updateUser(
       return { data: null, error };
     }
 
-    return { 
+    return {
       data: {
         id: userData.id,
         email: userData.email,
         full_name: userData.full_name,
-      }, 
-      error: null 
+      },
+      error: null,
     };
   } catch (error) {
     logger.error(error);
@@ -132,11 +150,15 @@ export type ResendConfirmationInput = {
 export async function resendConfirmation({
   email,
 }: ResendConfirmationInput): Promise<OperationResult<{ success: boolean }>> {
+  const logger = getLogger().child({
+    module: "resend-confirmation",
+  });
+
   const supabase = await createClient();
 
   try {
     const { error } = await supabase.auth.resend({
-      type: 'signup',
+      type: "signup",
       email,
     });
 

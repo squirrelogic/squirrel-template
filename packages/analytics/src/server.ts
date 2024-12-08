@@ -1,5 +1,5 @@
 import { OpenPanel, type PostEventPayload } from "@openpanel/nextjs";
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 import { waitUntil } from "@vercel/functions";
 
 type Props = {
@@ -8,6 +8,10 @@ type Props = {
 };
 
 export const setupAnalytics = async (options?: Props) => {
+  const logger = getLogger().child({
+    module: "analytics",
+  });
+
   const { userId, fullName } = options ?? {};
 
   const client = new OpenPanel({

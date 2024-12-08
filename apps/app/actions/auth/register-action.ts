@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { actionClient } from "@/actions/safe-action";
+import { actionClientWithMeta } from "@/actions/safe-action";
 import { registerUser } from "@repo/supabase/mutations";
 import { registerSchema } from "./schema";
 import { headers } from "next/headers";
@@ -15,7 +15,10 @@ export type RegistrationState = {
   message?: string;
 };
 
-export const registerAction = actionClient
+export const registerAction = actionClientWithMeta
+  .metadata({
+    name: "register",
+  })
   .schema(registerSchema)
   .action(async ({ parsedInput: { email, password, name } }) => {
     const { data, error } = await registerUser({ email, password, name });

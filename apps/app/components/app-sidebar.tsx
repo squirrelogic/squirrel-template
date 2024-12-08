@@ -1,6 +1,7 @@
 "use client";
+
 import * as React from "react";
-import { Icons } from "@repo/ui/icons";
+import { Icons, type Icon } from "@repo/ui/icons";
 import Image from "next/image";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
@@ -16,26 +17,11 @@ import {
   SidebarRail,
 } from "@repo/ui/sidebar";
 import Link from "next/link";
+import { useAction } from "next-safe-action/hooks";
+import { getUserOrganizationsAction } from "@/actions/organization/get-user-organizations-action";
 
-// This is sample data.
+// This is sample data for nav items
 const data = {
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: Icons.GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: Icons.AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Icons.Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Playground",
@@ -110,7 +96,37 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  userId,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & { userId: string }) {
+  const [organizations, setOrganizations] = React.useState<
+    Array<{
+      name: string;
+      logo: Icon;
+      plan: string;
+    }>
+  >([]);
+
+  const { execute } = useAction(getUserOrganizationsAction, {
+    onSuccess: ({ data }) => {
+      setOrganizations(
+        data?.organizations?.map((org) => ({
+          id: org.organization.id,
+          name: org.organization.name,
+          logo: Icons.Building,
+          plan: org.role || "member",
+        })) || [],
+      );
+    },
+  });
+
+  React.useEffect(() => {
+    if (userId) {
+      execute({ userId });
+    }
+  }, [userId, execute]);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -130,7 +146,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher teams={organizations} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

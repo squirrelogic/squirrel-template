@@ -3,7 +3,7 @@ import {
   type PostEventPayload,
   useOpenPanel,
 } from "@openpanel/nextjs";
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -20,7 +20,7 @@ const track = (options: { event: string } & PostEventPayload["properties"]) => {
   const { track: openTrack } = useOpenPanel();
 
   if (!isProd) {
-    logger.info("Track", options);
+    getLogger().info("Track", options);
 
     return;
   }

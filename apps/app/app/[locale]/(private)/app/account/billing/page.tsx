@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import {
   Card,
   CardContent,
@@ -18,6 +17,7 @@ import {
   TableRow,
 } from "@repo/ui/table";
 import { Badge } from "@repo/ui/badge";
+import { getTranslations } from "next-intl/server";
 
 // Mock data for billing history
 const billingHistory = [
@@ -44,8 +44,8 @@ const billingHistory = [
   },
 ];
 
-export default function BillingPage() {
-  const t = useTranslations("account.billing");
+export default async function BillingPage() {
+  const t = await getTranslations();
 
   return (
     <div className="space-y-6">

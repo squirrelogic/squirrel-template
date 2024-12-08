@@ -25,6 +25,11 @@ export function BreadcrumbHeader() {
     .split("/")
     .filter(Boolean)
     .slice(2) // Remove locale and app segments
+    .filter((segment) => {
+      const guidPattern =
+        /^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$/i;
+      return !guidPattern.test(segment);
+    })
     .map((segment) => ({
       name: t(segment),
       path: segment,
@@ -39,7 +44,9 @@ export function BreadcrumbHeader() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href={`/${locale}/app`}>{t("app")}</BreadcrumbLink>
+                <BreadcrumbLink href={`/${locale}/app`}>
+                  {t("app")}
+                </BreadcrumbLink>
               </BreadcrumbItem>
               {pathSegments.length > 0 && <BreadcrumbSeparator />}
               {pathSegments.map((segment, index) => (

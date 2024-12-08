@@ -10,7 +10,7 @@ import { routing } from "@/i18n/routing";
 import { Suspense } from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Loading } from "@/components/loading";
-import { logger } from "@repo/logger";
+import { getLogger } from "@repo/logger";
 import { Toaster } from "@repo/ui/toaster";
 import { CookieConsent } from "@/components/gdpr/CookieConsent";
 
@@ -48,7 +48,7 @@ export default async function RootLayout({
   }
 
   const messages = await getMessages({ locale }).catch((error) => {
-    logger.error("Failed to load messages", {
+    getLogger().error("Failed to load messages", {
       locale,
       error: error instanceof Error ? error.message : "Unknown error",
       stack: error instanceof Error ? error.stack : undefined,
