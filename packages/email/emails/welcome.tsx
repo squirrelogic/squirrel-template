@@ -29,36 +29,15 @@ export default function WelcomeEmail() {
               Welcome to Squirrel
             </Heading>
             <Section className="mb-4">
-              Hi, I'm Scott, one of the founders of SquirrelSoft.
-            </Section>
-            <Section className="mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              euismod, nisi vel consectetur interdum, nisl nunc egestas nunc,
-              vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel
-              consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl
-              nunc euismod nunc. Sed euismod, nisi vel consectetur interdum,
-              nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.
-            </Section>
-            <Section className="mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </Section>
-            <Section className="mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Hi, I'm Scott, the founders of SquirrelSoft.
             </Section>
             <Section className="mb-6">
               <Link href={baseUrl}>
                 <Button className="bg-black text-white p-4 text-center">
-                  Get started
+                  Click this link to verify your email
                 </Button>
               </Link>
             </Section>
-            <Hr />
           </Container>
         </Body>
       </Tailwind>

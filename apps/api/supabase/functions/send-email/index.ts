@@ -39,9 +39,9 @@ Deno.serve(async (req) => {
       const html = await render(React.createElement(WelcomeEmail));
 
       await resend.emails.send({
-        from: "Create v1 <onboarding@resend.dev>",
+        from: "Create Squirrel <onboarding@squirrel.software>",
         to: [user.email],
-        subject: "Welcome to v1",
+        subject: "Welcome to Squirrel",
         html,
       });
 
