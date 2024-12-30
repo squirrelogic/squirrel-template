@@ -88,14 +88,44 @@ You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, 
 **Project Structure**
 
 - This is a turbo monorepo.
-- Shared libraries exist in the packages folder.
-- Forms should post to server actions in the actions folder.
-- Keep related schemas in the folder's schema.ts file udner actions.
-- All server actions are next-safe-actions.
-- All forms should use react-hook-form
+  apps <!-- Applications (websites) -->
+  |-- api <!-- Supabase project -->
+  |-- functions <!-- Edge Functions -->
+  |-- migrations <!-- Sql Migrations -->
+  |-- app <!-- Main Application -->
+  |-- actions <!-- Server Actions -->
+  |-- safe-action.ts <!-- safe action clients (actionClientWithMeta for public paths, authActionClient for private paths) -->
+  |-- app <!-- Website source code -->
+  |-- components <!-- Application components -->
+  |-- hooks <!-- React Hooks -->
+  |-- messages <!-- Internationalization language files -->
+  |-- docs
+  |-- web
+  packages <!-- Shared Packages -->
+  |-- analytics <!-- Analytics Library -->
+  |-- email <!-- Email Templates Library -->
+  |-- jobs <!-- Jobs Library uses Trigger.dev -->
+  |-- kv <!-- KV Library uses upstash redis -->
+  |-- logger <!-- Pino logger -->
+  |-- supabase <!-- Supabase library -->
+  |-- clients <!-- Supabase Client Wrappers -->
+  |-- client.ts <!-- Browser Client -->
+  |-- middleware.ts <!-- Next.JS SSR Middleware -->
+  |-- server.ts <!-- Server Client -->
+  |-- mutations <!-- Mutation functions, each area should be a separate file and re-exported in the index.ts (e.g. auth.ts, gdpr-settings.ts, organization.ts) -->
+  |-- queries <!-- Query functions, each area should be a separate file and re-exported in the index.ts -->
+  |-- types <!-- Library types -->
+  |-- ui <!-- UI Component Library uses shadcn -->
+
 - All pages should exist under the [locale] folder.
+- Forms should post to server actions in the actions folder
+- All forms should use react-hook-form
 - Make sure to use next-intl for internationalization.
 - Translations belong in the messages/[locale].json files
 - When adding translations, start with the english version in en.json. Then add the same translation keys in the other languages but with their respective translation.
+- Server actions
+  - each area should have 1 schema file for all area schemas.
+  - each area should have 1 file per server action.
+  - All server actions are next-safe-actions.
 
 **Follow Next.js docs for Data Fetching, Rendering, and Routing.**

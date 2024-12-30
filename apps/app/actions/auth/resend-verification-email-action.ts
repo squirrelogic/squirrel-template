@@ -1,11 +1,7 @@
 "use server";
 import { actionClientWithMeta } from "@/actions/safe-action";
-import { z } from "zod";
 import { resendVerificationEmail } from "@repo/supabase/mutations";
-
-export const resendVerificationEmailSchema = z.object({
-  email: z.string().email(),
-});
+import { resendVerificationEmailSchema } from "./schema";
 
 export const resendVerificationEmailAction = actionClientWithMeta
   .metadata({

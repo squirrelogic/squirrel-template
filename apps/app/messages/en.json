@@ -9,6 +9,17 @@
   },
   "greeting": "Hello!",
   "welcome": "Welcome to our application.",
+  "verify_email": {
+    "title": "Verify Email",
+    "description": "Please check your email for a verification link.",
+    "check_email": "Check your email for a verification link.",
+    "resend": {
+      "button": "Resend Verification Email",
+      "sending": "Sending...",
+      "success": "Verification email sent",
+      "error": "Failed to send verification email"
+    }
+  },
   "login": {
     "title": "Login",
     "description": "Sign in to your account",
@@ -236,9 +247,38 @@
     "dashboard": "Dashboard",
     "privacy": "Privacy",
     "organization": "Organization",
-    "invite": "Invite"
+    "invite": "Invite",
+    "edit": "Edit",
+    "update": "Update",
+    "new": "New"
   },
   "organization": {
+    "form": {
+      "name": "Name",
+      "name_placeholder": "Enter organization name",
+      "description": "Description",
+      "description_placeholder": "Enter organization description",
+      "create": "Create Organization",
+      "creating": "Creating...",
+      "update": "Update Organization",
+      "updating": "Updating...",
+      "success": "Organization updated",
+      "success_description": "Your organization has been updated successfully",
+      "error": "Failed to update organization",
+      "error_description": "An error occurred while updating the organization. Please try again."
+    },
+    "list": {
+      "title": "Organizations",
+      "description": "Manage your organizations"
+    },
+    "edit": {
+      "title": "Edit Organization",
+      "description": "Update your organization details"
+    },
+    "create": {
+      "title": "Create Organization",
+      "description": "Create a new organization"
+    },
     "invite": {
       "email_label": "Email Address",
       "email_placeholder": "Enter email address",

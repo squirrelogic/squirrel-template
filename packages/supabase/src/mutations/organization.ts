@@ -15,17 +15,26 @@ export async function createOrganization(
   });
 
   const supabase = await createClient();
-
+  logger.info(userId, "User ID");
+  logger.info(name, "Organization Name");
   try {
+    const { data: user, error: userError } = await supabase.auth.getUser();
+    if (!user) {
+      console.error("User not authenticated");
+      return { data: null, error: new Error("User not authenticated") };
+    }
     const { data: organization, error } = await supabase
       .from("organizations")
-      .insert({ name })
+      .insert({ name, owner_id: userId })
       .select()
       .single();
 
     if (error) {
+      logger.error(error, "Error creating organization");
       return { data: null, error };
     }
+
+    logger.info(organization, "Organization created");
 
     // Link user as owner
     const { error: linkError } = await supabase
@@ -37,12 +46,15 @@ export async function createOrganization(
       });
 
     if (linkError) {
+      logger.error(linkError, "Error linking user to organization");
       return { data: null, error: linkError };
     }
 
+    logger.info(linkError, "User linked to organization");
+
     return { data: organization, error: null };
   } catch (error) {
-    logger.error(error);
+    logger.error(error, "Error creating organization");
     return { data: null, error: error as Error };
   }
 }
@@ -101,6 +113,35 @@ export async function acceptInvitation(
     }
 
     return { data: { success: true }, error: null };
+  } catch (error) {
+    logger.error(error);
+    return { data: null, error: error as Error };
+  }
+}
+
+export async function updateOrganization(
+  organizationId: string,
+  data: { name: string },
+): Promise<OrganizationOperationResult> {
+  const logger = getLogger().child({
+    module: "update-organization",
+  });
+
+  const supabase = await createClient();
+
+  try {
+    const { data: organization, error } = await supabase
+      .from("organizations")
+      .update({ name: data.name })
+      .eq("id", organizationId)
+      .select()
+      .single();
+
+    if (error) {
+      return { data: null, error };
+    }
+
+    return { data: organization, error: null };
   } catch (error) {
     logger.error(error);
     return { data: null, error: error as Error };

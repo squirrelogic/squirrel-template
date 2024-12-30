@@ -45,7 +45,7 @@ const billingHistory = [
 ];
 
 export default async function BillingPage() {
-  const t = await getTranslations();
+  const t = await getTranslations("account.billing");
 
   return (
     <div className="space-y-6">

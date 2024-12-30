@@ -1,12 +1,14 @@
     CREATE TABLE organizations (
         id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
         name TEXT NOT NULL,
+        owner_id UUID REFERENCES users(id) ON DELETE CASCADE,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
 
     CREATE TABLE user_organizations (
         user_id UUID REFERENCES users(id) ON DELETE CASCADE,
         organization_id UUID REFERENCES organizations(id) ON DELETE CASCADE,
+        default_organization BOOLEAN DEFAULT FALSE,
         role TEXT CHECK (role IN ('owner', 'admin', 'member')) DEFAULT 'member',
         PRIMARY KEY (user_id, organization_id)
     );
@@ -80,11 +82,30 @@
 
 ALTER TABLE organizations ENABLE ROW LEVEL SECURITY;
 
+-- CREATE POLICY user_can_insert_organization
+-- create policy "Enable insert for authenticated users only"
+-- on "public"."organizations"
+-- as PERMISSIVE
+-- for INSERT
+-- to authenticated
+-- with check (
+--   true
+-- );
+CREATE POLICY user_can_insert_organization
+    ON organizations
+    FOR INSERT
+    WITH CHECK (
+        auth.uid() IS NOT NULL -- Ensure the authenticated user can insert
+    );
 -- Policy to allow users to read organizations they are members of
 CREATE POLICY user_can_read_organization
     ON organizations
     FOR SELECT
     USING (
+        -- Allow if the user is the owner of the organization
+        organizations.owner_id = auth.uid()
+        OR
+        -- Allow if the user is a member of the organization
         EXISTS (
             SELECT 1
             FROM public.user_organizations
@@ -92,7 +113,6 @@ CREATE POLICY user_can_read_organization
             AND user_organizations.user_id = auth.uid()
         )
     );
-
 -- Policy to allow owners to update organizations
 CREATE POLICY owner_can_update_organization
     ON organizations
@@ -134,6 +154,8 @@ CREATE POLICY owner_can_add_members
     ON user_organizations
     FOR INSERT
     WITH CHECK (
+        EXISTS (SELECT 1 from public.organizations where owner_id = auth.uid())
+        OR
         EXISTS (
             SELECT 1
             FROM public.user_organizations AS uo

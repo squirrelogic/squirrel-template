@@ -72,10 +72,12 @@ export function TeamSwitcher({
                 className="gap-2 p-2"
               >
                 <Link href={`/app/organization/${activeTeam?.id}/invite`}>
-                  <div className="flex size-6 items-center justify-center rounded-sm border">
-                    <team.logo className="size-4 shrink-0" />
+                  <div className="flex flex-row space-x-2">
+                    <div className="flex size-6 items-center justify-center rounded-sm border">
+                      <team.logo className="size-4 shrink-0" />
+                    </div>
+                    <div className="flex">{team.name}</div>
                   </div>
-                  {team.name}
                 </Link>
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>

@@ -9,6 +9,36 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          changed_at: string | null
+          changed_by: string | null
+          id: number
+          new_data: Json | null
+          old_data: Json | null
+          operation: string | null
+          table_name: string | null
+        }
+        Insert: {
+          changed_at?: string | null
+          changed_by?: string | null
+          id?: number
+          new_data?: Json | null
+          old_data?: Json | null
+          operation?: string | null
+          table_name?: string | null
+        }
+        Update: {
+          changed_at?: string | null
+          changed_by?: string | null
+          id?: number
+          new_data?: Json | null
+          old_data?: Json | null
+          operation?: string | null
+          table_name?: string | null
+        }
+        Relationships: []
+      }
       email_notification_preferences: {
         Row: {
           created_at: string | null
@@ -120,23 +150,80 @@ export type Database = {
           },
         ]
       }
+      order_items: {
+        Row: {
+          id: string
+          product_id: string | null
+          quantity: number | null
+          subscription_id: string | null
+          transaction_id: string | null
+        }
+        Insert: {
+          id?: string
+          product_id?: string | null
+          quantity?: number | null
+          subscription_id?: string | null
+          transaction_id?: string | null
+        }
+        Update: {
+          id?: string
+          product_id?: string | null
+          quantity?: number | null
+          subscription_id?: string | null
+          transaction_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_subscription_id_fkey"
+            columns: ["subscription_id"]
+            isOneToOne: false
+            referencedRelation: "subscriptions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "transactions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organizations: {
         Row: {
           created_at: string | null
           id: string
           name: string
+          owner_id: string | null
         }
         Insert: {
           created_at?: string | null
           id?: string
           name: string
+          owner_id?: string | null
         }
         Update: {
           created_at?: string | null
           id?: string
           name?: string
+          owner_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "organizations_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       posts: {
         Row: {
@@ -173,6 +260,30 @@ export type Database = {
           },
         ]
       }
+      products: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          price: number
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          price: number
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          price?: number
+        }
+        Relationships: []
+      }
       push_notification_settings: {
         Row: {
           account_activity: boolean
@@ -204,6 +315,132 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "push_notification_settings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscription_plans: {
+        Row: {
+          billing_cycle: string
+          created_at: string | null
+          description: string | null
+          discount_price: number | null
+          id: string
+          name: string
+          price: number
+        }
+        Insert: {
+          billing_cycle: string
+          created_at?: string | null
+          description?: string | null
+          discount_price?: number | null
+          id?: string
+          name: string
+          price: number
+        }
+        Update: {
+          billing_cycle?: string
+          created_at?: string | null
+          description?: string | null
+          discount_price?: number | null
+          id?: string
+          name?: string
+          price?: number
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          created_at: string | null
+          end_date: string | null
+          grace_period_end: string | null
+          id: string
+          plan_id: string | null
+          polar_subscription_id: string | null
+          start_date: string | null
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          end_date?: string | null
+          grace_period_end?: string | null
+          id?: string
+          plan_id?: string | null
+          polar_subscription_id?: string | null
+          start_date?: string | null
+          status: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          end_date?: string | null
+          grace_period_end?: string | null
+          id?: string
+          plan_id?: string | null
+          polar_subscription_id?: string | null
+          start_date?: string | null
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "subscription_plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "subscriptions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          polar_transaction_id: string | null
+          subscription_id: string | null
+          transaction_type: string
+          user_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          polar_transaction_id?: string | null
+          subscription_id?: string | null
+          transaction_type: string
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          polar_transaction_id?: string | null
+          subscription_id?: string | null
+          transaction_type?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_subscription_id_fkey"
+            columns: ["subscription_id"]
+            isOneToOne: false
+            referencedRelation: "subscriptions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
@@ -283,12 +520,30 @@ export type Database = {
         }
         Returns: undefined
       }
+      expire_past_due_subscriptions: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       invite_user_to_organization: {
         Args: {
           org_id: string
           invite_email: string
         }
         Returns: string
+      }
+      mark_subscription_as_paid: {
+        Args: {
+          subscription_uuid: string
+          billing_cycle: string
+        }
+        Returns: undefined
+      }
+      set_subscription_past_due: {
+        Args: {
+          subscription_uuid: string
+          grace_period_days?: number
+        }
+        Returns: undefined
       }
     }
     Enums: {

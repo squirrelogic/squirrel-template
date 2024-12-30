@@ -18,3 +18,15 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 export type LoginSchema = z.infer<typeof loginSchema>;
+
+export const resendConfirmationSchema = z.object({
+  email: z.string().email(),
+});
+export type ResendConfirmationSchema = z.infer<typeof resendConfirmationSchema>;
+
+export const resendVerificationEmailSchema = z.object({
+  email: z.string().email(),
+});
+export type ResendVerificationEmailSchema = z.infer<
+  typeof resendVerificationEmailSchema
+>;

@@ -20,7 +20,12 @@ export const updateOrganizationSchema = z.object({
   name: z.string().min(1, "Organization name is required"),
 });
 
+export const getOrganizationSchema = z.object({
+  organizationId: z.string().uuid("Invalid organization ID"),
+});
+
 export type CreateOrganizationSchema = z.infer<typeof createOrganizationSchema>;
 export type InviteUserSchema = z.infer<typeof inviteUserSchema>;
 export type AcceptInviteSchema = z.infer<typeof acceptInviteSchema>;
 export type UpdateOrganizationSchema = z.infer<typeof updateOrganizationSchema>;
+export type GetOrganizationSchema = z.infer<typeof getOrganizationSchema>;

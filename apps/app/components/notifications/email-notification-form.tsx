@@ -7,10 +7,8 @@ import { Button } from "@repo/ui/button";
 import { Icons } from "@repo/ui/icons";
 import { useToast } from "@repo/ui/use-toast";
 import { useAction } from "next-safe-action/hooks";
-import {
-  selectGdprSettingsAction,
-  updateGdprSettingsAction,
-} from "@/actions/gdpr/gdpr-settings-action";
+import { selectGdprSettingsAction } from "@/actions/gdpr/select-gdpr-settings-action";
+import { updateGdprSettingsAction } from "@/actions/gdpr/update-gdpr-settings-action";
 import {
   gdprSettingsSchema,
   GdprSettingsSchema,
